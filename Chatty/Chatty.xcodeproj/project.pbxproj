@@ -12,6 +12,8 @@
 		2BAF68C62B458E4500584B13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* ViewController.swift */; };
 		2BAF68CB2B458E4600584B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF68CA2B458E4600584B13 /* Assets.xcassets */; };
 		2BAF68CE2B458E4600584B13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF68CC2B458E4600584B13 /* LaunchScreen.storyboard */; };
+		2BAF68E62B45914100584B13 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF68E52B45914100584B13 /* Pretendard-Bold.otf */; };
+		2BAF68E82B45914700584B13 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF68E72B45914700584B13 /* Pretendard-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		2BAF68CA2B458E4600584B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BAF68CD2B458E4600584B13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BAF68CF2B458E4600584B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BAF68E52B45914100584B13 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		2BAF68E72B45914700584B13 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,128 @@
 		2BAF68C02B458E4500584B13 /* Chatty */ = {
 			isa = PBXGroup;
 			children = (
+				2BAF68CF2B458E4600584B13 /* Info.plist */,
+				2BAF68D52B45901A00584B13 /* Application */,
+				2BAF68D62B45904000584B13 /* Source */,
+				2BAF68D72B45904800584B13 /* Resource */,
+			);
+			path = Chatty;
+			sourceTree = "<group>";
+		};
+		2BAF68D52B45901A00584B13 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				2BAF68C12B458E4500584B13 /* AppDelegate.swift */,
 				2BAF68C32B458E4500584B13 /* SceneDelegate.swift */,
 				2BAF68C52B458E4500584B13 /* ViewController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		2BAF68D62B45904000584B13 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68D92B45907D00584B13 /* Data */,
+				2BAF68D82B45907300584B13 /* Domain */,
+				2BAF68DA2B45908600584B13 /* Utility */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2BAF68D72B45904800584B13 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68E32B45911F00584B13 /* Font */,
 				2BAF68CA2B458E4600584B13 /* Assets.xcassets */,
 				2BAF68CC2B458E4600584B13 /* LaunchScreen.storyboard */,
-				2BAF68CF2B458E4600584B13 /* Info.plist */,
 			);
-			path = Chatty;
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		2BAF68D82B45907300584B13 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68DF2B4590E200584B13 /* Base */,
+				2BAF68E02B4590E900584B13 /* View */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		2BAF68D92B45907D00584B13 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2BAF68DA2B45908600584B13 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68DB2B45909000584B13 /* DesignSystem */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		2BAF68DB2B45909000584B13 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68DD2B4590C000584B13 /* Constant */,
+				2BAF68DC2B4590AB00584B13 /* Component */,
+				2BAF68DE2B4590CB00584B13 /* Extension */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		2BAF68DC2B4590AB00584B13 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		2BAF68DD2B4590C000584B13 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		2BAF68DE2B4590CB00584B13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2BAF68DF2B4590E200584B13 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2BAF68E02B4590E900584B13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2BAF68E32B45911F00584B13 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68E42B45912600584B13 /* Pretendard */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		2BAF68E42B45912600584B13 /* Pretendard */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF68E52B45914100584B13 /* Pretendard-Bold.otf */,
+				2BAF68E72B45914700584B13 /* Pretendard-Regular.otf */,
+			);
+			path = Pretendard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BAF68CE2B458E4600584B13 /* LaunchScreen.storyboard in Resources */,
+				2BAF68E82B45914700584B13 /* Pretendard-Regular.otf in Resources */,
+				2BAF68E62B45914100584B13 /* Pretendard-Bold.otf in Resources */,
 				2BAF68CB2B458E4600584B13 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
