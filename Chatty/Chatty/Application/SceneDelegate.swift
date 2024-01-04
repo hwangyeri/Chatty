@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,13 +18,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let tempVC = ViewController()
-        let vc = UINavigationController(rootViewController: tempVC)
+        let OnboardingVC = OnboardingViewController()
+        let vc = UINavigationController(rootViewController: OnboardingVC)
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
-
+    
+    // 외부 소스(카카오)로 부터 딥 링크를 처리하는 함수, 앱이 URL과 함께 시작될 때 호출됨
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            // KakaoTalk URL인지 확인
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                // KakaoTalk 로그인 URL이면, AuthController 호출해서 URL 처리
+                _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
