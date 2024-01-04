@@ -10,28 +10,25 @@ import UIKit
 extension UIFont {
     
     enum CustomFont {
-        case pretendardRegularS
-        case pretendardRegularM
-        case pretendardBoldS
-        case pretendardBoldM
-        case pretendardBoldL
+        case caption
+        case body
+        case bodyBold
+        case title2
+        case title1
     }
     
     static func customFont(_ name: CustomFont) -> UIFont? {
-        let pretendardBold = "Pretendard-Bold"
-        let pretendardRegular = "Pretendard-Regular"
-        
         switch name {
-        case .pretendardRegularS:
-            return UIFont(name: pretendardRegular, size: 12)
-        case .pretendardRegularM:
-            return UIFont(name: pretendardRegular, size: 13)
-        case .pretendardBoldS:
-            return UIFont(name: pretendardBold, size: 13)
-        case .pretendardBoldM:
-            return UIFont(name: pretendardBold, size: 14)
-        case .pretendardBoldL:
-            return UIFont(name: pretendardBold, size: 22)
+        case .caption:
+            return .systemFont(ofSize: 12)
+        case .body:
+            return .systemFont(ofSize: 13)
+        case .bodyBold:
+            return .boldSystemFont(ofSize: 13)
+        case .title2:
+            return .boldSystemFont(ofSize: 14)
+        case .title1:
+            return .boldSystemFont(ofSize: 22)
         }
     }
     
