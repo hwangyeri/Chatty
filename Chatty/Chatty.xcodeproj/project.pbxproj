@@ -16,6 +16,8 @@
 		2BAF68E82B45914700584B13 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF68E72B45914700584B13 /* Pretendard-Regular.otf */; };
 		2BAF68EB2B45B53900584B13 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BAF68EA2B45B53900584B13 /* SnapKit */; };
 		2BAF68EE2B45B54300584B13 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2BAF68ED2B45B54300584B13 /* Then */; };
+		2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68EF2B45B57C00584B13 /* Font+.swift */; };
+		2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68F12B45B5A800584B13 /* CLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		2BAF68CF2B458E4600584B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BAF68E52B45914100584B13 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		2BAF68E72B45914700584B13 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		2BAF68EF2B45B57C00584B13 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		2BAF68F12B45B5A800584B13 /* CLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		2BAF68DC2B4590AB00584B13 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				2BAF68F12B45B5A800584B13 /* CLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 		2BAF68DE2B4590CB00584B13 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				2BAF68EF2B45B57C00584B13 /* Font+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -266,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
+				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
 				2BAF68C62B458E4500584B13 /* ViewController.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
