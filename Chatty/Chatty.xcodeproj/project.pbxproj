@@ -40,6 +40,11 @@
 		2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7D12B4707590012A83F /* Alert+.swift */; };
 		2BE5E7D52B4715140012A83F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7D42B4715140012A83F /* SwiftKeychainWrapper */; };
 		2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7D62B4715240012A83F /* KeychainManager.swift */; };
+		2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */; };
+		2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7E72B47F0060012A83F /* APIRouter.swift */; };
+		2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7E92B47F98B0012A83F /* Constants.swift */; };
+		2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */; };
+		2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7F02B4812DD0012A83F /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +75,11 @@
 		2BE5E7CF2B46E1340012A83F /* SocialLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginViewModel.swift; sourceTree = "<group>"; };
 		2BE5E7D12B4707590012A83F /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		2BE5E7D62B4715240012A83F /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2BE5E7E72B47F0060012A83F /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		2BE5E7E92B47F98B0012A83F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		2BE5E7F02B4812DD0012A83F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +170,7 @@
 		2BAF68D92B45907D00584B13 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5E7E42B47EFD00012A83F /* Network */,
 				2BE5E7C02B46C9F80012A83F /* Key */,
 				2BE5E7D82B4715290012A83F /* Manager */,
 			);
@@ -197,6 +208,7 @@
 		2BAF68DD2B4590C000584B13 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5E7E92B47F98B0012A83F /* Constants.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -275,6 +287,17 @@
 				2BE5E7CF2B46E1340012A83F /* SocialLoginViewModel.swift */,
 			);
 			path = SocialLogin;
+			sourceTree = "<group>";
+		};
+		2BE5E7E42B47EFD00012A83F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
+				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
+				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
+				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,22 +393,27 @@
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
 				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
 				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
+				2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */,
 				2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */,
 				2BAF68F42B4685C300584B13 /* BaseView.swift in Sources */,
 				2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */,
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
 				2BAF68FC2B46867900584B13 /* BaseCollectionViewCell.swift in Sources */,
 				2BE5E7AA2B4698A20012A83F /* OnboardingViewModel.swift in Sources */,
+				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
+				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
 				2BE5E7AF2B469FED0012A83F /* AuthView.swift in Sources */,
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
 				2BAF68FE2B4686E900584B13 /* OnboardingView.swift in Sources */,
+				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
+				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
