@@ -15,19 +15,47 @@ final class KeychainManager {
     private init() { }
     
     private struct KeychainKeys {
+        static let authTokenKey: String = "User.AuthToken.Key"
+        static let deviceTokenKey: String = "User.DeviceToken.Key"
         static let accessTokenKey: String = "User.AccessToken.Key"
         static let refreshTokenKey: String = "User.RefreshToken.Key"
     }
     
-    var accessToken: String? {
+    var authToken: String? {
         get {
-            KeychainWrapper.standard.string(forKey: KeychainKeys.accessTokenKey) //Keychain 반환
+            KeychainWrapper.standard.string(forKey: KeychainKeys.authTokenKey)
         }
         set {
             if let value = newValue {
-                KeychainWrapper.standard.set(value, forKey: KeychainKeys.accessTokenKey) //Keychain 저장
+                KeychainWrapper.standard.set(value, forKey: KeychainKeys.authTokenKey)
             } else {
-                KeychainWrapper.standard.removeObject(forKey: KeychainKeys.accessTokenKey) //Keychain 삭제
+                KeychainWrapper.standard.removeObject(forKey: KeychainKeys.authTokenKey)
+            }
+        }
+    }
+    
+    var deviceToken: String? {
+        get {
+            KeychainWrapper.standard.string(forKey: KeychainKeys.deviceTokenKey)
+        }
+        set {
+            if let value = newValue {
+                KeychainWrapper.standard.set(value, forKey: KeychainKeys.deviceTokenKey)
+            } else {
+                KeychainWrapper.standard.removeObject(forKey: KeychainKeys.deviceTokenKey)
+            }
+        }
+    }
+    
+    var accessToken: String? {
+        get {
+            KeychainWrapper.standard.string(forKey: KeychainKeys.accessTokenKey)
+        }
+        set {
+            if let value = newValue {
+                KeychainWrapper.standard.set(value, forKey: KeychainKeys.accessTokenKey)
+            } else {
+                KeychainWrapper.standard.removeObject(forKey: KeychainKeys.accessTokenKey)
             }
         }
     }
