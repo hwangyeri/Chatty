@@ -14,7 +14,7 @@ final class CLabel: UILabel {
        
         self.text = text
         self.font = .customFont(custFont)
-        self.textColor = .textPrimary
+        self.textColor = .black
         self.numberOfLines = 0
         self.setLineHeight(for: custFont)
     }
@@ -28,16 +28,16 @@ final class CLabel: UILabel {
         let lineHeight: CGFloat
         
         switch font {
-        case .pretendardRegularS, .pretendardRegularM, .pretendardBoldS:
-            lineHeight = 18
-        case .pretendardBoldM:
-            lineHeight = 20
-        case .pretendardBoldL:
-            lineHeight = 30
+        case .caption, .body, .bodyBold:
+            lineHeight = 1.16
+        case .title2:
+            lineHeight = 1.2
+        case .title1:
+            lineHeight = 1.14
         }
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineHeight
+        paragraphStyle.lineHeightMultiple = lineHeight
         
         let attributeString = NSMutableAttributedString(string: text ?? "")
         attributeString.addAttribute(
