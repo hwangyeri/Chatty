@@ -17,6 +17,8 @@ final class AuthViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    private let socialLoginViewModel = SocialLoginViewModel()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -27,11 +29,23 @@ final class AuthViewController: BaseViewController {
         bind()
     }
     
+    override func configureLayout() {
+        mainView.kakaoLoginButton.addTarget(self, action: #selector(kakaoLoginButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func kakaoLoginButtonTapped() {
+        print("카카오 로그인 버튼 탭")
+        
+        // 카카오 로그인
+        self.socialLoginViewModel.loginWithKakaoTalk { data in
+            // 필요한 데이터 저장하고 화면 전환 해주기
+        }
+    }
+    
     private func bind() {
         
         let input = AuthViewModel.Input(
             appleLoginButton: mainView.appleLoginButton.rx.tap,
-            kakaoLoginButton: mainView.kakaoLoginButton.rx.tap,
             emailLoginButton: mainView.emailLoginButton.rx.tap,
             joinTextButton: mainView.joinTextButton.rx.tap
         )
@@ -40,7 +54,6 @@ final class AuthViewController: BaseViewController {
         
         
     }
-    
     
 
 }
