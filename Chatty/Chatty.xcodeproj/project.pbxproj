@@ -36,7 +36,7 @@
 		2BE5E7CA2B46D32B0012A83F /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7C92B46D32B0012A83F /* KakaoSDKAuth */; };
 		2BE5E7CC2B46D32B0012A83F /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7CB2B46D32B0012A83F /* KakaoSDKCommon */; };
 		2BE5E7CE2B46D32B0012A83F /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7CD2B46D32B0012A83F /* KakaoSDKUser */; };
-		2BE5E7D02B46E1340012A83F /* SocialLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7CF2B46E1340012A83F /* SocialLoginViewModel.swift */; };
+		2BE5E7D02B46E1340012A83F /* KakaoLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */; };
 		2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7D12B4707590012A83F /* Alert+.swift */; };
 		2BE5E7D52B4715140012A83F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7D42B4715140012A83F /* SwiftKeychainWrapper */; };
 		2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7D62B4715240012A83F /* KeychainManager.swift */; };
@@ -45,6 +45,13 @@
 		2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7E92B47F98B0012A83F /* Constants.swift */; };
 		2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */; };
 		2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7F02B4812DD0012A83F /* NetworkError.swift */; };
+		2BE5E7F82B4961870012A83F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7F72B4961870012A83F /* SignUpViewController.swift */; };
+		2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7F92B4961BB0012A83F /* SignUpView.swift */; };
+		2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FB2B49637B0012A83F /* CBackView.swift */; };
+		2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FD2B4964520012A83F /* CTextField.swift */; };
+		2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */; };
+		2BE5E8032B497D8A0012A83F /* WorkspaceInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E8022B497D8A0012A83F /* WorkspaceInitialViewController.swift */; };
+		2BE5E8052B497DA80012A83F /* WorkspaceInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E8042B497DA80012A83F /* WorkspaceInitialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +79,7 @@
 		2BE5E7BE2B46C9220012A83F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2BE5E7C12B46CA170012A83F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		2BE5E7C42B46CDB60012A83F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		2BE5E7CF2B46E1340012A83F /* SocialLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginViewModel.swift; sourceTree = "<group>"; };
+		2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginManager.swift; sourceTree = "<group>"; };
 		2BE5E7D12B4707590012A83F /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		2BE5E7D62B4715240012A83F /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -80,6 +87,13 @@
 		2BE5E7E92B47F98B0012A83F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		2BE5E7F02B4812DD0012A83F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		2BE5E7F72B4961870012A83F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2BE5E7F92B4961BB0012A83F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		2BE5E7FB2B49637B0012A83F /* CBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBackView.swift; sourceTree = "<group>"; };
+		2BE5E7FD2B4964520012A83F /* CTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTextField.swift; sourceTree = "<group>"; };
+		2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSymbolButton.swift; sourceTree = "<group>"; };
+		2BE5E8022B497D8A0012A83F /* WorkspaceInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceInitialViewController.swift; sourceTree = "<group>"; };
+		2BE5E8042B497DA80012A83F /* WorkspaceInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceInitialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +215,9 @@
 				2BAF68F12B45B5A800584B13 /* CLabel.swift */,
 				2BAF69002B4689B900584B13 /* CButton.swift */,
 				2BE5E7B22B46A25F0012A83F /* CImageButton.swift */,
+				2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */,
+				2BE5E7FB2B49637B0012A83F /* CBackView.swift */,
+				2BE5E7FD2B4964520012A83F /* CTextField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -237,7 +254,8 @@
 		2BAF68E02B4590E900584B13 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7D92B4718660012A83F /* SocialLogin */,
+				2BE5E8012B497D610012A83F /* Workspace */,
+				2BE5E7F62B4961700012A83F /* SignUp */,
 				2BE5E7AD2B469FBD0012A83F /* Auth */,
 				2BAF68FF2B46870300584B13 /* Onboarding */,
 			);
@@ -277,16 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				2BE5E7D62B4715240012A83F /* KeychainManager.swift */,
+				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		2BE5E7D92B4718660012A83F /* SocialLogin */ = {
-			isa = PBXGroup;
-			children = (
-				2BE5E7CF2B46E1340012A83F /* SocialLoginViewModel.swift */,
-			);
-			path = SocialLogin;
 			sourceTree = "<group>";
 		};
 		2BE5E7E42B47EFD00012A83F /* Network */ = {
@@ -298,6 +309,32 @@
 				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		2BE5E7F62B4961700012A83F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7F72B4961870012A83F /* SignUpViewController.swift */,
+				2BE5E7F92B4961BB0012A83F /* SignUpView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		2BE5E8012B497D610012A83F /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E8062B497E1F0012A83F /* WorkspaceInitial */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		2BE5E8062B497E1F0012A83F /* WorkspaceInitial */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E8022B497D8A0012A83F /* WorkspaceInitialViewController.swift */,
+				2BE5E8042B497DA80012A83F /* WorkspaceInitialView.swift */,
+			);
+			path = WorkspaceInitial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,29 +426,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BE5E7D02B46E1340012A83F /* SocialLoginViewModel.swift in Sources */,
+				2BE5E7D02B46E1340012A83F /* KakaoLoginManager.swift in Sources */,
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
 				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
 				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
 				2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */,
 				2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */,
+				2BE5E7F82B4961870012A83F /* SignUpViewController.swift in Sources */,
+				2BE5E8032B497D8A0012A83F /* WorkspaceInitialViewController.swift in Sources */,
 				2BAF68F42B4685C300584B13 /* BaseView.swift in Sources */,
+				2BE5E8052B497DA80012A83F /* WorkspaceInitialView.swift in Sources */,
 				2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */,
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
 				2BAF68FC2B46867900584B13 /* BaseCollectionViewCell.swift in Sources */,
 				2BE5E7AA2B4698A20012A83F /* OnboardingViewModel.swift in Sources */,
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
+				2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
+				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
 				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
 				2BE5E7AF2B469FED0012A83F /* AuthView.swift in Sources */,
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
 				2BAF68FE2B4686E900584B13 /* OnboardingView.swift in Sources */,
+				2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */,
+				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
