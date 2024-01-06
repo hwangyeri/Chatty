@@ -19,11 +19,14 @@ final class OnboardingView: BaseView {
     }
     
     let imageView = UIImageView().then {
-        $0.image = UIImage(named: "TeamWork")
+        $0.image = .onboarding
         $0.contentMode = .scaleAspectFit
     }
     
-    let startButton = CButton(text: "시작하기", font: .title2)
+    let startButton = CButton(text: "시작하기", font: .title2).then {
+        $0.backgroundColor = .point
+        $0.isEnabled = true
+    }
     
     override func configureHierarchy() {
         [titleLabel, imageView, startButton].forEach {
@@ -39,7 +42,7 @@ final class OnboardingView: BaseView {
         
         imageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(320)
+            make.size.equalTo(270)
         }
         
         startButton.snp.makeConstraints { make in
