@@ -34,6 +34,8 @@ final class CLabel: UILabel {
             lineHeight = 1.2
         case .title1:
             lineHeight = 1.14
+        case .navTitle:
+            lineHeight = 1.08
         }
         
         let paragraphStyle = NSMutableParagraphStyle()

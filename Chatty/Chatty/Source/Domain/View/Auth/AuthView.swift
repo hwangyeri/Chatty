@@ -15,14 +15,20 @@ final class AuthView: BaseView {
     
     let kakaoLoginButton = CImageButton(imageName: "KakaoLogin")
     
-    let emailLoginButton = CImageButton(imageName: "EmailLogin")
+    let emailLoginButton = UIButton().then {
+        $0.backgroundColor = .point
+        $0.setTitle(" 이메일로 계속하기", for: .normal)
+        $0.titleLabel?.font = .customFont(.title2)
+        $0.setImage(.emailIcon, for: .normal)
+        $0.layer.cornerRadius = 8
+    }
     
     let orLabel = CLabel(text: "또는", custFont: .title2)
     
-    let joinTextButton = UIButton().then { button in
-        button.setTitle("새롭게 회원가입 하기", for: .normal)
-        button.setTitleColor(.point2, for: .normal)
-        button.titleLabel?.font = .customFont(.title2)
+    let joinTextButton = UIButton().then {
+        $0.setTitle("새롭게 회원가입 하기", for: .normal)
+        $0.setTitleColor(.point, for: .normal)
+        $0.titleLabel?.font = .customFont(.title2)
     }
     
     override func configureHierarchy() {
@@ -45,6 +51,7 @@ final class AuthView: BaseView {
         emailLoginButton.snp.makeConstraints { make in
             make.top.equalTo(kakaoLoginButton.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(appleLoginButton)
+            make.height.equalTo(44)
         }
         
         joinTextButton.snp.makeConstraints { make in

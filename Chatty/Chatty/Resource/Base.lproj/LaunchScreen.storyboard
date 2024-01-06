@@ -16,17 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamWork" translatesAutoresizingMaskIntoConstraints="NO" id="S6O-mO-MhP">
-                                <rect key="frame" x="36.666666666666657" y="266" width="320" height="320"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="S6O-mO-MhP">
+                                <rect key="frame" x="61.666666666666657" y="291" width="270" height="270"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="fNM-5B-S1f"/>
-                                    <constraint firstAttribute="width" constant="320" id="l0i-4d-i1g"/>
+                                    <constraint firstAttribute="height" constant="270" id="95b-Q2-mEe"/>
+                                    <constraint firstAttribute="width" constant="270" id="b7a-YK-GHg"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnY-bD-eXE">
-                                <rect key="frame" x="24" y="107.00000000000001" width="345" height="52.666666666666671"/>
-                                <string key="text">새싹톡을 사용하면 어디서나
-팀을 모을 수 있습니다</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새싹톡을 사용하면 어디서나" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnY-bD-eXE">
+                                <rect key="frame" x="24" y="107" width="345" height="26.333333333333343"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀을 모을 수 있습니다" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYW-Zo-j8q">
+                                <rect key="frame" x="24" y="137" width="345" height="26.333333333333343"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
@@ -37,8 +41,11 @@
                         <constraints>
                             <constraint firstItem="mnY-bD-eXE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="41J-V6-Xbk"/>
                             <constraint firstItem="mnY-bD-eXE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="FMJ-hS-vjY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oYW-Zo-j8q" secondAttribute="trailing" constant="24" id="Km9-s0-kto"/>
+                            <constraint firstItem="oYW-Zo-j8q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="VAU-9h-Z9j"/>
                             <constraint firstItem="S6O-mO-MhP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aYF-au-RnL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mnY-bD-eXE" secondAttribute="trailing" constant="24" id="bA4-uA-TFO"/>
+                            <constraint firstItem="oYW-Zo-j8q" firstAttribute="bottom" secondItem="mnY-bD-eXE" secondAttribute="bottom" constant="30" id="deF-ji-P2E"/>
                             <constraint firstItem="S6O-mO-MhP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="kdc-H1-xje"/>
                         </constraints>
                     </view>
@@ -49,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TeamWork" width="125" height="125"/>
+        <image name="onboarding" width="125" height="125"/>
         <namedColor name="backgroundPrimary">
             <color red="0.9649999737739563" green="0.9649999737739563" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

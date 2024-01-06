@@ -15,6 +15,7 @@ extension UIFont {
         case bodyBold
         case title2
         case title1
+        case navTitle
     }
     
     static func customFont(_ name: CustomFont) -> UIFont? {
@@ -29,6 +30,8 @@ extension UIFont {
             return .boldSystemFont(ofSize: 14)
         case .title1:
             return .boldSystemFont(ofSize: 22)
+        case .navTitle:
+            return .boldSystemFont(ofSize: 17)
         }
     }
     

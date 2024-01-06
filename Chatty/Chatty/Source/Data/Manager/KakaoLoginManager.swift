@@ -1,16 +1,20 @@
 //
-//  SocialLoginViewModel.swift
+//  KakaoLoginManager.swift
 //  Chatty
 //
 //  Created by Yeri Hwang on 2024/01/04.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import KakaoSDKAuth
 import KakaoSDKUser
 
-final class SocialLoginViewModel {
+final class KakaoLoginManager {
+    
+    static let shared = KakaoLoginManager()
+    
+    private init() { }
     
     // MARK: Kakao Login
     func loginWithKakaoTalk(completion: @escaping (KakaoLoginOutput) -> Void) {

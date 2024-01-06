@@ -27,6 +27,10 @@ final class OnboardingViewController: BaseViewController {
         bind()
     }
     
+    override func configureLayout() {
+        view.backgroundColor = .backgroundPrimary
+    }
+    
     private func bind() {
         
         let input = OnboardingViewModel.Input(
