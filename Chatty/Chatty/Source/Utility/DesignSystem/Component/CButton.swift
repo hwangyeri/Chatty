@@ -16,7 +16,10 @@ final class CButton: UIButton {
         self.setTitleColor(.white, for: .normal)
         self.layer.cornerRadius = 8
         self.titleLabel?.font = .customFont(font)
-        self.backgroundColor = .point
+        
+        // disable
+        self.backgroundColor = .inactive
+        self.isEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
