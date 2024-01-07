@@ -28,7 +28,7 @@
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newOn" translatesAutoresizingMaskIntoConstraints="NO" id="okw-An-DdQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardingCustom" translatesAutoresizingMaskIntoConstraints="NO" id="okw-An-DdQ">
                                 <rect key="frame" x="61.666666666666657" y="291" width="270" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="nPc-Qb-Mor"/>
@@ -56,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="newOn" width="125" height="125"/>
+        <image name="onboardingCustom" width="125" height="125"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

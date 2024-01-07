@@ -19,7 +19,7 @@ final class OnboardingView: BaseView {
     }
     
     let imageView = UIImageView().then {
-        $0.image = .onboarding
+        $0.image = .onboardingCustom
         $0.contentMode = .scaleAspectFit
     }
     
