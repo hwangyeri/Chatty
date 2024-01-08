@@ -22,7 +22,7 @@ extension UIViewController {
     
     // 토스트
     func showToast(message : String) {
-        let toastLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 175, height: 36))
+        let toastLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
         toastLabel.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
         toastLabel.backgroundColor = UIColor.point
         toastLabel.textColor = UIColor.white
