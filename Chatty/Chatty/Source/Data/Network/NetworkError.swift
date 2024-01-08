@@ -18,6 +18,8 @@ enum NetworkError: String, Error {
     case e99 = "E99"
     case e02 = "E02"
     case e03 = "E03"
+    case e11 = "E11"
+    case e12 = "E12"
 }
 
 extension NetworkError: LocalizedError {
@@ -39,6 +41,10 @@ extension NetworkError: LocalizedError {
             return "로그인에 실패하였습니다."
         case .e03:
             return "알 수 없는 계정입니다."
+        case .e11:
+            return "잘못된 요청입니다."
+        case .e12:
+            return "중복 데이터입니다."
         }
     }
 }
