@@ -10,6 +10,9 @@
 		2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091D2B4ABD90006149BE /* InitialView.swift */; };
 		2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091F2B4ABDA3006149BE /* InitialViewController.swift */; };
 		2B4109222B4ABE93006149BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */; };
+		2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109232B4AC4D1006149BE /* SignUpViewModel.swift */; };
+		2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109252B4D2AC6006149BE /* CSecureTextField.swift */; };
+		2B4109292B4D39EA006149BE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -58,6 +61,8 @@
 		2B41091D2B4ABD90006149BE /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		2B41091F2B4ABDA3006149BE /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B4109232B4AC4D1006149BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		2B4109252B4D2AC6006149BE /* CSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSecureTextField.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +111,7 @@
 				2BAF68EB2B45B53900584B13 /* SnapKit in Frameworks */,
 				2BE5E7A82B46986E0012A83F /* RxSwift in Frameworks */,
 				2BE5E7CE2B46D32B0012A83F /* KakaoSDKUser in Frameworks */,
+				2B4109292B4D39EA006149BE /* IQKeyboardManagerSwift in Frameworks */,
 				2BE5E7A62B46986E0012A83F /* RxRelay in Frameworks */,
 				2BAF68EE2B45B54300584B13 /* Then in Frameworks */,
 				2BE5E7CA2B46D32B0012A83F /* KakaoSDKAuth in Frameworks */,
@@ -227,6 +233,7 @@
 				2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */,
 				2BE5E7FB2B49637B0012A83F /* CBackView.swift */,
 				2BE5E7FD2B4964520012A83F /* CTextField.swift */,
+				2B4109252B4D2AC6006149BE /* CSecureTextField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -325,6 +332,7 @@
 			children = (
 				2BE5E7F72B4961870012A83F /* SignUpViewController.swift */,
 				2BE5E7F92B4961BB0012A83F /* SignUpView.swift */,
+				2B4109232B4AC4D1006149BE /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -363,6 +371,7 @@
 				2BE5E7CB2B46D32B0012A83F /* KakaoSDKCommon */,
 				2BE5E7CD2B46D32B0012A83F /* KakaoSDKUser */,
 				2BE5E7D42B4715140012A83F /* SwiftKeychainWrapper */,
+				2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */,
 			);
 			productName = Chatty;
 			productReference = 2BAF68BE2B458E4500584B13 /* Chatty.app */;
@@ -398,6 +407,7 @@
 				2BE5E7A22B46986E0012A83F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				2BE5E7C82B46D32A0012A83F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				2BE5E7D32B4715140012A83F /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 2BAF68BF2B458E4500584B13 /* Products */;
 			projectDirPath = "";
@@ -444,6 +454,8 @@
 				2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
+				2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */,
+				2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */,
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
 				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
@@ -678,6 +690,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.16;
+			};
+		};
 		2BAF68E92B45B53900584B13 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -721,6 +741,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		2BAF68EA2B45B53900584B13 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2BAF68E92B45B53900584B13 /* XCRemoteSwiftPackageReference "SnapKit" */;
