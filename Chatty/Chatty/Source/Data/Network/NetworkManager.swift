@@ -81,5 +81,49 @@ extension NetworkManager {
         }
     }
     
+    // 이메일 중복 확인 API
+    func requestCheckEmail(router: APIRouter, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        
+        AF.request(router).response { response in
+            switch response.result {
+            case .success(let success):
+                if 200..<300 ~= response.response?.statusCode ?? 0 {
+                    print(success)
+                    completion(.success("🩵 이메일 중복 확인 API 성공"))
+                } else {
+                    print("💛 이메일 중복 확인 API 실패")
+                    if let responseData = response.data {
+                        do {
+                            let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: responseData)
+                            
+                            if let networkError = NetworkError(rawValue: errorResponse.errorCode) {
+                                completion(.failure(networkError))
+                            } else {
+                                completion(.failure(.unknownError))
+                            }
+                        } catch {
+                            completion(.failure(.decodedError))
+                        }
+                    }
+                }
+            case .failure(let failure):
+                print(failure)
+                if let responseData = response.data {
+                    do {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: responseData)
+                        
+                        if let networkError = NetworkError(rawValue: errorResponse.errorCode) {
+                            completion(.failure(networkError))
+                        } else {
+                            completion(.failure(.unknownError))
+                        }
+                    } catch {
+                        completion(.failure(.decodedError))
+                    }
+                }
+            }
+        }
+    }
+    
     
 }
