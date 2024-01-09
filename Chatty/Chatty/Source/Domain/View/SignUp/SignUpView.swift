@@ -39,19 +39,21 @@ final class SignUpView: BaseView {
     
     let contactBackView = CBackView()
     
-    let contactTextField = CTextField(placeholder: "전화번호를 입력하세요")
+    let contactTextField = CTextField(placeholder: "전화번호를 입력하세요").then {
+        $0.keyboardType = .numberPad
+    }
     
     let passwordLabel = CLabel(text: "비밀번호", custFont: .title2)
     
     let passwordBackView = CBackView()
     
-    let passwordTextField = CTextField(placeholder: "비밀번호를 입력하세요")
+    let passwordTextField = CSecureTextField(placeholder: "비밀번호를 입력하세요")
     
     let checkPasswordLabel = CLabel(text: "비밀번호 확인", custFont: .title2)
     
     let checkPasswordBackView = CBackView()
     
-    let checkPasswordTextField = CTextField(placeholder: "비밀번호를 한 번 더 입력하세요")
+    let checkPasswordTextField = CSecureTextField(placeholder: "비밀번호를 한 번 더 입력하세요")
     
     let signUpButton = CButton(text: "가입하기", font: .title2)
     
@@ -172,7 +174,7 @@ final class SignUpView: BaseView {
         }
         
         signUpButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(45)
+            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-10)
             make.horizontalEdges.equalToSuperview().inset(24)
             make.height.equalTo(44)
         }
