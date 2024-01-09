@@ -15,7 +15,7 @@ enum APIRouter: URLRequestConvertible {
     
     // USER
     case usersJoin // 회원가입
-    case usersValidationEmail // 이메일 중복 확인
+    case usersValidationEmail(email: String) // 이메일 중복 확인 - 구현
     case usersLogin // 로그인
     case usersLoginKakao(model: KakaoLoginInput) // 카카오 로그인 - 구현
     case usersLoginApple // 애플 로그인
@@ -84,11 +84,9 @@ enum APIRouter: URLRequestConvertible {
             return defaultHeader
         case .usersJoin:
             return defaultHeader
-        case .usersValidationEmail:
+        case .usersValidationEmail, .usersLoginKakao:
             return defaultHeader
         case .usersLogin:
-            return defaultHeader
-        case .usersLoginKakao:
             return defaultHeader
         case .usersLoginApple:
             return defaultHeader
@@ -107,8 +105,8 @@ enum APIRouter: URLRequestConvertible {
             return nil
         case .usersJoin:
             return nil
-        case .usersValidationEmail:
-            return nil
+        case .usersValidationEmail(let email):
+            return ["email": email]
         case .usersLogin:
             return nil
         case .usersLoginKakao(let model):
