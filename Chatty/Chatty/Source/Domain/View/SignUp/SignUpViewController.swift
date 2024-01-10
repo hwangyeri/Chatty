@@ -42,6 +42,8 @@ final class SignUpViewController: BaseViewController {
             return
         }
         
+        let signUpButtonTopY = mainView.signUpButton.frame.origin.y
+        
         let isValid = isEmailValid(email)
         
         if isValid {
@@ -49,15 +51,15 @@ final class SignUpViewController: BaseViewController {
                 switch result {
                 case .success(let data):
                     print("****", data)
-                    self?.showToast(message: "사용 가능한 이메일입니다.")
+                    self?.showToast(message: "사용 가능한 이메일입니다.", y: signUpButtonTopY)
                     self?.isCheckedEmailStore.accept(email)
                 case .failure(let error):
                     print("****", error.errorDescription)
-                    self?.showToast(message: "이미 사용 중인 이메일입니다.")
+                    self?.showToast(message: "이미 사용 중인 이메일입니다.", y: signUpButtonTopY)
                 }
             }
         } else {
-            showToast(message: "이메일 형식이 올바르지 않습니다.")
+            showToast(message: "이메일 형식이 올바르지 않습니다.", y: signUpButtonTopY)
         }
     }
     
