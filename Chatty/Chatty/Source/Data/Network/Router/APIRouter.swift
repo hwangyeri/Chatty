@@ -16,12 +16,16 @@ enum APIRouter: URLRequestConvertible {
     // USER
     case usersJoin(model: JoinInput) // 회원가입 - 구현
     case usersValidationEmail(email: String) // 이메일 중복 확인 - 구현
-    case usersLogin // 로그인
+    case usersLogin(model: LoginInput) // 로그인(v2) - 구현
     case usersLoginKakao(model: KakaoLoginInput) // 카카오 로그인 - 구현
     case usersLoginApple // 애플 로그인
     case usersLogout // 로그아웃
     case usersDeviceToken // FCM device Token 저장
     case usersMy // 내 프로필 정보 조회
+    
+    // WORK SPACE
+    case workRead // 내가 속한 워크스페이스 조회 - 구현
+    
     // ... 추가 필요
     
     
@@ -42,7 +46,7 @@ enum APIRouter: URLRequestConvertible {
         case .usersValidationEmail:
             return "/v1/users/validation/email"
         case .usersLogin:
-            return "/v1/users/login"
+            return "/v2/users/login"
         case .usersLoginKakao:
             return "/v1/users/login/kakao"
         case .usersLoginApple:
@@ -53,6 +57,10 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/users/deviceToken"
         case .usersMy:
             return "/v1/users/my"
+            
+        // WORK SPACE
+        case .workRead:
+            return "/v1/workspaces"
         }
     }
     
@@ -70,6 +78,9 @@ enum APIRouter: URLRequestConvertible {
         case .usersLogout: return .get
         case .usersDeviceToken: return .post
         case .usersMy: return .get
+        
+        // WORK SPACE
+        case .workRead: return .get
         }
     }
     
@@ -79,15 +90,19 @@ enum APIRouter: URLRequestConvertible {
             Constants.contentType: Constants.applicationJSON
         ]
         
+        let tokenHeader: HTTPHeaders = [
+            Constants.sesacKey: APIKey.sesacKey,
+            Constants.contentType: Constants.applicationJSON,
+            "Authorization": KeychainManager.shared.accessToken ?? ""
+        ]
+        
         switch self {
         // AUTH
         case .authRefresh:
             return defaultHeader
             
         // USER
-        case .usersJoin, .usersValidationEmail, .usersLoginKakao:
-            return defaultHeader
-        case .usersLogin:
+        case .usersJoin, .usersValidationEmail, .usersLoginKakao, .usersLogin:
             return defaultHeader
         case .usersLoginApple:
             return defaultHeader
@@ -97,6 +112,10 @@ enum APIRouter: URLRequestConvertible {
             return defaultHeader
         case .usersMy:
             return defaultHeader
+            
+        // WORK SPACE
+        case .workRead:
+            return tokenHeader
         }
     }
     
@@ -114,8 +133,12 @@ enum APIRouter: URLRequestConvertible {
             ]
         case .usersValidationEmail(let email):
             return ["email": email]
-        case .usersLogin:
-            return nil
+        case .usersLogin(let model):
+            return [
+                "email": model.email,
+                "password": model.password,
+                "deviceToken": model.deviceToken
+            ]
         case .usersLoginKakao(let model):
             return [
                 "oauthToken": model.oauthToken,
@@ -128,6 +151,10 @@ enum APIRouter: URLRequestConvertible {
         case .usersDeviceToken:
             return nil
         case .usersMy:
+            return nil
+            
+        // WORK SPACE
+        case .workRead:
             return nil
         }
     }
