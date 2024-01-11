@@ -13,6 +13,11 @@
 		2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109232B4AC4D1006149BE /* SignUpViewModel.swift */; };
 		2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109252B4D2AC6006149BE /* CSecureTextField.swift */; };
 		2B4109292B4D39EA006149BE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */; };
+		2B41092C2B4E81F2006149BE /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41092B2B4E81F2006149BE /* UserDefaults+.swift */; };
+		2B41092E2B4E886F006149BE /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41092D2B4E886E006149BE /* InitialViewModel.swift */; };
+		2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */; };
+		2B4109332B4EB2A8006149BE /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109322B4EB2A8006149BE /* AddViewController.swift */; };
+		2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109352B4EB2EC006149BE /* HomeViewController.swift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -63,6 +68,12 @@
 		2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B4109232B4AC4D1006149BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		2B4109252B4D2AC6006149BE /* CSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSecureTextField.swift; sourceTree = "<group>"; };
+		2B41092A2B4E6542006149BE /* Chatty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chatty.entitlements; sourceTree = "<group>"; };
+		2B41092B2B4E81F2006149BE /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		2B41092D2B4E886E006149BE /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
+		2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRootVCManager.swift; sourceTree = "<group>"; };
+		2B4109322B4EB2A8006149BE /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		2B4109352B4EB2EC006149BE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,10 +136,27 @@
 		2B41091C2B4ABD82006149BE /* Initial */ = {
 			isa = PBXGroup;
 			children = (
-				2B41091D2B4ABD90006149BE /* InitialView.swift */,
 				2B41091F2B4ABDA3006149BE /* InitialViewController.swift */,
+				2B41091D2B4ABD90006149BE /* InitialView.swift */,
+				2B41092D2B4E886E006149BE /* InitialViewModel.swift */,
 			);
 			path = Initial;
+			sourceTree = "<group>";
+		};
+		2B4109312B4EB29A006149BE /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				2B4109322B4EB2A8006149BE /* AddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		2B4109342B4EB2C2006149BE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2B4109352B4EB2EC006149BE /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		2BAF68B52B458E4500584B13 = {
@@ -150,6 +178,7 @@
 		2BAF68C02B458E4500584B13 /* Chatty */ = {
 			isa = PBXGroup;
 			children = (
+				2B41092A2B4E6542006149BE /* Chatty.entitlements */,
 				2BAF68CF2B458E4600584B13 /* Info.plist */,
 				2BE5E7BE2B46C9220012A83F /* .gitignore */,
 				2BAF68D52B45901A00584B13 /* Application */,
@@ -251,6 +280,7 @@
 			children = (
 				2BAF68EF2B45B57C00584B13 /* Font+.swift */,
 				2BE5E7D12B4707590012A83F /* Alert+.swift */,
+				2B41092B2B4E81F2006149BE /* UserDefaults+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -270,6 +300,7 @@
 		2BAF68E02B4590E900584B13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B4109342B4EB2C2006149BE /* Home */,
 				2BE5E8012B497D610012A83F /* Workspace */,
 				2BE5E7F62B4961700012A83F /* SignUp */,
 				2BE5E7AD2B469FBD0012A83F /* Auth */,
@@ -312,6 +343,7 @@
 			children = (
 				2BE5E7D62B4715240012A83F /* KeychainManager.swift */,
 				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
+				2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -319,10 +351,10 @@
 		2BE5E7E42B47EFD00012A83F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
-				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
 				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
+				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
 				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
+				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -340,6 +372,7 @@
 		2BE5E8012B497D610012A83F /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
+				2B4109312B4EB29A006149BE /* Add */,
 				2B41091C2B4ABD82006149BE /* Initial */,
 			);
 			path = Workspace;
@@ -445,7 +478,9 @@
 				2BE5E7F82B4961870012A83F /* SignUpViewController.swift in Sources */,
 				2BAF68F42B4685C300584B13 /* BaseView.swift in Sources */,
 				2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */,
+				2B41092E2B4E886F006149BE /* InitialViewModel.swift in Sources */,
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
+				2B4109332B4EB2A8006149BE /* AddViewController.swift in Sources */,
 				2BAF68FC2B46867900584B13 /* BaseCollectionViewCell.swift in Sources */,
 				2BE5E7AA2B4698A20012A83F /* OnboardingViewModel.swift in Sources */,
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
@@ -453,6 +488,7 @@
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
 				2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
+				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
 				2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */,
 				2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */,
@@ -464,9 +500,11 @@
 				2BE5E7AF2B469FED0012A83F /* AuthView.swift in Sources */,
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
+				2B41092C2B4E81F2006149BE /* UserDefaults+.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
 				2BAF68FE2B4686E900584B13 /* OnboardingView.swift in Sources */,
 				2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */,
+				2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */,
 				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
@@ -532,7 +570,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -592,7 +630,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -609,6 +647,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Chatty/Chatty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7T88N7TX7W;
@@ -618,6 +657,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -641,6 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Chatty/Chatty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7T88N7TX7W;
@@ -650,6 +691,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
