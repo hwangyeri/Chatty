@@ -17,11 +17,17 @@ struct KakaoLoginInput: Decodable {
     let deviceToken: String
 }
 
-struct KakaoLoginOutput: Codable {
+// 회원가입
+struct JoinInput: Decodable {
+    let email, password, nickname, phone: String
+    let deviceToken: String
+}
+
+struct JoinOutput: Codable {
     let userID: Int
     let email, nickname: String
-    let profileImage, phone: String?
-    let vendor, createdAt: String
+    let profileImage, phone, vendor: String?
+    let createdAt: String
     let token: Token
 
     enum CodingKeys: String, CodingKey {
@@ -30,6 +36,8 @@ struct KakaoLoginOutput: Codable {
     }
 }
 
+// 토큰
 struct Token: Codable {
     let accessToken, refreshToken: String
 }
+
