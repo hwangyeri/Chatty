@@ -10,6 +10,7 @@ import Foundation
 extension UserDefaults {
     
     static let userNicknameKey = "userNickname"
+    static let workspaceCountKey = "workspaceCount"
     
     // 유저 닉네임
     var userNickname: String? {
@@ -18,6 +19,16 @@ extension UserDefaults {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: UserDefaults.userNicknameKey)
+        }
+    }
+    
+    // 워크스페이스 개수
+    var workspaceCount: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: UserDefaults.workspaceCountKey)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaults.workspaceCountKey)
         }
     }
     
