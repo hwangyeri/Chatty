@@ -42,6 +42,8 @@ final class SignUpViewController: BaseViewController {
             return
         }
         
+        let signUpButtonTopY = mainView.signUpButton.frame.origin.y
+        
         let isValid = isEmailValid(email)
         
         if isValid {
@@ -49,21 +51,21 @@ final class SignUpViewController: BaseViewController {
                 switch result {
                 case .success(let data):
                     print("****", data)
-                    self?.showToast(message: "사용 가능한 이메일입니다.")
+                    self?.showToast(message: "사용 가능한 이메일입니다.", y: signUpButtonTopY)
                     self?.isCheckedEmailStore.accept(email)
                 case .failure(let error):
                     print("****", error.errorDescription)
-                    self?.showToast(message: "이미 사용 중인 이메일입니다.")
+                    self?.showToast(message: "이미 사용 중인 이메일입니다.", y: signUpButtonTopY)
                 }
             }
         } else {
-            showToast(message: "이메일 형식이 올바르지 않습니다.")
+            showToast(message: "이메일 형식이 올바르지 않습니다.", y: signUpButtonTopY)
         }
     }
     
     // 이메일 유효성 검증
     private func isEmailValid(_ email: String) -> Bool {
-        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.com$"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
     
@@ -106,8 +108,8 @@ final class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        // 가입하기 유효성 검증 결과 UI 반영
-        output.isSignUpValid
+        // 유효성 검증 결과 UI 업데이트
+        output.isValidArray
             .bind(with: self) { owner, isValid in
                 print("가입하기 버튼 클릭")
                 
@@ -121,6 +123,21 @@ final class SignUpViewController: BaseViewController {
                 
                 zip(labels, isValid).forEach { label, isValid in
                     label.textColor = isValid ? .textPrimary : .error
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // 회원가입 결과
+        output.isSignUpValid
+            .bind(with: self) { owner, isValid in
+                if isValid {
+                    let vc = InitialViewController()
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .overCurrentContext
+                    owner.present(vc, animated: true)
+                } else {
+                    let signUpButtonTopY = owner.mainView.signUpButton.frame.origin.y
+                    owner.showToast(message: "에러가 발생했어요.\n잠시 후 다시 시도해주세요.", y: signUpButtonTopY)
                 }
             }
             .disposed(by: disposeBag)

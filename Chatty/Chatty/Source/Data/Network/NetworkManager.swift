@@ -18,6 +18,8 @@ protocol NetworkService {
     )
     
     func requestSingle<T: Decodable>(type: T.Type, router: APIRouter) -> Single<Result<T, NetworkError>>
+    
+    func requestCheckEmail(router: APIRouter, completion: @escaping (Result<String, NetworkError>) -> Void)
 }
 
 final class NetworkManager: NetworkService {

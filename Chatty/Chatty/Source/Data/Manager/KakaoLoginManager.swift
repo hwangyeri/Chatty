@@ -17,7 +17,7 @@ final class KakaoLoginManager {
     private init() { }
     
     // MARK: Kakao Login
-    func loginWithKakaoTalk(completion: @escaping (KakaoLoginOutput) -> Void) {
+    func loginWithKakaoTalk(completion: @escaping (JoinOutput) -> Void) {
         
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
@@ -49,14 +49,14 @@ final class KakaoLoginManager {
                     
                     // 2. 카카오톡 로그인 정보 서버로 보내기
                     NetworkManager.shared.request(
-                        type: KakaoLoginOutput.self,
+                        type: JoinOutput.self,
                         router: .usersLoginKakao(model: KakaoLoginInput(oauthToken: keyChainAccessToken, deviceToken: keyChainRefreshToken))) { result in
                             //print("서버로 보낸 어스 토큰 정보: ", keyChainAccessToken)
                             //print("서버로 보낸 디바이스 토큰 정보: ", keyChainRefreshToken)
                             
                             switch result {
                             case .success(let data):
-                                print("카카오 로그인 정보 서버로 보내기 성공!", data)
+                                print("🩵 카카오 로그인 정보 서버로 보내기 성공!", data)
                                 
                                 // 서버에서 발급 받은 토큰 저장
                                 KeychainManager.shared.accessToken = data.token.accessToken
@@ -65,7 +65,7 @@ final class KakaoLoginManager {
                                 completion(data)
                                 
                             case .failure(let error):
-                                print("카카오 로그인 정보 서버로 보내기 실패!", error.errorDescription)
+                                print("💛 카카오 로그인 정보 서버로 보내기 실패!", error.errorDescription)
                             }
                         }
                 }

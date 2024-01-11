@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
+        let test = InitialViewController()
         let OnboardingVC = OnboardingViewController()
         let vc = UINavigationController(rootViewController: OnboardingVC)
         
@@ -34,6 +35,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 _ = AuthController.handleOpenUrl(url: url)
             }
         }
+    }
+    
+    // 루트뷰 전환하는 메서드
+    func changeRootVC(_ vc: UIViewController, animated: Bool) {
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(
+            with: window, duration: 0.2,
+            options: [.transitionCrossDissolve], animations: nil, completion: nil
+        )
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

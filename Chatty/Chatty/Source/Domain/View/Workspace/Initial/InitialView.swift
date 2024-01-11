@@ -21,12 +21,16 @@ final class InitialView: BaseView {
         $0.backgroundColor = .backgroundPrimary
     }
     
-    let mainLabel = CLabel(text: "출시 준비 완료!", custFont: .title1)
+    let mainLabel = CLabel(text: "출시 준비 완료!", custFont: .title1).then {
+        $0.textAlignment = .center
+    }
     
-    let subLabel = CLabel(text: "(닉네임)님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!", custFont: .title1)
+    let subLabel = CLabel(text: "(닉네임)님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!", custFont: .body).then {
+        $0.textAlignment = .center
+    }
     
     let imageView = UIImageView().then {
-        $0.image = .workspace
+        $0.image = .workspaceCustom
         $0.contentMode = .scaleAspectFit
     }
     
@@ -57,6 +61,28 @@ final class InitialView: BaseView {
         backView.snp.makeConstraints { make in
             make.top.equalTo(xButton.snp.bottom).offset(11)
             make.bottom.horizontalEdges.equalToSuperview()
+        }
+        
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(35)
+            make.horizontalEdges.equalToSuperview().inset(24)
+        }
+        
+        subLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainLabel.snp.bottom).offset(24)
+            make.horizontalEdges.equalTo(mainLabel)
+        }
+        
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(subLabel.snp.bottom).offset(20)
+            make.size.equalTo(300)
+            make.centerX.equalToSuperview()
+        }
+        
+        createButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(45)
+            make.horizontalEdges.equalTo(mainLabel)
+            make.height.equalTo(44)
         }
     }
 
