@@ -148,7 +148,7 @@ final class SignUpViewModel: BaseViewModel {
             .flatMapLatest { email, nickname, contact, password in
                 // 회원가입 API
                 NetworkManager.shared.requestSingle(
-                    type: JoinOutput.self,
+                    type: AuthOutput.self,
                     router: .usersJoin(model: JoinInput(
                         email: email, password: password, 
                         nickname: nickname, phone: contact,

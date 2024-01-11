@@ -23,7 +23,8 @@ struct JoinInput: Decodable {
     let deviceToken: String
 }
 
-struct JoinOutput: Codable {
+// 회원가입 + 로그인
+struct AuthOutput: Codable {
     let userID: Int
     let email, nickname: String
     let profileImage, phone, vendor: String?
@@ -39,5 +40,28 @@ struct JoinOutput: Codable {
 // 토큰
 struct Token: Codable {
     let accessToken, refreshToken: String
+}
+
+// 로그인
+struct LoginInput: Codable {
+    let email, password, deviceToken: String
+}
+
+// 워크스페이스
+typealias WorkspaceOutput = [Workspace]
+
+struct Workspace: Codable {
+    let workspaceID: Int
+    let name, thumbnail: String
+    let description: String?
+    let ownerID: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case name, description, thumbnail
+        case ownerID = "owner_id"
+        case createdAt
+    }
 }
 

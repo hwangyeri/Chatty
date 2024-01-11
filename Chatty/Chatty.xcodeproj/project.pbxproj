@@ -18,6 +18,9 @@
 		2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */; };
 		2B4109332B4EB2A8006149BE /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109322B4EB2A8006149BE /* AddViewController.swift */; };
 		2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109352B4EB2EC006149BE /* HomeViewController.swift */; };
+		2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109382B4FAE59006149BE /* EmailLoginViewController.swift */; };
+		2B41093B2B4FAE64006149BE /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41093A2B4FAE64006149BE /* EmailLoginView.swift */; };
+		2B41093D2B4FB12C006149BE /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41093C2B4FB12C006149BE /* EmailLoginViewModel.swift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -74,6 +77,9 @@
 		2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRootVCManager.swift; sourceTree = "<group>"; };
 		2B4109322B4EB2A8006149BE /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		2B4109352B4EB2EC006149BE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2B4109382B4FAE59006149BE /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
+		2B41093A2B4FAE64006149BE /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
+		2B41093C2B4FB12C006149BE /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +163,40 @@
 				2B4109352B4EB2EC006149BE /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		2B4109372B4FAE49006149BE /* EmailLogin */ = {
+			isa = PBXGroup;
+			children = (
+				2B4109382B4FAE59006149BE /* EmailLoginViewController.swift */,
+				2B41093A2B4FAE64006149BE /* EmailLoginView.swift */,
+				2B41093C2B4FB12C006149BE /* EmailLoginViewModel.swift */,
+			);
+			path = EmailLogin;
+			sourceTree = "<group>";
+		};
+		2B41093E2B4FB66C006149BE /* CustomErrorType */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
+			);
+			path = CustomErrorType;
+			sourceTree = "<group>";
+		};
+		2B41093F2B4FB774006149BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B4109402B4FB835006149BE /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		2BAF68B52B458E4500584B13 = {
@@ -300,6 +340,7 @@
 		2BAF68E02B4590E900584B13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B4109372B4FAE49006149BE /* EmailLogin */,
 				2B4109342B4EB2C2006149BE /* Home */,
 				2BE5E8012B497D610012A83F /* Workspace */,
 				2BE5E7F62B4961700012A83F /* SignUp */,
@@ -351,10 +392,10 @@
 		2BE5E7E42B47EFD00012A83F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
-				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
-				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
 				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
+				2B4109402B4FB835006149BE /* Router */,
+				2B41093F2B4FB774006149BE /* Model */,
+				2B41093E2B4FB66C006149BE /* CustomErrorType */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -481,6 +522,7 @@
 				2B41092E2B4E886F006149BE /* InitialViewModel.swift in Sources */,
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
 				2B4109332B4EB2A8006149BE /* AddViewController.swift in Sources */,
+				2B41093D2B4FB12C006149BE /* EmailLoginViewModel.swift in Sources */,
 				2BAF68FC2B46867900584B13 /* BaseCollectionViewCell.swift in Sources */,
 				2BE5E7AA2B4698A20012A83F /* OnboardingViewModel.swift in Sources */,
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
@@ -490,10 +532,12 @@
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
+				2B41093B2B4FAE64006149BE /* EmailLoginView.swift in Sources */,
 				2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */,
 				2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */,
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
+				2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */,
 				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
 				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
 				2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */,

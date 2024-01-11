@@ -51,6 +51,21 @@ final class AuthViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 이메일 로그인 버튼
+        output.emailLoginButtonTap
+            .drive(with: self) { owner, _ in
+                let vc = EmailLoginViewController()
+                
+                if let sheet = vc.sheetPresentationController {
+                    sheet.detents = [.large()]
+                    sheet.prefersGrabberVisible = true
+                    sheet.delegate = self
+                }
+       
+                owner.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         // 회원가입 버튼
         output.joinTextButtonTap
             .drive(with: self) { owner, _ in
