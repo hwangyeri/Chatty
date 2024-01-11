@@ -13,8 +13,6 @@ import KakaoSDKAuth
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         Thread.sleep(forTimeInterval: 1.0)
@@ -31,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        print("Device Token: \(tokenString)")
+//    }
 
     // MARK: UISceneSession Lifecycle
 
