@@ -110,7 +110,7 @@ final class EmailLoginViewModel: BaseViewModel {
             }
             .flatMapLatest { _ in
                 // 워크스페이스 조회 API
-                NetworkManager.shared.requestSingle(type: WorkspaceOutput.self, router: .workRead)
+                NetworkManager.shared.requestSingle(type: WorkspaceOutput.self, router: .workspaceRead)
             }
             .subscribe(with: self) { owner, result in
                 switch result {
