@@ -15,7 +15,7 @@ final class EmailLoginView: BaseView {
         $0.textAlignment = .center
     }
     
-    let xButton = CSymbolButton()
+    let xButton = XmarkButton()
     
     let backView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
