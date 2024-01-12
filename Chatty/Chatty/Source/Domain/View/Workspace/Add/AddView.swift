@@ -21,7 +21,7 @@ final class AddView: BaseView {
         $0.backgroundColor = .backgroundPrimary
     }
     
-    let profileImageButton = CSymbolButton(size: 38, name: "message.fill")
+    let workspaceImageButton = CSymbolButton(size: 38, name: "message.fill")
     
     let cameraBackView = UIView().then {
         $0.backgroundColor = .point
@@ -54,7 +54,7 @@ final class AddView: BaseView {
             self.addSubview($0)
         }
         
-        [profileImageButton, cameraBackView, nameLabel, nameBackView, explainLabel, explainBackView, doneButton].forEach {
+        [workspaceImageButton, cameraBackView, nameLabel, nameBackView, explainLabel, explainBackView, doneButton].forEach {
             backView.addSubview($0)
         }
         
@@ -80,15 +80,15 @@ final class AddView: BaseView {
             make.bottom.horizontalEdges.equalToSuperview()
         }
         
-        profileImageButton.snp.makeConstraints { make in
+        workspaceImageButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
             make.centerX.equalToSuperview()
             make.size.equalTo(70)
         }
         
         cameraBackView.snp.makeConstraints { make in
-            make.bottom.equalTo(profileImageButton).offset(5)
-            make.trailing.equalTo(profileImageButton).offset(5)
+            make.bottom.equalTo(workspaceImageButton).offset(5)
+            make.trailing.equalTo(workspaceImageButton).offset(5)
             make.size.equalTo(26)
         }
         
@@ -98,7 +98,7 @@ final class AddView: BaseView {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileImageButton.snp.bottom).offset(16)
+            make.top.equalTo(workspaceImageButton.snp.bottom).offset(16)
             make.horizontalEdges.equalToSuperview().inset(24)
         }
         
