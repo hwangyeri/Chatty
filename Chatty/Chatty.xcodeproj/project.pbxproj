@@ -21,6 +21,9 @@
 		2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109382B4FAE59006149BE /* EmailLoginViewController.swift */; };
 		2B41093B2B4FAE64006149BE /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41093A2B4FAE64006149BE /* EmailLoginView.swift */; };
 		2B41093D2B4FB12C006149BE /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41093C2B4FB12C006149BE /* EmailLoginViewModel.swift */; };
+		2B4109442B4FEA82006149BE /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109432B4FEA82006149BE /* AddView.swift */; };
+		2B4109462B4FEA8D006149BE /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109452B4FEA8D006149BE /* AddViewModel.swift */; };
+		2B4109482B4FF552006149BE /* CSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109472B4FF552006149BE /* CSymbolButton.swift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -62,7 +65,7 @@
 		2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7F92B4961BB0012A83F /* SignUpView.swift */; };
 		2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FB2B49637B0012A83F /* CBackView.swift */; };
 		2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FD2B4964520012A83F /* CTextField.swift */; };
-		2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */; };
+		2BE5E8002B4968900012A83F /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7FF2B4968900012A83F /* XmarkButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 		2B4109382B4FAE59006149BE /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		2B41093A2B4FAE64006149BE /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		2B41093C2B4FB12C006149BE /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
+		2B4109432B4FEA82006149BE /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		2B4109452B4FEA8D006149BE /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
+		2B4109472B4FF552006149BE /* CSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSymbolButton.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +121,7 @@
 		2BE5E7F92B4961BB0012A83F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		2BE5E7FB2B49637B0012A83F /* CBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBackView.swift; sourceTree = "<group>"; };
 		2BE5E7FD2B4964520012A83F /* CTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTextField.swift; sourceTree = "<group>"; };
-		2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSymbolButton.swift; sourceTree = "<group>"; };
+		2BE5E7FF2B4968900012A83F /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				2B4109322B4EB2A8006149BE /* AddViewController.swift */,
+				2B4109432B4FEA82006149BE /* AddView.swift */,
+				2B4109452B4FEA8D006149BE /* AddViewModel.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -299,7 +307,8 @@
 				2BAF68F12B45B5A800584B13 /* CLabel.swift */,
 				2BAF69002B4689B900584B13 /* CButton.swift */,
 				2BE5E7B22B46A25F0012A83F /* CImageButton.swift */,
-				2BE5E7FF2B4968900012A83F /* CSymbolButton.swift */,
+				2BE5E7FF2B4968900012A83F /* XmarkButton.swift */,
+				2B4109472B4FF552006149BE /* CSymbolButton.swift */,
 				2BE5E7FB2B49637B0012A83F /* CBackView.swift */,
 				2BE5E7FD2B4964520012A83F /* CTextField.swift */,
 				2B4109252B4D2AC6006149BE /* CSecureTextField.swift */,
@@ -341,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				2B4109372B4FAE49006149BE /* EmailLogin */,
-				2B4109342B4EB2C2006149BE /* Home */,
 				2BE5E8012B497D610012A83F /* Workspace */,
 				2BE5E7F62B4961700012A83F /* SignUp */,
 				2BE5E7AD2B469FBD0012A83F /* Auth */,
@@ -413,6 +421,7 @@
 		2BE5E8012B497D610012A83F /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
+				2B4109342B4EB2C2006149BE /* Home */,
 				2B4109312B4EB29A006149BE /* Add */,
 				2B41091C2B4ABD82006149BE /* Initial */,
 			);
@@ -528,7 +537,7 @@
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
 				2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */,
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
-				2BE5E8002B4968900012A83F /* CSymbolButton.swift in Sources */,
+				2BE5E8002B4968900012A83F /* XmarkButton.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
@@ -538,10 +547,13 @@
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
 				2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */,
+				2B4109442B4FEA82006149BE /* AddView.swift in Sources */,
+				2B4109482B4FF552006149BE /* CSymbolButton.swift in Sources */,
 				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
 				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
 				2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */,
 				2BE5E7AF2B469FED0012A83F /* AuthView.swift in Sources */,
+				2B4109462B4FEA8D006149BE /* AddViewModel.swift in Sources */,
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
 				2B41092C2B4E81F2006149BE /* UserDefaults+.swift in Sources */,

@@ -2,23 +2,25 @@
 //  CSymbolButton.swift
 //  Chatty
 //
-//  Created by Yeri Hwang on 2024/01/06.
+//  Created by Yeri Hwang on 2024/01/11.
 //
 
 import UIKit
 
 final class CSymbolButton: UIButton {
     
-    init() {
+    init(size: CGFloat, name: String) {
         super.init(frame: .zero)
         
-        // default == X Button
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular)
-        let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: size, weight: .regular)
+        let image = UIImage(systemName: name, withConfiguration: imageConfig)
         
         self.setImage(image, for: .normal)
-        self.tintColor = .black
+        self.tintColor = .white
         self.contentMode = .scaleAspectFit
+        self.backgroundColor = .point
+        self.layer.cornerRadius = 8
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,4 +28,5 @@ final class CSymbolButton: UIButton {
     }
     
 }
+
 

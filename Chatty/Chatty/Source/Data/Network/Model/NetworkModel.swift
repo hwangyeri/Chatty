@@ -65,3 +65,10 @@ struct Workspace: Codable {
     }
 }
 
+// Multipart
+struct WorkspaceCreateInput: Codable {
+    let name: String
+    let description: String?
+    let image: Data
+}
+

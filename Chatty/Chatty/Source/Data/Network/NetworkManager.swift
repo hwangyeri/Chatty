@@ -127,5 +127,34 @@ extension NetworkManager {
         }
     }
     
+    // Multipart Single
+    func requestMultipart<T: Decodable>(type: T.Type, router: APIRouter) -> Single<Result<T, NetworkError>> {
+        return Single.create { single in
+            AF.upload(multipartFormData: router.multipart, with: router).responseDecodable(of: T.self) { response in
+                switch response.result {
+                case .success(let data):
+                    single(.success(.success(data)))
+                case .failure(_):
+                    if let responseData = response.data {
+                        do {
+                            let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: responseData)
+                            
+                            if let networkError = NetworkError(rawValue: errorResponse.errorCode) {
+                                single(.success(.failure(networkError)))
+                            } else {
+                                single(.failure(NetworkError.unknownError))
+                            }
+                        } catch {
+                            single(.failure(NetworkError.decodedError))
+                        }
+                    } else {
+                        single(.failure(NetworkError.noDataError))
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
     
 }

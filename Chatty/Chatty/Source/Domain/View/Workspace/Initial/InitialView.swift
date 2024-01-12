@@ -15,7 +15,7 @@ final class InitialView: BaseView {
         $0.textAlignment = .center
     }
     
-    let xButton = CSymbolButton()
+    let xButton = XmarkButton()
     
     let backView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
@@ -34,7 +34,10 @@ final class InitialView: BaseView {
         $0.contentMode = .scaleAspectFit
     }
     
-    let createButton = CButton(text: "워크스페이스 생성", font: .title2)
+    let createButton = CButton(text: "워크스페이스 생성", font: .title2).then {
+        $0.backgroundColor = .point
+        $0.isEnabled = true
+    }
     
     override func configureHierarchy() {
         [titleLabel, xButton, backView].forEach {

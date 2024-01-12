@@ -13,11 +13,12 @@ final class InitialViewModel: BaseViewModel {
     
     struct Input {
         let xButton: ControlEvent<Void>
-        let createButton: ControlEvent<Void>
+        let createButton: ControlEvent<Void> // 워크스페이스 생성 버튼
     }
     
     struct Output {
         let xButtonTap: Driver<Void>
+        let createButtonTap: Driver<Void>
     }
     
     private let disposeBag = DisposeBag()
@@ -28,9 +29,14 @@ final class InitialViewModel: BaseViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: ())
         
+        // 워크스페이스 생성 버튼
+        let createButtonTap = input.createButton
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: ())
         
         return Output(
-            xButtonTap: xButtonTap
+            xButtonTap: xButtonTap, 
+            createButtonTap: createButtonTap
         )
     }
         

@@ -20,6 +20,7 @@ enum NetworkError: String, Error {
     case e03 = "E03"
     case e11 = "E11"
     case e12 = "E12"
+    case e21 = "E21"
 }
 
 extension NetworkError: LocalizedError {
@@ -45,6 +46,8 @@ extension NetworkError: LocalizedError {
             return "잘못된 요청입니다."
         case .e12:
             return "중복 데이터입니다."
+        case .e21:
+            return "새싹 코인이 부족합니다."
         }
     }
 }

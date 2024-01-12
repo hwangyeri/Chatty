@@ -48,6 +48,14 @@ final class InitialViewController: BaseViewController {
                 ChangeRootVCManager.shared.changeRootVC(rootVC)
             }
             .disposed(by: disposeBag)
+        
+        // 워크스페이스 생성 버튼
+        output.createButtonTap
+            .drive(with: self) { owner, _ in
+                let vc = AddViewController()
+                owner.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
