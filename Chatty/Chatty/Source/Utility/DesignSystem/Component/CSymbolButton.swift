@@ -20,6 +20,7 @@ final class CSymbolButton: UIButton {
         self.contentMode = .scaleAspectFit
         self.backgroundColor = .point
         self.layer.cornerRadius = 8
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
