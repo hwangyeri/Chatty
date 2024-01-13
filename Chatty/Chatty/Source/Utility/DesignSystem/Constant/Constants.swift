@@ -14,4 +14,10 @@ enum Constants {
     static let contentType = "Content-Type"
     static let applicationJSON = "application/json"
     
+    // systemName
+    static let chevronDown = "chevron.down"
+    static let chevronRight = "chevron.right"
+    static let number = "number"
+    static let plus = "plus"
+    
 }
