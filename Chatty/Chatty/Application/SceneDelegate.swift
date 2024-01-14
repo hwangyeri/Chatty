@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let testVC = SwitchViewController()
         let OnboardingVC = OnboardingViewController()
-        let vc = UINavigationController(rootViewController: testVC)
+        let vc = UINavigationController(rootViewController: OnboardingVC)
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
