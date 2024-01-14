@@ -74,9 +74,8 @@ final class EmailLoginViewController: BaseViewController {
             .bind(with: self) { owner, isValid in
                 if isValid {
                     print("🩵 로그인 성공!")
-                    let vc = HomeViewController()
-                    let rootVC = UINavigationController(rootViewController: vc)
-                    ChangeRootVCManager.shared.changeRootVC(rootVC)
+                    let vc = SwitchViewController()
+                    ChangeRootVCManager.shared.changeRootVC(vc)
                 } else {
                     print("💛 로그인 실패...")
                     let signUpButtonTopY = owner.mainView.loginButton.frame.origin.y
