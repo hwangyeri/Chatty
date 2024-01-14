@@ -43,9 +43,8 @@ final class InitialViewController: BaseViewController {
         
         output.xButtonTap
             .drive(with: self) { owner, _ in
-                let vc = HomeViewController()
-                let rootVC = UINavigationController(rootViewController: vc)
-                ChangeRootVCManager.shared.changeRootVC(rootVC)
+                let vc = SwitchViewController()
+                ChangeRootVCManager.shared.changeRootVC(vc)
             }
             .disposed(by: disposeBag)
         

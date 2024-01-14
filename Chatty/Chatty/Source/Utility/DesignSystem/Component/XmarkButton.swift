@@ -1,5 +1,5 @@
 //
-//  CSymbolButton.swift
+//  XmarkButton.swift
 //  Chatty
 //
 //  Created by Yeri Hwang on 2024/01/06.

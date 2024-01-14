@@ -50,9 +50,8 @@ final class AddViewController: BaseViewController {
         
         output.xButtonTap
             .drive(with: self) { owner, _ in
-                let vc = HomeViewController()
-                let rootVC = UINavigationController(rootViewController: vc)
-                ChangeRootVCManager.shared.changeRootVC(rootVC)
+                let vc = SwitchViewController()
+                ChangeRootVCManager.shared.changeRootVC(vc)
             }
             .disposed(by: disposeBag)
         
@@ -114,9 +113,8 @@ final class AddViewController: BaseViewController {
             .bind(with: self) { owner, isValid in
                 if isValid {
                     // 루트뷰 전환
-                    let vc = HomeViewController()
-                    let rootVC = UINavigationController(rootViewController: vc)
-                    ChangeRootVCManager.shared.changeRootVC(rootVC)
+                    let vc = SwitchViewController()
+                    ChangeRootVCManager.shared.changeRootVC(vc)
                 } else {
                     let buttonTopY = owner.mainView.doneButton.frame.origin.y
                     owner.showToast(message: "에러가 발생했어요.\n잠시 후 다시 시도해주세요.", y: buttonTopY)
