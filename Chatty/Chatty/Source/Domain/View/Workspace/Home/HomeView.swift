@@ -18,9 +18,7 @@ final class HomeView: BaseView {
         $0.clipsToBounds = true
     }
     
-    let wsNameButton = UIButton().then {
-        $0.setTitle("Workspace Name", for: .normal)
-        $0.titleLabel?.font = .customFont(.title1)
+    let wsNameButton = CTextButton(name: "Workspace Name", font: .title1).then {
         $0.setTitleColor(.black, for: .normal)
     }
     
@@ -88,18 +86,20 @@ final class HomeView: BaseView {
     
     override func configureLayout() {
         wsImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(52)
+//            make.top.equalToSuperview().inset(52) // 클릭 안됨
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(-25)
             make.leading.equalToSuperview().inset(16)
             make.size.equalTo(32)
         }
         
         wsNameButton.snp.makeConstraints { make in
-            make.top.equalTo(wsImageView)
+            make.centerY.equalTo(wsImageView)
             make.leading.equalTo(wsImageView.snp.trailing).offset(8)
         }
         
         myProfileButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(53)
+            make.top.equalTo(wsImageView)
+            make.leading.greaterThanOrEqualTo(wsNameButton.snp.trailing).priority(5)
             make.trailing.equalToSuperview().inset(16)
             make.size.equalTo(32)
         }
