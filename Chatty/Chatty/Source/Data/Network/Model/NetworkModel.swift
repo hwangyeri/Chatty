@@ -72,3 +72,24 @@ struct WorkspaceCreateInput: Codable {
     let image: Data
 }
 
+// 채널
+typealias ChannelsOutput = [Channel]
+
+struct Channel: Codable {
+    let workspaceID, channelID: Int
+    let name: String
+    let description: String?
+    let ownerID, outputPrivate: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case channelID = "channel_id"
+        case name, description
+        case ownerID = "owner_id"
+        case outputPrivate = "private"
+        case createdAt
+    }
+}
+
+
