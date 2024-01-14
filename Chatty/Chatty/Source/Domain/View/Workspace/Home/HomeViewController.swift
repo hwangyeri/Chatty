@@ -8,7 +8,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SideMenu
 
+// 워크스페이스 여부 체크
 enum CheckWorkspace {
     case homeEmpty
     case homeInitial
@@ -27,6 +29,8 @@ final class HomeViewController: BaseViewController {
     
     var tableViewData = [cellData]()
     
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     private let mainView = HomeView()
     
     private let viewModel = HomeViewModel()
@@ -40,13 +44,33 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setData()
         setHomeUI()
         bind()
     }
     
     override func configureLayout() {
+        let name = UserDefaults.standard.workspaceName
+        mainView.wsNameButton.setTitle(name, for: .normal)
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
+    }
+    
+    private func setData() {
+        let workspaceID = UserDefaults.standard.workspaceID ?? 0
+        print("workspaceID: \(workspaceID)")
+        
+        // 모든 채널 조회 API
+        NetworkManager.shared.request(
+            type: ChannelsOutput.self,
+            router: .channelsRead(id: workspaceID)) { result in
+            switch result {
+            case .success(let data):
+                print("🩵 모든 채널 조회 API 성공: \(data)")
+            case .failure(let error):
+                print("💛 모든 채널 조회 API 실패: \(error.errorDescription)")
+            }
+        }
     }
     
     // 워크스페이스 여부에 따라 홈 화면 UI 업데이트
@@ -82,9 +106,23 @@ final class HomeViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 워크스페이스 이름 버튼 클릭 => SideMenu
+        output.wsNameButtonTap
+            .drive(with: self) { owner, _ in
+                print("워크스페이스 이름 클릭")
+                let vc = SideMenuViewController()
+                let sideMenuVC = SideMenuNavigationController(rootViewController: vc)
+                sideMenuVC.menuWidth = UIScreen.main.bounds.width * 0.8
+                sideMenuVC.presentationStyle = .menuSlideIn
+                
+                SideMenuManager.default.leftMenuNavigationController = sideMenuVC
+                SideMenuManager.default.addPanGestureToPresent(toView: owner.view)
+                
+                owner.present(sideMenuVC, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
-
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -185,15 +223,36 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            print("Section 선택")
-            tableViewData[indexPath.section].opened = !tableViewData[indexPath.section].opened
-            tableView.reloadSections([indexPath.section], with: .none)
+        if indexPath.section == 2 {
+            print("팀원 추가 클릭")
         } else {
-            print("Section Data 선택")
+            if indexPath.row == 0 {
+                print("Section 선택")
+                tableViewData[indexPath.section].opened = !tableViewData[indexPath.section].opened
+                tableView.reloadSections([indexPath.section], with: .none)
+            } else {
+                print("Section Data 선택")
+            }
         }
         
         print("++ indexPath.section: \([indexPath.section]), indexPath.row: \([indexPath.row])")
     }
     
+}
+
+// 사이드메뉴 오픈 => 홈뷰 블러 처리
+extension HomeViewController: SideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        self.tabBarController?.tabBar.backgroundColor = .alpha
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.tabBarController?.tabBar.backgroundColor = .white
+        blurEffectView.removeFromSuperview()
+    }
+
 }
