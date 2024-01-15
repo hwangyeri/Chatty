@@ -32,16 +32,6 @@ extension UserDefaults {
             UserDefaults.standard.setValue(newValue, forKey: UserDefaults.workspaceIDKey)
         }
     }
-    
-    // 워크스페이스 이름
-    var workspaceName: String? {
-        get {
-            return UserDefaults.standard.string(forKey: UserDefaults.workspaceNameKey)
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: UserDefaults.workspaceNameKey)
-        }
-    }
-    
+   
     
 }
