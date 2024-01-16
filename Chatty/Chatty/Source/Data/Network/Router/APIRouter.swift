@@ -21,13 +21,18 @@ enum APIRouter: URLRequestConvertible {
     case usersLoginApple // 애플 로그인
     case usersLogout // 로그아웃
     case usersDeviceToken // FCM device Token 저장
-    case usersMy // 내 프로필 정보 조회
+    case usersMy // 내 프로필 정보 조회 - 구현
     
     // WORK SPACE - 구현
     case workspaceRead // 내가 속한 워크스페이스 조회
     case workspaceCreate(model: WorkspaceCreateInput) // 워크스페이스 생성
     
-    // ... 추가 필요
+    // CHANNEL - 구현
+    case channelsRead(id: Int) // 모든 채널 조회
+    case channelsMyRead(id: Int) // 내가 속한 모든 채널 조회
+    
+    // DMS
+    case dmsRead(id: Int) // DM 방 조회
     
     
     private var baseURL: URL {
@@ -62,6 +67,16 @@ enum APIRouter: URLRequestConvertible {
         // WORK SPACE
         case .workspaceRead, .workspaceCreate:
             return "/v1/workspaces"
+            
+        // CHANNEL
+        case .channelsRead(let id):
+            return "/v1/workspaces/\(id)/channels"
+        case .channelsMyRead(let id):
+            return "/v1/workspaces/\(id)/channels/my"
+        
+        // DMS
+        case .dmsRead(let id):
+            return "/v1/workspaces/\(id)/dms"
         }
     }
     
@@ -83,6 +98,12 @@ enum APIRouter: URLRequestConvertible {
         // WORK SPACE
         case .workspaceRead: return .get
         case .workspaceCreate: return .post
+            
+        // CHANNEL
+        case .channelsRead, .channelsMyRead: return .get
+        
+        // DMS
+        case .dmsRead: return .get
         }
     }
     
@@ -113,10 +134,18 @@ enum APIRouter: URLRequestConvertible {
         case .usersDeviceToken:
             return defaultHeader
         case .usersMy:
-            return defaultHeader
+            return tokenHeader
             
         // WORK SPACE
         case .workspaceRead, .workspaceCreate:
+            return tokenHeader
+            
+        // CHANNEL
+        case .channelsRead, .channelsMyRead:
+            return tokenHeader
+            
+        // DMS
+        case .dmsRead:
             return tokenHeader
         }
     }
@@ -158,6 +187,14 @@ enum APIRouter: URLRequestConvertible {
         // WORK SPACE
         case .workspaceRead, .workspaceCreate:
             return nil
+            
+        // CHANNEL
+        case .channelsRead, .channelsMyRead:
+            return nil
+            
+        // DMS
+        case .dmsRead:
+            return nil
         }
     }
     
@@ -191,7 +228,7 @@ extension APIRouter {
     // Multipart : Alamofire에서 제공해주는 기능으로 이미지를 data로 전환해서 전송하는 방식
     
     var multipart: MultipartFormData {
-        let multipartFormData = MultipartFormData()
+        //let multipartFormData = MultipartFormData()
         
         switch self {
         case .workspaceCreate(let model):
