@@ -92,4 +92,41 @@ struct Channel: Codable {
     }
 }
 
+// DM
+typealias DMOutput = [DM]
 
+struct DM: Codable {
+    let workspaceID, roomID: Int
+    let createdAt: String
+    let user: User
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case roomID = "room_id"
+        case createdAt, user
+    }
+}
+
+struct User: Codable {
+    let userID: Int
+    let email, nickname, profileImage: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email, nickname, profileImage
+    }
+}
+
+// 내 프로필 조회
+struct MyProfileOutput: Codable {
+    let userID: Int
+    let email, nickname: String
+    let profileImage, phone, vendor: String?
+    let sesacCoin: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email, nickname, profileImage, phone, vendor, sesacCoin, createdAt
+    }
+}
