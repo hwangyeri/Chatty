@@ -13,6 +13,7 @@ enum Constants {
     static let sesacKey = "SesacKey"
     static let contentType = "Content-Type"
     static let applicationJSON = "application/json"
+    static let authorization = "Authorization"
     
     // systemName
     static let chevronDown = "chevron.down"
