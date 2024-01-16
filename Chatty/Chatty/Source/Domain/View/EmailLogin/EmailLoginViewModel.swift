@@ -92,7 +92,7 @@ final class EmailLoginViewModel: BaseViewModel {
                 // 로그인 API
                 NetworkManager.shared.requestSingle(type: AuthOutput.self, router: .usersLogin(model: LoginInput(email: email, password: password, deviceToken: "temp")))
             }
-            .filter { result in
+            .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let data):
                     print("🩵 로그인 API 성공: \(data)")
@@ -100,31 +100,10 @@ final class EmailLoginViewModel: BaseViewModel {
                     KeychainManager.shared.accessToken = data.token.accessToken
                     KeychainManager.shared.refreshToken = data.token.refreshToken
                     UserDefaults.standard.set(data.nickname, forKey: UserDefaults.userNicknameKey)
-                    return true
+                    isLoginValid.accept(true)
                 case .failure(let error):
                     print("💛 로그인 API 실패: \(error.errorDescription)")
                     isLoginValid.accept(false)
-                    return false
-                }
-            }
-            .flatMapLatest { _ in
-                // 워크스페이스 조회 API
-                NetworkManager.shared.requestSingle(type: WorkspaceOutput.self, router: .workspaceRead)
-            }
-            .subscribe(with: self) { owner, result in
-                switch result {
-                case .success(let data):
-                    print("🩵 워크스페이스 조회 API 성공: \(data)")
-                    let workspaceID = data[0].workspaceID
-                    let workspaceName = data[0].name
-                    // 워크스페이스 정보 저장
-                    UserDefaults.standard.workspaceID = workspaceID
-                    UserDefaults.standard.workspaceName = workspaceName
-                    print("workspaceID: \(workspaceID)")
-                    print("workspaceName: \(workspaceName)")
-                    isLoginValid.accept(true)
-                case .failure(let error):
-                    print("💛 워크스페이스 조회 API 실패: \(error.errorDescription)")
                 }
             }
             .disposed(by: disposeBag)
