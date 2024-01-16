@@ -95,9 +95,6 @@ final class AddViewModel: BaseViewModel {
                 case .success(let data):
                     print("🩵 워크스페이스 생성 API 성공: \(data)")
                     isDoneButtonValid.accept(true)
-                    // 워크스페이스 정보 저장
-                    UserDefaults.standard.workspaceID = data.workspaceID
-                    UserDefaults.standard.workspaceName = data.name
                 case .failure(let error):
                     print("💛 워크스페이스 생성 API 실패: \(error.errorDescription)")
                     isDoneButtonValid.accept(false)
