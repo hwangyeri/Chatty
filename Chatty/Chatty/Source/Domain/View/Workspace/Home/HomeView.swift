@@ -13,7 +13,7 @@ final class HomeView: BaseView {
     
     let wsImageView = UIImageView().then {
         $0.image = .dummy
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
@@ -57,7 +57,7 @@ final class HomeView: BaseView {
         $0.register(HomeSectionTableViewCell.self, forCellReuseIdentifier: HomeSectionTableViewCell.identifier)
         $0.register(HomeChannelTableViewCell.self, forCellReuseIdentifier: HomeChannelTableViewCell.identifier)
         $0.register(HomeDMTableViewCell.self, forCellReuseIdentifier: HomeDMTableViewCell.identifier)
-        $0.register(HomeAddTableViewCell.self, forCellReuseIdentifier: HomeAddTableViewCell.identifier)
+        $0.register(HomePlusTableViewCell.self, forCellReuseIdentifier: HomePlusTableViewCell.identifier)
         $0.separatorStyle = .none
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100
