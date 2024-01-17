@@ -30,9 +30,11 @@ enum APIRouter: URLRequestConvertible {
     // CHANNEL - 구현
     case channelsRead(id: Int) // 모든 채널 조회
     case channelsMyRead(id: Int) // 내가 속한 모든 채널 조회
+    case channelsUnreadsChatCount(id: Int, name: String) // 읽지 않은 채널 채팅 개수
     
     // DMS
     case dmsRead(id: Int) // DM 방 조회
+    case dmsUnreadsChatCount(id: Int, roomID: Int) // 읽지 않은 DM 채팅 개수
     
     
     private var baseURL: URL {
@@ -73,10 +75,14 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces/\(id)/channels"
         case .channelsMyRead(let id):
             return "/v1/workspaces/\(id)/channels/my"
+        case .channelsUnreadsChatCount(id: let id, name: let name):
+            return "/v1/workspaces/\(id)/channels/\(name)/unreads"
         
         // DMS
         case .dmsRead(let id):
             return "/v1/workspaces/\(id)/dms"
+        case .dmsUnreadsChatCount(let id, let roomID):
+            return "/v1/workspaces/\(id)/dms/\(roomID)/unreads"
         }
     }
     
@@ -100,10 +106,10 @@ enum APIRouter: URLRequestConvertible {
         case .workspaceCreate: return .post
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead: return .get
+        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount: return .get
         
         // DMS
-        case .dmsRead: return .get
+        case .dmsRead, .dmsUnreadsChatCount: return .get
         }
     }
     
@@ -141,11 +147,11 @@ enum APIRouter: URLRequestConvertible {
             return tokenHeader
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead:
+        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount:
             return tokenHeader
             
         // DMS
-        case .dmsRead:
+        case .dmsRead, .dmsUnreadsChatCount:
             return tokenHeader
         }
     }
@@ -189,11 +195,11 @@ enum APIRouter: URLRequestConvertible {
             return nil
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead:
+        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount:
             return nil
             
         // DMS
-        case .dmsRead:
+        case .dmsRead, .dmsUnreadsChatCount:
             return nil
         }
     }
