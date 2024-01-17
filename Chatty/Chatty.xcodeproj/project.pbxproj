@@ -32,7 +32,13 @@
 		2B41097D2B527F69006149BE /* ReusableViewProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */; };
 		2B9B6D742B52A60000CC021E /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D732B52A60000CC021E /* SwitchViewController.swift */; };
 		2B9B6D792B52D5DD00CC021E /* HomeDMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */; };
-		2B9B6D7B2B52D70A00CC021E /* HomeAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D7A2B52D70A00CC021E /* HomeAddTableViewCell.swift */; };
+		2B9B6D7B2B52D70A00CC021E /* HomePlusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D7A2B52D70A00CC021E /* HomePlusTableViewCell.swift */; };
+		2B9B6D7E2B53B4DD00CC021E /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9B6D7D2B53B4DD00CC021E /* SideMenu */; };
+		2B9B6D872B53C41E00CC021E /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D862B53C41E00CC021E /* SideMenuViewController.swift */; };
+		2B9B6D892B53C64300CC021E /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D882B53C64300CC021E /* SideMenuView.swift */; };
+		2B9B6D8B2B53C88400CC021E /* CTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D8A2B53C88400CC021E /* CTextButton.swift */; };
+		2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D8C2B53F88A00CC021E /* SideMenuTableViewCell.swift */; };
+		2B9D89E42B554B2800642F85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9D89E32B554B2800642F85 /* Kingfisher */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -103,7 +109,11 @@
 		2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableViewProtocol+.swift"; sourceTree = "<group>"; };
 		2B9B6D732B52A60000CC021E /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDMTableViewCell.swift; sourceTree = "<group>"; };
-		2B9B6D7A2B52D70A00CC021E /* HomeAddTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddTableViewCell.swift; sourceTree = "<group>"; };
+		2B9B6D7A2B52D70A00CC021E /* HomePlusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusTableViewCell.swift; sourceTree = "<group>"; };
+		2B9B6D862B53C41E00CC021E /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		2B9B6D882B53C64300CC021E /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		2B9B6D8A2B53C88400CC021E /* CTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTextButton.swift; sourceTree = "<group>"; };
+		2B9B6D8C2B53F88A00CC021E /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9D89E42B554B2800642F85 /* Kingfisher in Frameworks */,
 				2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */,
 				2BE5E7CC2B46D32B0012A83F /* KakaoSDKCommon in Frameworks */,
 				2BAF68EB2B45B53900584B13 /* SnapKit in Frameworks */,
@@ -157,6 +168,7 @@
 				2BAF68EE2B45B54300584B13 /* Then in Frameworks */,
 				2BE5E7CA2B46D32B0012A83F /* KakaoSDKAuth in Frameworks */,
 				2BE5E7D52B4715140012A83F /* SwiftKeychainWrapper in Frameworks */,
+				2B9B6D7E2B53B4DD00CC021E /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +202,7 @@
 				2B4109712B5277E8006149BE /* HomeView.swift */,
 				2B4109732B5277F1006149BE /* HomeViewModel.swift */,
 				2B4109772B527EA4006149BE /* Cell */,
+				2B9B6D7F2B53B4EF00CC021E /* SideMenu */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -234,7 +247,7 @@
 				2B4109782B527EDF006149BE /* HomeSectionTableViewCell.swift */,
 				2B41097A2B527F01006149BE /* HomeChannelTableViewCell.swift */,
 				2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */,
-				2B9B6D7A2B52D70A00CC021E /* HomeAddTableViewCell.swift */,
+				2B9B6D7A2B52D70A00CC021E /* HomePlusTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -245,6 +258,24 @@
 				2B9B6D732B52A60000CC021E /* SwitchViewController.swift */,
 			);
 			path = SwitchRootVC;
+			sourceTree = "<group>";
+		};
+		2B9B6D7F2B53B4EF00CC021E /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2B9B6D862B53C41E00CC021E /* SideMenuViewController.swift */,
+				2B9B6D882B53C64300CC021E /* SideMenuView.swift */,
+				2B9B6D8E2B5400FB00CC021E /* Cell */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		2B9B6D8E2B5400FB00CC021E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2B9B6D8C2B53F88A00CC021E /* SideMenuTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		2BAF68B52B458E4500584B13 = {
@@ -349,6 +380,7 @@
 				2BE5E7B22B46A25F0012A83F /* CImageButton.swift */,
 				2BE5E7FF2B4968900012A83F /* XmarkButton.swift */,
 				2B4109472B4FF552006149BE /* CSymbolButton.swift */,
+				2B9B6D8A2B53C88400CC021E /* CTextButton.swift */,
 				2BE5E7FB2B49637B0012A83F /* CBackView.swift */,
 				2BE5E7FD2B4964520012A83F /* CTextField.swift */,
 				2B4109252B4D2AC6006149BE /* CSecureTextField.swift */,
@@ -498,6 +530,8 @@
 				2BE5E7CD2B46D32B0012A83F /* KakaoSDKUser */,
 				2BE5E7D42B4715140012A83F /* SwiftKeychainWrapper */,
 				2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */,
+				2B9B6D7D2B53B4DD00CC021E /* SideMenu */,
+				2B9D89E32B554B2800642F85 /* Kingfisher */,
 			);
 			productName = Chatty;
 			productReference = 2BAF68BE2B458E4500584B13 /* Chatty.app */;
@@ -534,6 +568,8 @@
 				2BE5E7C82B46D32A0012A83F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				2BE5E7D32B4715140012A83F /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				2B9B6D7C2B53B4DD00CC021E /* XCRemoteSwiftPackageReference "SideMenu" */,
+				2B9D89E22B554B2800642F85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 2BAF68BF2B458E4500584B13 /* Products */;
 			projectDirPath = "";
@@ -564,6 +600,7 @@
 			files = (
 				2BE5E7D02B46E1340012A83F /* KakaoLoginManager.swift in Sources */,
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
+				2B9B6D8B2B53C88400CC021E /* CTextButton.swift in Sources */,
 				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
 				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
 				2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */,
@@ -588,12 +625,13 @@
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
-				2B9B6D7B2B52D70A00CC021E /* HomeAddTableViewCell.swift in Sources */,
+				2B9B6D7B2B52D70A00CC021E /* HomePlusTableViewCell.swift in Sources */,
 				2B41097B2B527F01006149BE /* HomeChannelTableViewCell.swift in Sources */,
 				2B41093B2B4FAE64006149BE /* EmailLoginView.swift in Sources */,
 				2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */,
 				2B4109262B4D2AC6006149BE /* CSecureTextField.swift in Sources */,
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
+				2B9B6D872B53C41E00CC021E /* SideMenuViewController.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
 				2B4109722B5277E8006149BE /* HomeView.swift in Sources */,
 				2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */,
@@ -603,6 +641,7 @@
 				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
 				2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */,
 				2BE5E7AF2B469FED0012A83F /* AuthView.swift in Sources */,
+				2B9B6D892B53C64300CC021E /* SideMenuView.swift in Sources */,
 				2B4109462B4FEA8D006149BE /* AddViewModel.swift in Sources */,
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
@@ -616,6 +655,7 @@
 				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
+				2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */,
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +888,22 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		2B9B6D7C2B53B4DD00CC021E /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		2B9D89E22B554B2800642F85 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
 		2BAF68E92B45B53900584B13 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -895,6 +951,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		2B9B6D7D2B53B4DD00CC021E /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B9B6D7C2B53B4DD00CC021E /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+		2B9D89E32B554B2800642F85 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B9D89E22B554B2800642F85 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		2BAF68EA2B45B53900584B13 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
