@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SideMenu
+import Kingfisher
 
 // 워크스페이스 여부 체크
 enum CheckWorkspace {
@@ -16,18 +17,9 @@ enum CheckWorkspace {
     case homeInitial
 }
 
-// 테이블뷰 데이터
-struct cellData {
-    var opened = Bool()
-    var title = String()
-    var sectionData = [String]()
-}
-
 final class HomeViewController: BaseViewController {
     
     var checkWorkspace: CheckWorkspace?
-    
-    var tableViewData = [cellData]()
     
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
@@ -44,37 +36,52 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setData()
-        setHomeUI()
+        viewModel.fetchHomeData()
+        updateHomeUI()
         bind()
     }
     
     override func configureLayout() {
-        let name = UserDefaults.standard.workspaceName
-        mainView.wsNameButton.setTitle(name, for: .normal)
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
     }
     
-    private func setData() {
-        let workspaceID = UserDefaults.standard.workspaceID ?? 0
-        print("workspaceID: \(workspaceID)")
-        
-        // 모든 채널 조회 API
-        NetworkManager.shared.request(
-            type: ChannelsOutput.self,
-            router: .channelsRead(id: workspaceID)) { result in
-            switch result {
-            case .success(let data):
-                print("🩵 모든 채널 조회 API 성공: \(data)")
-            case .failure(let error):
-                print("💛 모든 채널 조회 API 실패: \(error.errorDescription)")
-            }
+    // Top UI 업데이트
+    private func updateTopUI() {
+        print(#function)
+        guard let data = viewModel.workspaceData?[0] else {
+            print("workspaceData Error")
+            return
         }
+        print("워크스페이스 이미지 url: \(data.thumbnail)")
+        
+        let modifier = AnyModifier { request in
+            var headers = request
+            headers.setValue(KeychainManager.shared.accessToken, forHTTPHeaderField: Constants.authorization)
+            headers.setValue(APIKey.sesacKey, forHTTPHeaderField: Constants.sesacKey)
+            return headers
+        }
+        
+        mainView.wsImageView.kf.setImage(
+            with: URL(string: APIKey.baseURL + "/v1" + data.thumbnail),
+            options: [.requestModifier(modifier)]
+        )
+        
+        mainView.wsNameButton.setTitle(data.name, for: .normal)
+        
+        if let profileImage = viewModel.myProfile?.profileImage, !profileImage.isEmpty {
+            let url = URL(string: profileImage)
+            mainView.myProfileButton.kf.setImage(with: url, for: .normal)
+        } else {
+            //FIXME: 내 프로필 이미지 없을 때, 디폴트 이미지 변경하기
+            mainView.myProfileButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        
+        mainView.tableView.reloadData()
     }
     
     // 워크스페이스 여부에 따라 홈 화면 UI 업데이트
-    private func setHomeUI() {
+    private func updateHomeUI() {
         switch checkWorkspace {
         case .homeEmpty:
             // 워크스페이스 없는 경우 홈 화면
@@ -86,12 +93,6 @@ final class HomeViewController: BaseViewController {
             mainView.tableView.isHidden = false
             mainView.divider2.isHidden = false
             mainView.emptyView.isHidden = true
-            
-            tableViewData = [
-                cellData(opened: false, title: "Section01", sectionData: ["Cell01", "Cell02", "Cell03"]),
-                cellData(opened: false, title: "Section02", sectionData: ["Cell04", "Cell5", "Cell06"]),
-                cellData(opened: false, title: "Section03", sectionData: ["Cell011", "Cell022", "Cell033"])
-            ]
         }
     }
     
@@ -121,6 +122,26 @@ final class HomeViewController: BaseViewController {
                 owner.present(sideMenuVC, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        //워크스페이스 조회, 내 프로필 조회 API 데이터로 Top UI 업데이트
+        output.isCompletedTopUIData
+            .subscribe(with: self) { owner, isValid in
+                if isValid {
+                    owner.updateTopUI()
+                    print("Top UI 업데이트")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        //네트워크 통신 완료 => 테이블뷰 리로드 트리거
+        output.isCompletedHomeData
+            .subscribe(with: self) { owner, isValid in
+                print("네트워크 통신 완료")
+                if isValid {
+                    owner.mainView.tableView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 }
@@ -132,17 +153,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return 1
-        } else {
-            if tableViewData[section].opened == true {
-                // 섹션이 열린 경우, 데이터 개수 + 제목 셀 하나 추가해서 보여주기
-                return tableViewData[section].sectionData.count + 1
-            } else {
-                // 섹션이 닫힌 경우, 제목 셀 하나 보여주기
-                return 1
-            }
-        }
+        return viewModel.setNumberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -173,69 +184,86 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeAddTableViewCell.identifier, for: indexPath) as? HomeAddTableViewCell else { return UITableViewCell() }
+        let cellType = viewModel.cellType(indexPath: indexPath)
+       
+        switch cellType {
+        case .sectionCell:
+            // Section
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSectionTableViewCell.identifier, for: indexPath) as? HomeSectionTableViewCell else { return UITableViewCell() }
+            let title = viewModel.sectionCellTitle(indexPath)
             
             cell.selectionStyle = .none
-            cell.titleLabel.text = "팀원 추가"
+            cell.titleLabel.text = title
             
             return cell
-        } else if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSectionTableViewCell.identifier, for: indexPath) as? HomeSectionTableViewCell else { return UITableViewCell() }
-                
-                cell.selectionStyle = .none
-                cell.titleLabel.text = "채널"
-                
-                return cell
-            } else if indexPath.row == 1 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.identifier, for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
-                
-                cell.selectionStyle = .none
-                cell.titleLabel.text = "일반"
-                
-                return cell
+        case .channelRowCell:
+            // 채널 Row
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.identifier, for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
+            let data = viewModel.channelRowCellData(indexPath)
+            
+            cell.selectionStyle = .none
+            cell.titleLabel.text = data.0
+            
+            // 안 읽은 메세지 없을 때, 예외 처리
+            if data.1 == 0 {
+                cell.backView.isHidden = true
+                cell.countLabel.isHidden = true
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.identifier, for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
-                
-                cell.selectionStyle = .none
-                cell.titleLabel.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
-                
-                return cell
+                cell.backView.isHidden = false
+                cell.countLabel.isHidden = false
+                cell.countLabel.text = "\(data.1)"
             }
-        } else {
-            if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSectionTableViewCell.identifier, for: indexPath) as? HomeSectionTableViewCell else { return UITableViewCell() }
-                
-                cell.selectionStyle = .none
-                cell.titleLabel.text = "다이렉트 메세지"
-                
-                return cell
+            
+            return cell
+        case .dmRowCell:
+            // 다이렉트 메세지 Row
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDMTableViewCell.identifier, for: indexPath) as? HomeDMTableViewCell else { return UITableViewCell() }
+            let data = viewModel.dmRowCellData(indexPath)
+            let url = URL(string: data.0)
+            
+            cell.selectionStyle = .none
+            cell.imgView.kf.setImage(with: url)
+            cell.titleLabel.text = data.1
+            
+            // 안 읽은 메세지 없을 때, 예외 처리
+            if data.2 == 0 {
+                cell.backView.isHidden = true
+                cell.countLabel.isHidden = true
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDMTableViewCell.identifier, for: indexPath) as? HomeDMTableViewCell else { return UITableViewCell() }
-                
-                cell.selectionStyle = .none
-                cell.titleLabel.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
-                
-                return cell
+                cell.backView.isHidden = false
+                cell.countLabel.isHidden = false
+                cell.countLabel.text = "\(data.1)"
             }
+            
+            return cell
+        case .plusCell:
+            // Section03 팀원 추가
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePlusTableViewCell.identifier, for: indexPath) as? HomePlusTableViewCell else { return UITableViewCell() }
+            let title = viewModel.plusCellTitle(indexPath)
+            
+            cell.selectionStyle = .none
+            cell.titleLabel.text = title
+            
+            return cell
         }
     }
-    
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            print("팀원 추가 클릭")
-        } else {
-            if indexPath.row == 0 {
-                print("Section 선택")
-                tableViewData[indexPath.section].opened = !tableViewData[indexPath.section].opened
-                tableView.reloadSections([indexPath.section], with: .none)
-            } else {
-                print("Section Data 선택")
-            }
+        let cellType = viewModel.cellType(indexPath: indexPath)
+        switch cellType {
+        case .sectionCell:
+            print("Section Cell Clicked")
+            viewModel.isOpenedToggle(indexPath)
+            tableView.reloadSections([indexPath.section], with: .none)
+        case .channelRowCell:
+            print("Channel Row Cell Clicked")
+        case .dmRowCell:
+            print("DM Row Cell Clicked")
+        case .plusCell:
+            print("Plus Cell Clicked")
         }
         
-        print("++ indexPath.section: \([indexPath.section]), indexPath.row: \([indexPath.row])")
+        print("++ Clicked indexPath.section: \([indexPath.section]), indexPath.row: \([indexPath.row])")
     }
     
 }
