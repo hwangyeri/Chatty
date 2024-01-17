@@ -130,3 +130,25 @@ struct MyProfileOutput: Codable {
         case email, nickname, profileImage, phone, vendor, sesacCoin, createdAt
     }
 }
+
+// 읽지 않은 채널 채팅 개수
+struct UnreadsChannelChatCount: Decodable {
+    let channelID: Int
+    let name: String
+    let count: Int
+
+    enum CodingKeys: String, CodingKey {
+        case channelID = "channel_id"
+        case name, count
+    }
+}
+
+// 읽지 않은 DM 채팅 개수
+struct UnreadsDMChatCount: Decodable {
+    let roomID, count: Int
+
+    enum CodingKeys: String, CodingKey {
+        case roomID = "room_id"
+        case count
+    }
+}
