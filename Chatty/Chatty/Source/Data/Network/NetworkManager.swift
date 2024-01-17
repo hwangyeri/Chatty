@@ -17,9 +17,15 @@ protocol NetworkService {
         completion: @escaping (Result<T, NetworkError>) -> Void
     )
     
-    func requestSingle<T: Decodable>(type: T.Type, router: APIRouter) -> Single<Result<T, NetworkError>>
+    func requestSingle<T: Decodable>(
+        type: T.Type,
+        router: APIRouter
+    ) -> Single<Result<T, NetworkError>>
     
-    func requestCheckEmail(router: APIRouter, completion: @escaping (Result<String, NetworkError>) -> Void)
+    func requestCheckEmail(
+        router: APIRouter,
+        completion: @escaping (Result<String, NetworkError>) -> Void
+    )
 }
 
 final class NetworkManager: NetworkService {
@@ -40,7 +46,7 @@ extension NetworkManager {
     ) {
         AF.request(router)
             .responseDecodable(of: T.self) { response in
-                print("🩵 request 응답 데이터: ", String(data: response.data!, encoding: .utf8))
+                print("🩵 request 응답 데이터: ", String(data: response.data ?? Data(), encoding: .utf8))
                 
                 switch response.result {
                 case .success(let data):

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeAddTableViewCell: BaseTableViewCell {
+final class HomePlusTableViewCell: BaseTableViewCell {
     
     let imgView = UIImageView().then {
         $0.image = UIImage(systemName: Constants.plus)

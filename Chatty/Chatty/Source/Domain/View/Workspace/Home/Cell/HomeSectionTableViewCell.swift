@@ -14,7 +14,7 @@ final class HomeSectionTableViewCell: BaseTableViewCell {
     let titleLabel = CLabel(text: "채널", custFont: .title2)
     
     let chevronImageView = UIImageView().then {
-        $0.image = UIImage(systemName: Constants.chevronDown)
+        $0.image = UIImage(systemName: Constants.chevronRight)
         $0.tintColor = .black
         $0.contentMode = .scaleAspectFit
     }

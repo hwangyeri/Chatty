@@ -28,12 +28,30 @@
       }
     },
     {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "3ec0ab0bca4feb56e8b33e289c9496e89059dd08",
+        "version" : "7.10.2"
+      }
+    },
+    {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
       "state" : {
         "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
         "version" : "6.6.0"
+      }
+    },
+    {
+      "identity" : "sidemenu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jonkykong/SideMenu.git",
+      "state" : {
+        "revision" : "8bd4fd128923cf5494fa726839af8afe12908ad9",
+        "version" : "6.5.0"
       }
     },
     {

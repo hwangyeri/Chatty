@@ -72,3 +72,83 @@ struct WorkspaceCreateInput: Codable {
     let image: Data
 }
 
+// 채널
+typealias ChannelsOutput = [Channel]
+
+struct Channel: Codable {
+    let workspaceID, channelID: Int
+    let name: String
+    let description: String?
+    let ownerID, outputPrivate: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case channelID = "channel_id"
+        case name, description
+        case ownerID = "owner_id"
+        case outputPrivate = "private"
+        case createdAt
+    }
+}
+
+// DM
+typealias DMOutput = [DM]
+
+struct DM: Codable {
+    let workspaceID, roomID: Int
+    let createdAt: String
+    let user: User
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case roomID = "room_id"
+        case createdAt, user
+    }
+}
+
+struct User: Codable {
+    let userID: Int
+    let email, nickname, profileImage: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email, nickname, profileImage
+    }
+}
+
+// 내 프로필 조회
+struct MyProfileOutput: Codable {
+    let userID: Int
+    let email, nickname: String
+    let profileImage, phone, vendor: String?
+    let sesacCoin: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email, nickname, profileImage, phone, vendor, sesacCoin, createdAt
+    }
+}
+
+// 읽지 않은 채널 채팅 개수
+struct UnreadsChannelChatCount: Decodable {
+    let channelID: Int
+    let name: String
+    let count: Int
+
+    enum CodingKeys: String, CodingKey {
+        case channelID = "channel_id"
+        case name, count
+    }
+}
+
+// 읽지 않은 DM 채팅 개수
+struct UnreadsDMChatCount: Decodable {
+    let roomID, count: Int
+
+    enum CodingKeys: String, CodingKey {
+        case roomID = "room_id"
+        case count
+    }
+}
