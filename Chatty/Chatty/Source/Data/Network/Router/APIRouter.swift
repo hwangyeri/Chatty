@@ -24,15 +24,16 @@ enum APIRouter: URLRequestConvertible {
     case usersMy // 내 프로필 정보 조회 - 구현
     
     // WORK SPACE - 구현
-    case workspaceRead // 내가 속한 워크스페이스 조회
     case workspaceCreate(model: WorkspaceCreateInput) // 워크스페이스 생성
+    case workspaceRead // 내가 속한 워크스페이스 조회
+    case oneWorkspaceRead(id: Int) // 내가 속한 워크스페이스 한 개 조회
     
     // CHANNEL - 구현
     case channelsRead(id: Int) // 모든 채널 조회
     case channelsMyRead(id: Int) // 내가 속한 모든 채널 조회
     case channelsUnreadsChatCount(id: Int, name: String) // 읽지 않은 채널 채팅 개수
     
-    // DMS
+    // DMS - 구현
     case dmsRead(id: Int) // DM 방 조회
     case dmsUnreadsChatCount(id: Int, roomID: Int) // 읽지 않은 DM 채팅 개수
     
@@ -67,8 +68,10 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/users/my"
             
         // WORK SPACE
-        case .workspaceRead, .workspaceCreate:
+        case .workspaceCreate, .workspaceRead:
             return "/v1/workspaces"
+        case .oneWorkspaceRead(let id):
+            return "/v1/workspaces/\(id)"
             
         // CHANNEL
         case .channelsRead(let id):
@@ -102,7 +105,7 @@ enum APIRouter: URLRequestConvertible {
         case .usersMy: return .get
         
         // WORK SPACE
-        case .workspaceRead: return .get
+        case .workspaceRead, .oneWorkspaceRead: return .get
         case .workspaceCreate: return .post
             
         // CHANNEL
@@ -122,7 +125,7 @@ enum APIRouter: URLRequestConvertible {
         let tokenHeader: HTTPHeaders = [
             Constants.sesacKey: APIKey.sesacKey,
             Constants.contentType: Constants.applicationJSON,
-            "Authorization": KeychainManager.shared.accessToken ?? ""
+            Constants.authorization: KeychainManager.shared.accessToken ?? ""
         ]
         
         switch self {
@@ -143,7 +146,7 @@ enum APIRouter: URLRequestConvertible {
             return tokenHeader
             
         // WORK SPACE
-        case .workspaceRead, .workspaceCreate:
+        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead:
             return tokenHeader
             
         // CHANNEL
@@ -191,7 +194,7 @@ enum APIRouter: URLRequestConvertible {
             return nil
             
         // WORK SPACE
-        case .workspaceRead, .workspaceCreate:
+        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead:
             return nil
             
         // CHANNEL
