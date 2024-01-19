@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SwitchViewController: UIViewController {
+final class SwitchViewController: BaseViewController {
+    
+    var workspaceID: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,7 @@ class SwitchViewController: UIViewController {
         super.viewWillAppear(animated)
         print("SwitchVC 진입", #function)
         
-        switchToRootVC()
+        fetchWorkspace()
     }
 
     // 탭바 루트뷰 전환
@@ -28,6 +30,8 @@ class SwitchViewController: UIViewController {
         let homeVC = HomeViewController()
         let firstVC = UINavigationController(rootViewController: homeVC)
         firstVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "homeActive2"), selectedImage: UIImage(named: "homeActive"))
+        
+        homeVC.workspaceID = workspaceID
         
         let dmVC = HomeViewController()
         let secondVC = UINavigationController(rootViewController: dmVC)
@@ -48,5 +52,34 @@ class SwitchViewController: UIViewController {
         
         ChangeRootVCManager.shared.changeRootVC(tabBar)
     }
+    
+    private func fetchWorkspace() {
+        if workspaceID != nil {
+            switchToRootVC()
+        } else {
+            // 내가 속한 워크스페이스 조회 API
+            NetworkManager.shared.request(
+                type: WorkspaceOutput.self,
+                router: .workspaceRead,
+                completion: { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        print("🩵 워크스페이스 조회 API 성공")
+                        dump(data)
+                        if !data.isEmpty {
+                            //FIXME: 가장 최근 날짜(createdAt)에 생성된 워크스페이스 보여주기
+                            self?.switchToRootVC()
+                        } else {
+                            print("워크스페이스 없음")
+                        }
+                    case .failure(let error):
+                        print("💛 워크스페이스 조회 API 실패: \(error.errorDescription)")
+                        self?.switchToRootVC()
+                    }
+                }
+            )
+        }
+    }
+    
     
 }
