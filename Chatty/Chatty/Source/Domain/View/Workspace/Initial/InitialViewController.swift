@@ -52,6 +52,7 @@ final class InitialViewController: BaseViewController {
         output.createButtonTap
             .drive(with: self) { owner, _ in
                 let vc = AddViewController()
+                vc.workspaceAction = .add
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
