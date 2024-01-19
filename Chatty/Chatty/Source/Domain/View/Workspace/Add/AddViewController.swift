@@ -114,6 +114,7 @@ final class AddViewController: BaseViewController {
                 if isValid {
                     // 루트뷰 전환
                     let vc = SwitchViewController()
+                    vc.workspaceID = owner.viewModel.workspaceID
                     ChangeRootVCManager.shared.changeRootVC(vc)
                 } else {
                     let buttonTopY = owner.mainView.doneButton.frame.origin.y
