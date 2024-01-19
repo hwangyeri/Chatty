@@ -11,6 +11,8 @@ import RxCocoa
 
 final class EmailLoginViewModel: BaseViewModel {
     
+    var workspaceID: Int?
+    
     struct Input {
         let xButton: ControlEvent<Void>
         let emailTextField: ControlProperty<String>
@@ -92,18 +94,36 @@ final class EmailLoginViewModel: BaseViewModel {
                 // 로그인 API
                 NetworkManager.shared.requestSingle(type: AuthOutput.self, router: .usersLogin(model: LoginInput(email: email, password: password, deviceToken: "temp")))
             }
-            .subscribe(with: self) { owner, result in
+            .filter { result in
                 switch result {
                 case .success(let data):
                     print("🩵 로그인 API 성공: \(data)")
                     // 토큰 저장
                     KeychainManager.shared.accessToken = data.token.accessToken
                     KeychainManager.shared.refreshToken = data.token.refreshToken
+                    //FIXME: UserDefaults말고 다른 방식으로 값 넘겨주기
                     UserDefaults.standard.set(data.nickname, forKey: UserDefaults.userNicknameKey)
-                    isLoginValid.accept(true)
+                    return true
                 case .failure(let error):
                     print("💛 로그인 API 실패: \(error.errorDescription)")
                     isLoginValid.accept(false)
+                    return false
+                }
+            }
+            .flatMapLatest { _ in
+                // 워크스페이스 조회 API
+                NetworkManager.shared.requestSingle(type: WorkspaceOutput.self, router: .workspaceRead)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let data):
+                    print("🩵 워크스페이스 조회 API 성공: \(data)")
+                    // 워크스페이스 정보 저장
+                    owner.workspaceID = data[0].workspaceID
+                    print("✅ workspaceID: \(owner.workspaceID)")
+                    isLoginValid.accept(true)
+                case .failure(let error):
+                    print("💛 워크스페이스 조회 API 실패: \(error.errorDescription)")
                 }
             }
             .disposed(by: disposeBag)
