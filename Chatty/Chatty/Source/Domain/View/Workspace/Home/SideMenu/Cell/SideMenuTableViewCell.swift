@@ -41,7 +41,7 @@ final class SideMenuTableViewCell: BaseTableViewCell {
         }
         
         contentView.layer.cornerRadius = 8
-        contentView.backgroundColor = .cGray
+//        contentView.backgroundColor = .cGray
     }
     
     override func configureLayout() {

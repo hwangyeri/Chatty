@@ -75,11 +75,11 @@ struct WorkspaceCreateInput: Codable {
 // 채널
 typealias ChannelsOutput = [Channel]
 
-struct Channel: Codable {
+struct Channel: Decodable {
     let workspaceID, channelID: Int
     let name: String
     let description: String?
-    let ownerID, outputPrivate: Int
+    let ownerID, channelPrivate: Int
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
@@ -87,7 +87,7 @@ struct Channel: Codable {
         case channelID = "channel_id"
         case name, description
         case ownerID = "owner_id"
-        case outputPrivate = "private"
+        case channelPrivate = "private"
         case createdAt
     }
 }
@@ -95,7 +95,7 @@ struct Channel: Codable {
 // DM
 typealias DMOutput = [DM]
 
-struct DM: Codable {
+struct DM: Decodable {
     let workspaceID, roomID: Int
     let createdAt: String
     let user: User
@@ -107,9 +107,10 @@ struct DM: Codable {
     }
 }
 
-struct User: Codable {
+struct User: Decodable {
     let userID: Int
-    let email, nickname, profileImage: String
+    let email, nickname: String
+    let profileImage: String?
 
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
@@ -118,7 +119,7 @@ struct User: Codable {
 }
 
 // 내 프로필 조회
-struct MyProfileOutput: Codable {
+struct MyProfileOutput: Decodable {
     let userID: Int
     let email, nickname: String
     let profileImage, phone, vendor: String?
@@ -150,5 +151,23 @@ struct UnreadsDMChatCount: Decodable {
     enum CodingKeys: String, CodingKey {
         case roomID = "room_id"
         case count
+    }
+}
+
+// 내가 속한 워크스페이스 한 개 조회
+struct OneWorkspace: Decodable {
+    let workspaceID: Int
+    let name, thumbnail: String
+    let description: String?
+    let ownerID: Int
+    let createdAt: String
+    let channels: [Channel]
+    let workspaceMembers: [User]
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case name, description, thumbnail
+        case ownerID = "owner_id"
+        case createdAt, channels, workspaceMembers
     }
 }

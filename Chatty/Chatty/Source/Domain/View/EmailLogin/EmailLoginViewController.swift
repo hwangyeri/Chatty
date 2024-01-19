@@ -75,6 +75,7 @@ final class EmailLoginViewController: BaseViewController {
                 if isValid {
                     print("🩵 로그인 성공!")
                     let vc = SwitchViewController()
+                    vc.workspaceID = owner.viewModel.workspaceID
                     ChangeRootVCManager.shared.changeRootVC(vc)
                 } else {
                     print("💛 로그인 실패...")

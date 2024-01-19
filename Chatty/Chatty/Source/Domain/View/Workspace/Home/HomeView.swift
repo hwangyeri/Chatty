@@ -18,7 +18,7 @@ final class HomeView: BaseView {
         $0.clipsToBounds = true
     }
     
-    let wsNameButton = CTextButton(name: "Workspace Name", font: .title1).then {
+    let wsNameButton = CTextButton(name: "No Workspace", font: .title1).then {
         $0.setTitleColor(.black, for: .normal)
     }
     
