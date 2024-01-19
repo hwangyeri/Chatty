@@ -33,8 +33,10 @@ struct DMSectionData {
 
 final class HomeViewModel: BaseViewModel {
     
+    var workspaceID: Int?
+    
     var myProfile: MyProfileOutput? // 내 프로필 정보
-    var workspaceData: WorkspaceOutput? // 워크스페이스 ID, name, thumbnail
+    var workspaceData: Workspace? // 워크스페이스 ID, name, thumbnail
     var channelsData: ChannelSectionData? // 내가 속한 모든 채널
     var dmData: DMSectionData? // DM 방 조회
     
@@ -51,7 +53,7 @@ final class HomeViewModel: BaseViewModel {
         let createButtonTap: Driver<Void>
         let postButtonTap: Driver<Void>
         let isCompletedTopUIData: PublishRelay<Bool> // Top UI 업데이트 트리거
-        let isCompletedHomeData: PublishRelay<Bool> // 테이블뷰 업데이트 트리거
+        let isCompletedHomeData: PublishRelay<Bool> // 전체 네트워크 통신 결과 업데이트 트리거
     }
     
     private let disposeBag = DisposeBag()
@@ -93,37 +95,41 @@ final class HomeViewModel: BaseViewModel {
         )
     }
     
-    // 홈 화면에서 쓰이는 데이터 초기 셋팅
-    func fetchHomeData() {
+    // Top UI 데이터 조회
+    func fetchTopData() {
         let group = DispatchGroup()
         
-        group.enter()
-        // 내가 속한 워크스페이스 조회 API
-        NetworkManager.shared.request(
-            type: WorkspaceOutput.self,
-            router: .workspaceRead,
-            completion: { [weak self] result in
-                switch result {
-                case .success(let data):
-                    print("🩵 워크스페이스 조회 API 성공: \(data)")
-                    self?.workspaceData = data
-                    UserDefaults.standard.workspaceID = data[0].workspaceID
-                case .failure(let error):
-                    print("💛 워크스페이스 조회 API 실패: \(error.errorDescription)")
-                }
-                
-                group.leave()
-            })
-        
-        let workspaceID = UserDefaults.standard.workspaceID ?? 0
-        //print("++ workspaceID: \(UserDefaults.standard.workspaceID)")
+        if workspaceID != nil {
+            group.enter()
+            // 내가 속한 워크스페이스 한 개 조회 API
+            NetworkManager.shared.request(
+                type: Workspace.self,
+                router: .oneWorkspaceRead(id: workspaceID ?? 0),
+                completion: { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        print("🩵 내가 속한 워크스페이스 한 개 조회 API 성공")
+                        dump(data)
+                        self?.workspaceData = data
+                    case .failure(let error):
+                        print("💛 내가 속한 워크스페이스 한 개 조회 API 실패: \(error.errorDescription)")
+                    }
+                    
+                    group.leave()
+                })
+        } else {
+            print("워크스페이스 없음")
+        }
         
         group.enter()
         // 내 프로필 정보 조회 API
-        NetworkManager.shared.request(type: MyProfileOutput.self, router: .usersMy) { [weak self] result in
+        NetworkManager.shared.request(
+            type: MyProfileOutput.self,
+            router: .usersMy) { [weak self] result in
             switch result {
             case .success(let data):
-                print("🩵 내 프로필 정보 조회 API 성공: \(data)")
+                print("🩵 내 프로필 정보 조회 API 성공")
+                dump(data)
                 self?.myProfile = data
                 self?.isCompletedTopUIData.accept(true)
             case .failure(let error):
@@ -133,14 +139,27 @@ final class HomeViewModel: BaseViewModel {
             group.leave()
         }
         
+        group.notify(queue: .main) { [weak self] in
+            self?.fetchHomeData()
+        }
+    }
+        
+    // 채널/DM 데이터 조회
+    func fetchHomeData() {
+        let group = DispatchGroup()
+        
+        //FIXME: 워크스페이스 없을 때, 채널/DM 조회 API 예외처리
+        
         group.enter()
         // 내가 속한 모든 채널 조회 API
         NetworkManager.shared.request(
             type: ChannelsOutput.self,
-            router: .channelsMyRead(id: workspaceID)) { [weak self] result in
+            router: .channelsMyRead(id: workspaceID ?? 0)) { [weak self] result in
+                print("✅ \(self?.workspaceID ?? 0)")
                 switch result {
                 case .success(let data):
-                    print("🩵 내가 속한 모든 채널 조회 API 성공: \(data)")
+                    print("🩵 내가 속한 모든 채널 조회 API 성공")
+                    dump(data)
                     self?.channelsData = ChannelSectionData(
                         isOpened: true,
                         sectionData: data.map {
@@ -159,10 +178,13 @@ final class HomeViewModel: BaseViewModel {
         
         group.enter()
         // DM 방 조회 API
-        NetworkManager.shared.request(type: DMOutput.self, router: .dmsRead(id: workspaceID)) { [weak self] result in
+        NetworkManager.shared.request(
+            type: DMOutput.self,
+            router: .dmsRead(id: workspaceID ?? 0)) { [weak self] result in
             switch result {
             case .success(let data):
-                print("🩵 DM 방 조회 API 성공: \(data)")
+                print("🩵 DM 방 조회 API 성공")
+                dump(data)
                 self?.dmData = DMSectionData(
                     isOpened: true,
                     sectionData: data.map {
@@ -172,8 +194,6 @@ final class HomeViewModel: BaseViewModel {
                         )
                     }
                 )
-                
-                
             case .failure(let error):
                 print("💛 DM 방 조회 API 실패: \(error.errorDescription)")
             }
@@ -186,8 +206,9 @@ final class HomeViewModel: BaseViewModel {
         }
     }
     
-    // 읽지 않은 채팅 수 API
+    // 읽지 않은 채팅 수 조회
     func fetchUnreadsChatCount() {
+        print(#function)
         let group = DispatchGroup()
         
         guard let channelsData = channelsData else {
@@ -206,7 +227,8 @@ final class HomeViewModel: BaseViewModel {
                 router: .channelsUnreadsChatCount(id: workspaceID, name: channelName)) { result in
                 switch result {
                 case .success(let data):
-                    print("🩵 읽지 않은 채널 채팅 개수 API 성공: \(data)")
+                    print("🩵 읽지 않은 채널 채팅 개수 API 성공")
+                    dump(data)
                     self.channelsData?.sectionData[index].messageCount = data.count
                 case .failure(let error):
                     print("💛 읽지 않은 채널 채팅 개수 API 실패: \(error.errorDescription)")
@@ -232,7 +254,8 @@ final class HomeViewModel: BaseViewModel {
                 router: .dmsUnreadsChatCount(id: workspaceID, roomID: roomID)) { result in
                     switch result {
                     case .success(let data):
-                        print("🩵 읽지 않은 DM 채팅 개수 API 성공: \(data)")
+                        print("🩵 읽지 않은 DM 채팅 개수 API 성공")
+                        dump(data)
                         self.dmData?.sectionData[index].messageCount = data.count
                     case .failure(let error):
                         print("💛 읽지 않은 DM 채팅 개수 API 실패: \(error.errorDescription)")
@@ -248,7 +271,7 @@ final class HomeViewModel: BaseViewModel {
     }
     
     // TableView numberOfRowsInSection
-    func setNumberOfRowsInSection(section: Int) -> Int {
+    func fetchNumberOfRowsInSection(section: Int) -> Int {
         guard let channelsData = channelsData, let dmData = dmData else {
             print("NumberOfRowsInSection channelsData Error: \(channelsData)")
             print("NumberOfRowsInSection dmData Error: \(dmData)")
@@ -317,7 +340,7 @@ final class HomeViewModel: BaseViewModel {
         )
     }
     
-    func dmRowCellData(_ indexPath: IndexPath) -> (String, String, Int) {
+    func dmRowCellData(_ indexPath: IndexPath) -> (String?, String, Int) {
         guard let dmData = dmData else {
             print("dmData Error")
             return ("", "", 0)
