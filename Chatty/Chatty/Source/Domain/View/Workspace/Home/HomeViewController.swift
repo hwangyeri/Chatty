@@ -11,15 +11,9 @@ import RxCocoa
 import SideMenu
 import Kingfisher
 
-// 워크스페이스 여부 체크
-enum CheckWorkspace {
-    case homeEmpty
-    case homeInitial
-}
-
 final class HomeViewController: BaseViewController {
     
-    var checkWorkspace: CheckWorkspace?
+    var workspaceID: Int?
     
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
@@ -36,8 +30,9 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.fetchHomeData()
-        updateHomeUI()
+        viewModel.workspaceID = workspaceID
+        fetchHomeEmptyUI()
+        viewModel.fetchTopData()
         bind()
     }
     
@@ -46,28 +41,54 @@ final class HomeViewController: BaseViewController {
         mainView.tableView.delegate = self
     }
     
+    // 워크스페이스 없는 경우 홈 화면으로 초기 셋팅
+    private func fetchHomeEmptyUI() {
+        print(#function)
+        
+        var isEmpty: Bool = true
+        
+        if workspaceID != nil {
+            isEmpty = false
+        } else {
+            isEmpty = true
+        }
+        
+        print("✅ isEmpty: \(isEmpty)")
+        
+        mainView.tableView.isHidden = isEmpty
+        mainView.divider2.isHidden = isEmpty
+        mainView.emptyView.isHidden = !isEmpty
+        self.navigationController?.tabBarController?.tabBar.isHidden = isEmpty
+    }
+    
     // Top UI 업데이트
     private func updateTopUI() {
         print(#function)
-        guard let data = viewModel.workspaceData?[0] else {
-            print("workspaceData Error")
-            return
+        if workspaceID != nil {
+            // 워크스페이스 있는 경우
+            guard let workspaceData = viewModel.workspaceData else {
+                print("workspaceData Error")
+                return
+            }
+            
+            let modifier = AnyModifier { request in
+                var headers = request
+                headers.setValue(KeychainManager.shared.accessToken, forHTTPHeaderField: Constants.authorization)
+                headers.setValue(APIKey.sesacKey, forHTTPHeaderField: Constants.sesacKey)
+                return headers
+            }
+            
+            mainView.wsImageView.kf.setImage(
+                with: URL(string: APIKey.baseURL + "/v1" + workspaceData.thumbnail),
+                options: [.requestModifier(modifier)]
+            )
+            
+            mainView.wsNameButton.setTitle(workspaceData.name, for: .normal)
+        } else {
+            //워크스페이스 없는 경우
+            mainView.wsImageView.image = .dummy
+            mainView.wsNameButton.setTitle("No Workspace", for: .normal)
         }
-        print("워크스페이스 이미지 url: \(data.thumbnail)")
-        
-        let modifier = AnyModifier { request in
-            var headers = request
-            headers.setValue(KeychainManager.shared.accessToken, forHTTPHeaderField: Constants.authorization)
-            headers.setValue(APIKey.sesacKey, forHTTPHeaderField: Constants.sesacKey)
-            return headers
-        }
-        
-        mainView.wsImageView.kf.setImage(
-            with: URL(string: APIKey.baseURL + "/v1" + data.thumbnail),
-            options: [.requestModifier(modifier)]
-        )
-        
-        mainView.wsNameButton.setTitle(data.name, for: .normal)
         
         if let profileImage = viewModel.myProfile?.profileImage, !profileImage.isEmpty {
             let url = URL(string: profileImage)
@@ -75,24 +96,6 @@ final class HomeViewController: BaseViewController {
         } else {
             //FIXME: 내 프로필 이미지 없을 때, 디폴트 이미지 변경하기
             mainView.myProfileButton.setImage(UIImage(systemName: "star"), for: .normal)
-        }
-        
-        mainView.tableView.reloadData()
-    }
-    
-    // 워크스페이스 여부에 따라 홈 화면 UI 업데이트
-    private func updateHomeUI() {
-        switch checkWorkspace {
-        case .homeEmpty:
-            // 워크스페이스 없는 경우 홈 화면
-            mainView.tableView.isHidden = true
-            mainView.divider2.isHidden = true
-            mainView.emptyView.isHidden = false
-        default: // homeInitial
-            // 워크스페이스 생성 시 홈 화면
-            mainView.tableView.isHidden = false
-            mainView.divider2.isHidden = false
-            mainView.emptyView.isHidden = true
         }
     }
     
@@ -107,36 +110,49 @@ final class HomeViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 워크스페이스 생성하기 버튼 탭
+        output.createButtonTap
+            .drive(with: self) { owner, _ in
+                print("워크스페이스 생성하기 버튼 클릭")
+                let vc = AddViewController()
+                owner.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         // 워크스페이스 이름 버튼 클릭 => SideMenu
         output.wsNameButtonTap
             .drive(with: self) { owner, _ in
                 print("워크스페이스 이름 클릭")
                 let vc = SideMenuViewController()
                 let sideMenuVC = SideMenuNavigationController(rootViewController: vc)
+                
                 sideMenuVC.menuWidth = UIScreen.main.bounds.width * 0.8
                 sideMenuVC.presentationStyle = .menuSlideIn
                 
                 SideMenuManager.default.leftMenuNavigationController = sideMenuVC
                 SideMenuManager.default.addPanGestureToPresent(toView: owner.view)
                 
+                vc.workspaceID = owner.viewModel.workspaceID
+                
                 owner.present(sideMenuVC, animated: true)
             }
             .disposed(by: disposeBag)
         
-        //워크스페이스 조회, 내 프로필 조회 API 데이터로 Top UI 업데이트
+        // Top UI 업데이트 트리거
         output.isCompletedTopUIData
             .subscribe(with: self) { owner, isValid in
                 if isValid {
+                    owner.fetchHomeEmptyUI()
                     owner.updateTopUI()
-                    print("Top UI 업데이트")
+                    print("✅ Top UI 업데이트")
                 }
             }
             .disposed(by: disposeBag)
         
-        //네트워크 통신 완료 => 테이블뷰 리로드 트리거
+        // 전체 네트워크 통신 완료 => 테이블뷰 리로드 트리거
         output.isCompletedHomeData
-            .subscribe(with: self) { owner, isValid in
-                print("네트워크 통신 완료")
+            .subscribe(with: self) { owner,  isValid in
+                print("✅ 전체 네트워크 통신 완료")
                 if isValid {
                     owner.mainView.tableView.reloadData()
                 }
@@ -153,7 +169,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.setNumberOfRowsInSection(section: section)
+        return viewModel.fetchNumberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -219,10 +235,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             // 다이렉트 메세지 Row
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDMTableViewCell.identifier, for: indexPath) as? HomeDMTableViewCell else { return UITableViewCell() }
             let data = viewModel.dmRowCellData(indexPath)
-            let url = URL(string: data.0)
+            
+            
+            // 유저 프로필 없을 때, 예외 처리
+            if let profileImage = data.0 {
+                let url = URL(string: profileImage)
+                cell.imgView.kf.setImage(with: url)
+            } else {
+                cell.imgView.image = .dummy
+            }
             
             cell.selectionStyle = .none
-            cell.imgView.kf.setImage(with: url)
             cell.titleLabel.text = data.1
             
             // 안 읽은 메세지 없을 때, 예외 처리
