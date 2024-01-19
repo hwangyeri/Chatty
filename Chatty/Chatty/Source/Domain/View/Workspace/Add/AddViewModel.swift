@@ -11,6 +11,8 @@ import RxCocoa
 
 final class AddViewModel: BaseViewModel {
     
+    var workspaceID: Int?
+    
     struct Input {
         let xButton: ControlEvent<Void>
         let profileImageButton: ControlEvent<Void> // 워크스페이스 이미지 추가 버튼
@@ -95,6 +97,7 @@ final class AddViewModel: BaseViewModel {
                 case .success(let data):
                     print("🩵 워크스페이스 생성 API 성공: \(data)")
                     isDoneButtonValid.accept(true)
+                    owner.workspaceID = data.workspaceID
                 case .failure(let error):
                     print("💛 워크스페이스 생성 API 실패: \(error.errorDescription)")
                     isDoneButtonValid.accept(false)
