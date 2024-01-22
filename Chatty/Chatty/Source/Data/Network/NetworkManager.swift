@@ -46,7 +46,8 @@ extension NetworkManager {
     ) {
         AF.request(router)
             .responseDecodable(of: T.self) { response in
-                print("🩵 request 응답 데이터: ", String(data: response.data ?? Data(), encoding: .utf8))
+                //print("🩵 request 응답 데이터: ", String(data: response.data ?? Data(), encoding: .utf8))
+                print("🩵 request 실행")
                 
                 switch response.result {
                 case .success(let data):
@@ -91,13 +92,12 @@ extension NetworkManager {
     
     // 이메일 중복 확인 API
     func requestCheckEmail(router: APIRouter, completion: @escaping (Result<String, NetworkError>) -> Void) {
-        
         AF.request(router).response { response in
             switch response.result {
             case .success(let success):
                 if 200..<300 ~= response.response?.statusCode ?? 0 {
-                    print(success)
                     completion(.success("🩵 이메일 중복 확인 API 성공"))
+                    print(success)
                 } else {
                     print("💛 이메일 중복 확인 API 실패")
                     if let responseData = response.data {
@@ -132,7 +132,7 @@ extension NetworkManager {
             }
         }
     }
-    
+
     // Multipart Single
     func requestMultipart<T: Decodable>(type: T.Type, router: APIRouter) -> Single<Result<T, NetworkError>> {
         return Single.create { single in
