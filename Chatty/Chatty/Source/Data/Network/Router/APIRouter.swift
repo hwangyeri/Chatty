@@ -27,7 +27,7 @@ enum APIRouter: URLRequestConvertible {
     case workspaceCreate(model: WorkspaceCreateInput) // 워크스페이스 생성
     case workspaceRead // 내가 속한 워크스페이스 조회
     case oneWorkspaceRead(id: Int) // 내가 속한 워크스페이스 한 개 조회
-    case workspaceDelete(id: Int) // 워크스페이스 삭제
+    case workspaceDelete(id: Int) // 워크스페이스 삭제 - 미구현
     
     // CHANNEL - 구현
     case channelsRead(id: Int) // 모든 채널 조회
