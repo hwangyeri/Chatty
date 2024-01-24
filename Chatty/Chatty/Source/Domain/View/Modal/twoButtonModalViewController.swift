@@ -55,24 +55,9 @@ final class twoButtonModalViewController: BaseViewController {
         output.deleteButtonTap
             .drive(with: self) { owner, _ in
                 print("삭제 버튼 클릭")
-                owner.deleteWorkspace()
             }
             .disposed(by: disposeBag)
     }
-    
-    // 워크스페이스 삭제 API
-    private func deleteWorkspace() {
-        NetworkManager.shared.requestCheckEmail(router: .workspaceDelete(id: workspaceID ?? 0)) { result in
-            switch result {
-            case .success(let data):
-                print("🩵 워크스페이스 삭제 성공")
-                print(data)
-            case .failure(let error):
-                print("💛 워크스페이스 삭제 실패")
-                print(error.errorDescription)
-            }
-        }
-    }
-    
+   
 
 }
