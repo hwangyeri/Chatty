@@ -16,11 +16,12 @@ final class SideMenuViewModel: BaseViewModel {
     var workspaceData: WorkspaceOutput?
     
     struct Input {
-        
+        let wsAddButton: ControlEvent<Void> // 워크스페이스 추가 버튼
     }
     
     struct Output {
         let isCompletedNetwork: PublishRelay<Bool>
+        let wsAddButtonTap: Driver<Void>
     }
     
     private let disposeBag = DisposeBag()
@@ -29,9 +30,15 @@ final class SideMenuViewModel: BaseViewModel {
     
     func transform(input: Input) -> Output {
         
+        //워크스페이스 추가 버튼 탭
+        let wsAddButtonTap = input.wsAddButton
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: ())
+        
         
         return Output(
-            isCompletedNetwork: isCompletedNetwork
+            isCompletedNetwork: isCompletedNetwork, 
+            wsAddButtonTap: wsAddButtonTap
         )
     }
     
