@@ -171,3 +171,29 @@ struct OneWorkspace: Decodable {
         case createdAt, channels, workspaceMembers
     }
 }
+
+// 특정 채널 조회
+struct ChannelInput: Codable {
+    let name: String
+    let description: String?
+}
+
+struct ChannelNameRead: Decodable {
+    let workspaceID, channelID: Int
+    let name: String
+    let description: String?
+    let ownerID, channelPrivate: Int
+    let createdAt: String
+    let channelMembers: [User]
+
+    enum CodingKeys: String, CodingKey {
+        case workspaceID = "workspace_id"
+        case channelID = "channel_id"
+        case name, description
+        case ownerID = "owner_id"
+        case channelPrivate = "private"
+        case createdAt, channelMembers
+    }
+}
+
+
