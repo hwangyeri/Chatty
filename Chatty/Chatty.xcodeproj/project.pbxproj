@@ -40,6 +40,9 @@
 		2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D8C2B53F88A00CC021E /* SideMenuTableViewCell.swift */; };
 		2B9D89E42B554B2800642F85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2B9D89E32B554B2800642F85 /* Kingfisher */; };
 		2B9D89E82B57CD2600642F85 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89E72B57CD2600642F85 /* SideMenuViewModel.swift */; };
+		2B9D89F72B5A959F00642F85 /* twoButtonModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89F62B5A959F00642F85 /* twoButtonModalViewController.swift */; };
+		2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89F82B5A95B000642F85 /* twoButtonModalView.swift */; };
+		2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89FA2B5AA69800642F85 /* twoButtonModalViewModel.swift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -116,6 +119,9 @@
 		2B9B6D8A2B53C88400CC021E /* CTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTextButton.swift; sourceTree = "<group>"; };
 		2B9B6D8C2B53F88A00CC021E /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		2B9D89E72B57CD2600642F85 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		2B9D89F62B5A959F00642F85 /* twoButtonModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalViewController.swift; sourceTree = "<group>"; };
+		2B9D89F82B5A95B000642F85 /* twoButtonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalView.swift; sourceTree = "<group>"; };
+		2B9D89FA2B5AA69800642F85 /* twoButtonModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalViewModel.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +287,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		2B9D89F52B5A953100642F85 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				2B9D89F62B5A959F00642F85 /* twoButtonModalViewController.swift */,
+				2B9D89F82B5A95B000642F85 /* twoButtonModalView.swift */,
+				2B9D89FA2B5AA69800642F85 /* twoButtonModalViewModel.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
 		2BAF68B52B458E4500584B13 = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +442,7 @@
 		2BAF68E02B4590E900584B13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B9D89F52B5A953100642F85 /* Modal */,
 				2B9B6D752B52A60800CC021E /* SwitchRootVC */,
 				2B4109372B4FAE49006149BE /* EmailLogin */,
 				2BE5E8012B497D610012A83F /* Workspace */,
@@ -602,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE5E7D02B46E1340012A83F /* KakaoLoginManager.swift in Sources */,
+				2B9D89F72B5A959F00642F85 /* twoButtonModalViewController.swift in Sources */,
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
 				2B9B6D8B2B53C88400CC021E /* CTextButton.swift in Sources */,
 				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
@@ -625,6 +643,7 @@
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
 				2BE5E8002B4968900012A83F /* XmarkButton.swift in Sources */,
 				2B4109742B5277F1006149BE /* HomeViewModel.swift in Sources */,
+				2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
@@ -658,6 +677,7 @@
 				2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */,
 				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
+				2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
 				2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */,
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
