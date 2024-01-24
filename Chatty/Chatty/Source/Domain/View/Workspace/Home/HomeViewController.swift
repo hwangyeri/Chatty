@@ -160,6 +160,16 @@ final class HomeViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        // 채널 생성 시, 토스트 알럿
+        NotificationCenter.default.rx.notification(.createChannelSuccessToast)
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, notification in
+                let buttonY = owner.mainView.createButton.frame.origin.y
+                owner.viewModel.fetchTopData()
+                owner.showToast(message: "채널이 생성되었습니다. ", y: buttonY)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
@@ -286,6 +296,35 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             print("DM Row Cell Clicked")
         case .plusCell:
             print("Plus Cell Clicked")
+            if indexPath.section == 0 {
+                // 팀원 추가
+                print("팀원 추가 버튼 클릭")
+                let actionSheet = UIAlertController(title: .none, message: .none, preferredStyle: .actionSheet)
+                
+                let addAction = UIAlertAction(title: "채널 생성", style: .default) { [weak self] _ in
+                    print("채널 생성 클릭")
+                    let vc = ChannelAddViewController()
+                    vc.workspaceID = self?.viewModel.workspaceID
+                    self?.present(vc, animated: true)
+                }
+                
+                let searchAction = UIAlertAction(title: "채널 탐색", style: .default) { [weak self] _ in
+                    print("채널 탐색 클릭")
+                    let vc = ChannelSearchViewController()
+                    vc.workspaceID = self?.viewModel.workspaceID
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true)
+                }
+                
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+                
+                actionSheet.addAction(addAction)
+                actionSheet.addAction(searchAction)
+                actionSheet.addAction(cancelAction)
+                
+                present(actionSheet, animated: true)
+            }
         }
         
         print("++ Clicked indexPath.section: \([indexPath.section]), indexPath.row: \([indexPath.row])")
