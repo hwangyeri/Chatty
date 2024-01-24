@@ -30,8 +30,10 @@ enum APIRouter: URLRequestConvertible {
     case workspaceDelete(id: Int) // 워크스페이스 삭제 - 미구현
     
     // CHANNEL - 구현
+    case channelCreate(id: Int, model: ChannelInput) // 채널 생성
     case channelsRead(id: Int) // 모든 채널 조회
     case channelsMyRead(id: Int) // 내가 속한 모든 채널 조회
+    case channelsNameRead(id: Int, name: String) // 특정 채널 조회
     case channelsUnreadsChatCount(id: Int, name: String) // 읽지 않은 채널 채팅 개수
     
     // DMS - 구현
@@ -77,10 +79,14 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces/\(id)"
             
         // CHANNEL
+        case .channelCreate(let id, _):
+            return "/v1/workspaces/\(id)/channels"
         case .channelsRead(let id):
             return "/v1/workspaces/\(id)/channels"
         case .channelsMyRead(let id):
             return "/v1/workspaces/\(id)/channels/my"
+        case .channelsNameRead(let id, let name):
+            return "/v1/workspaces/\(id)/channels/\(name)"
         case .channelsUnreadsChatCount(id: let id, name: let name):
             return "/v1/workspaces/\(id)/channels/\(name)/unreads"
         
@@ -113,7 +119,8 @@ enum APIRouter: URLRequestConvertible {
         case .workspaceDelete: return .delete
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount: return .get
+        case .channelCreate: return .post
+        case .channelsRead, .channelsMyRead, .channelsNameRead, .channelsUnreadsChatCount: return .get
         
         // DMS
         case .dmsRead, .dmsUnreadsChatCount: return .get
@@ -154,7 +161,7 @@ enum APIRouter: URLRequestConvertible {
             return tokenHeader
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount:
+        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount, .channelCreate, .channelsNameRead:
             return tokenHeader
             
         // DMS
@@ -202,8 +209,13 @@ enum APIRouter: URLRequestConvertible {
             return nil
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount:
+        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount, .channelsNameRead:
             return nil
+        case .channelCreate(_, let model):
+            return [
+                "name": model.name,
+                "description": model.description ?? ""
+            ]
             
         // DMS
         case .dmsRead, .dmsUnreadsChatCount:
