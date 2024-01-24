@@ -14,6 +14,8 @@ final class SideMenuViewController: BaseViewController {
     
     var workspaceID: Int?
     
+    var workspaceData: Workspace?
+    
     private let mainView = SideMenuView()
     
     private let viewModel = SideMenuViewModel()
@@ -53,7 +55,7 @@ final class SideMenuViewController: BaseViewController {
     private func bind() {
         
         let input = SideMenuViewModel.Input(
-            
+            wsAddButton: mainView.wsAddButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -66,6 +68,15 @@ final class SideMenuViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        // 워크스페이스 추가 버튼 탭
+        output.wsAddButtonTap
+            .drive(with: self) { owner, _ in
+                print(" 워크스페이스 추가 버튼 클릭")
+                let vc = AddViewController()
+                owner.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     // 메뉴 버튼 탭
@@ -73,8 +84,12 @@ final class SideMenuViewController: BaseViewController {
         print("메뉴 버튼 클릭")
         let actionSheet = UIAlertController(title: .none, message: .none, preferredStyle: .actionSheet)
         
-        let editAction = UIAlertAction(title: "워크스페이스 편집", style: .default) { _ in
+        let editAction = UIAlertAction(title: "워크스페이스 편집", style: .default) { [weak self] _ in
             print("워크스페이스 편집 클릭")
+            let vc = AddViewController()
+            vc.workspaceAction = .edit
+            vc.workspaceData = self?.workspaceData
+            self?.present(vc, animated: true)
         }
         
         let exitAction = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
@@ -85,8 +100,13 @@ final class SideMenuViewController: BaseViewController {
             print("워크스페이스 관리자 변경 클릭")
         }
         
-        let deleteAction = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { [weak self] _ in
             print("워크스페이스 삭제 클릭")
+            let vc = twoButtonModalViewController()
+            //FIXME: 이전 화면이 배경으로 흐리게 보이게 변경하기, overCurrentContext 안됨
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            self?.present(vc, animated: true)
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)

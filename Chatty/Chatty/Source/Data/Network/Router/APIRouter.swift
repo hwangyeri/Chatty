@@ -27,6 +27,7 @@ enum APIRouter: URLRequestConvertible {
     case workspaceCreate(model: WorkspaceCreateInput) // 워크스페이스 생성
     case workspaceRead // 내가 속한 워크스페이스 조회
     case oneWorkspaceRead(id: Int) // 내가 속한 워크스페이스 한 개 조회
+    case workspaceDelete(id: Int) // 워크스페이스 삭제 - 미구현
     
     // CHANNEL - 구현
     case channelsRead(id: Int) // 모든 채널 조회
@@ -72,6 +73,8 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces"
         case .oneWorkspaceRead(let id):
             return "/v1/workspaces/\(id)"
+        case .workspaceDelete(let id):
+            return "/v1/workspaces/\(id)"
             
         // CHANNEL
         case .channelsRead(let id):
@@ -107,6 +110,7 @@ enum APIRouter: URLRequestConvertible {
         // WORK SPACE
         case .workspaceRead, .oneWorkspaceRead: return .get
         case .workspaceCreate: return .post
+        case .workspaceDelete: return .delete
             
         // CHANNEL
         case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount: return .get
@@ -146,7 +150,7 @@ enum APIRouter: URLRequestConvertible {
             return tokenHeader
             
         // WORK SPACE
-        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead:
+        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead, .workspaceDelete:
             return tokenHeader
             
         // CHANNEL
@@ -194,7 +198,7 @@ enum APIRouter: URLRequestConvertible {
             return nil
             
         // WORK SPACE
-        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead:
+        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead, .workspaceDelete:
             return nil
             
         // CHANNEL

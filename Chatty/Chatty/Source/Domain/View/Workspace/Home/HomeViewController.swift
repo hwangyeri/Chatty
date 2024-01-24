@@ -115,6 +115,7 @@ final class HomeViewController: BaseViewController {
             .drive(with: self) { owner, _ in
                 print("워크스페이스 생성하기 버튼 클릭")
                 let vc = AddViewController()
+                vc.workspaceAction = .add
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
@@ -133,6 +134,7 @@ final class HomeViewController: BaseViewController {
                 SideMenuManager.default.addPanGestureToPresent(toView: owner.view)
                 
                 vc.workspaceID = owner.viewModel.workspaceID
+                vc.workspaceData = owner.viewModel.workspaceData
                 
                 owner.present(sideMenuVC, animated: true)
             }
