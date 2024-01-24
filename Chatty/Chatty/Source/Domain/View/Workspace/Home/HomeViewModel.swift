@@ -334,9 +334,12 @@ final class HomeViewModel: BaseViewModel {
             return ("", 0)
         }
         
+        // createdAt 오래된 순으로 재정렬
+        let reversedChannelsData = Array(channelsData.sectionData.reversed())
+        
         return (
-            channelsData.sectionData[indexPath.row - 1].channelData.name,
-            channelsData.sectionData[indexPath.row - 1].messageCount
+            reversedChannelsData[indexPath.row - 1].channelData.name,
+            reversedChannelsData[indexPath.row - 1].messageCount
         )
     }
     
