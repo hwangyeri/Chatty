@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B18BC2F2B60A272007636EC /* ChannelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC2E2B60A272007636EC /* ChannelAddViewController.swift */; };
+		2B18BC322B60A28C007636EC /* ChannelAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC312B60A28C007636EC /* ChannelAddView.swift */; };
+		2B18BC342B60A296007636EC /* ChannelAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC332B60A296007636EC /* ChannelAddViewModel.swift */; };
+		2B18BC362B60D914007636EC /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC352B60D914007636EC /* Notification+.swift */; };
+		2B18BC392B60E365007636EC /* ChannelSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC382B60E365007636EC /* ChannelSearchViewController.swift */; };
+		2B18BC3B2B60E36F007636EC /* ChannelSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC3A2B60E36F007636EC /* ChannelSearchView.swift */; };
+		2B18BC3D2B60E377007636EC /* ChannelSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */; };
 		2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091D2B4ABD90006149BE /* InitialView.swift */; };
 		2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091F2B4ABDA3006149BE /* InitialViewController.swift */; };
 		2B4109222B4ABE93006149BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */; };
@@ -88,6 +95,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B18BC2E2B60A272007636EC /* ChannelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddViewController.swift; sourceTree = "<group>"; };
+		2B18BC312B60A28C007636EC /* ChannelAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddView.swift; sourceTree = "<group>"; };
+		2B18BC332B60A296007636EC /* ChannelAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddViewModel.swift; sourceTree = "<group>"; };
+		2B18BC352B60D914007636EC /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
+		2B18BC382B60E365007636EC /* ChannelSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewController.swift; sourceTree = "<group>"; };
+		2B18BC3A2B60E36F007636EC /* ChannelSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchView.swift; sourceTree = "<group>"; };
+		2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewModel.swift; sourceTree = "<group>"; };
 		2B41091D2B4ABD90006149BE /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		2B41091F2B4ABDA3006149BE /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -183,6 +197,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B18BC2D2B60A24A007636EC /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC372B60E34B007636EC /* ChannelSearch */,
+				2B18BC302B60A278007636EC /* ChannelAdd */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		2B18BC302B60A278007636EC /* ChannelAdd */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC2E2B60A272007636EC /* ChannelAddViewController.swift */,
+				2B18BC312B60A28C007636EC /* ChannelAddView.swift */,
+				2B18BC332B60A296007636EC /* ChannelAddViewModel.swift */,
+			);
+			path = ChannelAdd;
+			sourceTree = "<group>";
+		};
+		2B18BC372B60E34B007636EC /* ChannelSearch */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC382B60E365007636EC /* ChannelSearchViewController.swift */,
+				2B18BC3A2B60E36F007636EC /* ChannelSearchView.swift */,
+				2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */,
+			);
+			path = ChannelSearch;
+			sourceTree = "<group>";
+		};
 		2B41091C2B4ABD82006149BE /* Initial */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +466,7 @@
 				2BE5E7D12B4707590012A83F /* Alert+.swift */,
 				2B41092B2B4E81F2006149BE /* UserDefaults+.swift */,
 				2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */,
+				2B18BC352B60D914007636EC /* Notification+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -516,6 +560,7 @@
 		2BE5E8012B497D610012A83F /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
+				2B18BC2D2B60A24A007636EC /* Channel */,
 				2B4109342B4EB2C2006149BE /* Home */,
 				2B4109312B4EB29A006149BE /* Add */,
 				2B41091C2B4ABD82006149BE /* Initial */,
@@ -630,6 +675,7 @@
 				2B4109792B527EDF006149BE /* HomeSectionTableViewCell.swift in Sources */,
 				2BE5E7F82B4961870012A83F /* SignUpViewController.swift in Sources */,
 				2BAF68F42B4685C300584B13 /* BaseView.swift in Sources */,
+				2B18BC3D2B60E377007636EC /* ChannelSearchViewModel.swift in Sources */,
 				2BE5E7D22B4707590012A83F /* Alert+.swift in Sources */,
 				2B41092E2B4E886F006149BE /* InitialViewModel.swift in Sources */,
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
@@ -640,8 +686,10 @@
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
 				2B9B6D742B52A60000CC021E /* SwitchViewController.swift in Sources */,
 				2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */,
+				2B18BC362B60D914007636EC /* Notification+.swift in Sources */,
 				2BE5E7AC2B469BBD0012A83F /* AuthViewController.swift in Sources */,
 				2BE5E8002B4968900012A83F /* XmarkButton.swift in Sources */,
+				2B18BC342B60A296007636EC /* ChannelAddViewModel.swift in Sources */,
 				2B4109742B5277F1006149BE /* HomeViewModel.swift in Sources */,
 				2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
@@ -669,6 +717,7 @@
 				2BE5E7D72B4715240012A83F /* KeychainManager.swift in Sources */,
 				2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */,
 				2B9B6D792B52D5DD00CC021E /* HomeDMTableViewCell.swift in Sources */,
+				2B18BC3B2B60E36F007636EC /* ChannelSearchView.swift in Sources */,
 				2B41092C2B4E81F2006149BE /* UserDefaults+.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
 				2B4109762B527DB2006149BE /* CDivider.swift in Sources */,
@@ -676,11 +725,14 @@
 				2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */,
 				2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */,
 				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
+				2B18BC2F2B60A272007636EC /* ChannelAddViewController.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
 				2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
 				2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */,
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
+				2B18BC392B60E365007636EC /* ChannelSearchViewController.swift in Sources */,
+				2B18BC322B60A28C007636EC /* ChannelAddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
