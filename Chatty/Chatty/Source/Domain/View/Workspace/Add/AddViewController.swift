@@ -10,7 +10,16 @@ import RxSwift
 import RxCocoa
 import PhotosUI
 
+enum WorkspaceAction {
+    case edit // 워크스페이스 편집하기
+    case add // 워크스페이스 추가하기
+}
+
 final class AddViewController: BaseViewController {
+    
+    var workspaceAction: WorkspaceAction = .add
+    
+    var workspaceData: Workspace?
 
     private let mainView = AddView()
     
@@ -27,7 +36,32 @@ final class AddViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setWorkspaceData()
         bind()
+    }
+    
+    // 워크스페이스 편집하기 - 데이터 셋팅
+    private func setWorkspaceData() {
+        if workspaceAction == .edit {
+            print("워크스페이스 편집하기 진입")
+            mainView.titleLabel.text = "워크스페이스 편집"
+            mainView.nameTextField.text = workspaceData?.name
+            mainView.explainTextField.text = workspaceData?.description ?? "워크스페이스를 설명하세요 (옵션)"
+            
+            if let thumbnail = workspaceData?.thumbnail {
+                let url = URL(string: APIKey.baseURL + "/v1" + thumbnail)
+                mainView.workspaceImageButton.kf.setImage(with: url, for: .normal)
+            } else {
+                //FIXME: dummy Image
+                mainView.workspaceImageButton.setImage(.dummy, for: .normal)
+            }
+            
+            mainView.doneButton.setTitle("저장", for: .normal)
+            mainView.doneButton.backgroundColor = .point
+            mainView.doneButton.isEnabled = true
+        } else {
+            print("워크스페이스 추가하기 진입")
+        }
     }
     
     // UIImage -> Data 객체로 변환하는 메서드
@@ -50,8 +84,13 @@ final class AddViewController: BaseViewController {
         
         output.xButtonTap
             .drive(with: self) { owner, _ in
-                let vc = SwitchViewController()
-                ChangeRootVCManager.shared.changeRootVC(vc)
+                switch owner.workspaceAction {
+                case .edit:
+                    owner.dismiss(animated: true)
+                case .add:
+                    let vc = SwitchViewController()
+                    ChangeRootVCManager.shared.changeRootVC(vc)
+                }
             }
             .disposed(by: disposeBag)
         
