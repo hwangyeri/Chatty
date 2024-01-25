@@ -39,10 +39,17 @@ final class ChannelSearchViewController: BaseViewController {
     private func bind() {
         
         let input = ChannelSearchViewModel.Input(
+            xButton: mainView.xButton.rx.tap,
             itemSelected: mainView.tableView.rx.itemSelected
         )
         
         let output = viewModel.transform(input: input)
+        
+        output.xButtonTap
+            .drive(with: self) { owner, _ in
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
         
         // 네트워크 통신 완료 트리거
         output.isCompletedFetch
@@ -57,8 +64,11 @@ final class ChannelSearchViewController: BaseViewController {
         output.isMyChannelValid
             .bind(with: self) { owner, isValid in
                 if isValid {
-                    //FIXME: Channel Join Done 채팅 화면으로 전환
                     print("✅ 내가 속한 채널입니다.")
+                    let vc = ChattingViewController()
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    owner.present(vc, animated: true)
                 } else {
                     let vc = twoButtonModalViewController()
                     vc.modalAction = .channelJoin
