@@ -10,6 +10,7 @@ import UIKit
 extension UIFont {
     
     enum CustomFont {
+        case caption2
         case caption
         case body
         case bodyBold
@@ -20,6 +21,8 @@ extension UIFont {
     
     static func customFont(_ name: CustomFont) -> UIFont? {
         switch name {
+        case .caption2:
+            return .systemFont(ofSize: 11)
         case .caption:
             return .systemFont(ofSize: 12)
         case .body:
