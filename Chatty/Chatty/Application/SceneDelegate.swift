@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let testVC = SwitchViewController()
         let OnboardingVC = OnboardingViewController()
         let vc = UINavigationController(rootViewController: OnboardingVC)
         
