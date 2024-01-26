@@ -71,16 +71,9 @@ final class HomeViewController: BaseViewController {
                 return
             }
             
-            let modifier = AnyModifier { request in
-                var headers = request
-                headers.setValue(KeychainManager.shared.accessToken, forHTTPHeaderField: Constants.authorization)
-                headers.setValue(APIKey.sesacKey, forHTTPHeaderField: Constants.sesacKey)
-                return headers
-            }
-            
             mainView.wsImageView.kf.setImage(
                 with: URL(string: APIKey.baseURL + "/v1" + workspaceData.thumbnail),
-                options: [.requestModifier(modifier)]
+                options: [.requestModifier(KFModifier.shared.modifier)]
             )
             
             mainView.wsNameButton.setTitle(workspaceData.name, for: .normal)
