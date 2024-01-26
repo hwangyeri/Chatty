@@ -36,7 +36,6 @@ final class ChannelAddViewModel: BaseViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: ())
         
-        
         // 생성 버튼 활성화
         let isCreateButtonValid = input.nameTextField
             .map { email in

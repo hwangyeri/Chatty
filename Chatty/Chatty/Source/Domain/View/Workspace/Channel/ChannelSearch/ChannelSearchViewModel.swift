@@ -22,10 +22,12 @@ final class ChannelSearchViewModel: BaseViewModel {
     var myChannelsID: [Int]?
     
     struct Input {
+        let xButton: ControlEvent<Void>
         let itemSelected: ControlEvent<IndexPath> // TableView didSelectRowAt
     }
     
     struct Output {
+        let xButtonTap: Driver<Void>
         let isCompletedFetch: PublishRelay<Bool> // 네트워크 통신 완료 트리거
         let isMyChannelValid: PublishRelay<Bool> // 내가 속한 채널인지 확인
     }
@@ -35,6 +37,10 @@ final class ChannelSearchViewModel: BaseViewModel {
     let isCompletedFetch = PublishRelay<Bool>()
     
     func transform(input: Input) -> Output {
+        
+        let xButtonTap = input.xButton
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: ())
         
         // 내가 속한 채널인지 확인
         let isMyChannelValid = PublishRelay<Bool>()
@@ -56,7 +62,8 @@ final class ChannelSearchViewModel: BaseViewModel {
         
         
         return Output(
-            isCompletedFetch: isCompletedFetch, 
+            xButtonTap: xButtonTap, 
+            isCompletedFetch: isCompletedFetch,
             isMyChannelValid: isMyChannelValid
         )
     }

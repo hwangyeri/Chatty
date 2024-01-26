@@ -14,6 +14,20 @@
 		2B18BC392B60E365007636EC /* ChannelSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC382B60E365007636EC /* ChannelSearchViewController.swift */; };
 		2B18BC3B2B60E36F007636EC /* ChannelSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC3A2B60E36F007636EC /* ChannelSearchView.swift */; };
 		2B18BC3D2B60E377007636EC /* ChannelSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */; };
+		2B18BC402B61280B007636EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC3F2B61280B007636EC /* SettingViewController.swift */; };
+		2B18BC422B612813007636EC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC412B612813007636EC /* SettingView.swift */; };
+		2B18BC442B612818007636EC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC432B612818007636EC /* SettingViewModel.swift */; };
+		2B18BC472B613179007636EC /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC462B613179007636EC /* SettingCollectionViewCell.swift */; };
+		2B18BC4A2B61328F007636EC /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC492B61328F007636EC /* ChattingViewController.swift */; };
+		2B18BC4C2B6132C6007636EC /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC4B2B6132C6007636EC /* ChattingView.swift */; };
+		2B18BC4E2B6132CC007636EC /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC4D2B6132CC007636EC /* ChattingViewModel.swift */; };
+		2B18BC522B6246F4007636EC /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC512B6246F4007636EC /* SettingHeaderView.swift */; };
+		2B18BC542B624847007636EC /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC532B624847007636EC /* BaseCollectionReusableView.swift */; };
+		2B18BC562B624AC4007636EC /* SettingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC552B624AC4007636EC /* SettingFooterView.swift */; };
+		2B18BC592B625F56007636EC /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */; };
+		2B18BC5B2B6299C7007636EC /* ChattingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */; };
+		2B18BC5D2B629A46007636EC /* MessageImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */; };
+		2B18BC5F2B634AEC007636EC /* KFModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC5E2B634AEC007636EC /* KFModifier.swift */; };
 		2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091D2B4ABD90006149BE /* InitialView.swift */; };
 		2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091F2B4ABDA3006149BE /* InitialViewController.swift */; };
 		2B4109222B4ABE93006149BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */; };
@@ -102,6 +116,20 @@
 		2B18BC382B60E365007636EC /* ChannelSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewController.swift; sourceTree = "<group>"; };
 		2B18BC3A2B60E36F007636EC /* ChannelSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchView.swift; sourceTree = "<group>"; };
 		2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSearchViewModel.swift; sourceTree = "<group>"; };
+		2B18BC3F2B61280B007636EC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2B18BC412B612813007636EC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		2B18BC432B612818007636EC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		2B18BC462B613179007636EC /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B18BC492B61328F007636EC /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		2B18BC4B2B6132C6007636EC /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
+		2B18BC4D2B6132CC007636EC /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
+		2B18BC512B6246F4007636EC /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
+		2B18BC532B624847007636EC /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		2B18BC552B624AC4007636EC /* SettingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooterView.swift; sourceTree = "<group>"; };
+		2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
+		2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B18BC5E2B634AEC007636EC /* KFModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFModifier.swift; sourceTree = "<group>"; };
 		2B41091D2B4ABD90006149BE /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		2B41091F2B4ABDA3006149BE /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2B4109212B4ABE93006149BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -200,6 +228,8 @@
 		2B18BC2D2B60A24A007636EC /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				2B18BC3E2B6127EE007636EC /* Setting */,
+				2B18BC482B613278007636EC /* Chatting */,
 				2B18BC372B60E34B007636EC /* ChannelSearch */,
 				2B18BC302B60A278007636EC /* ChannelAdd */,
 			);
@@ -224,6 +254,56 @@
 				2B18BC3C2B60E377007636EC /* ChannelSearchViewModel.swift */,
 			);
 			path = ChannelSearch;
+			sourceTree = "<group>";
+		};
+		2B18BC3E2B6127EE007636EC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC3F2B61280B007636EC /* SettingViewController.swift */,
+				2B18BC412B612813007636EC /* SettingView.swift */,
+				2B18BC432B612818007636EC /* SettingViewModel.swift */,
+				2B18BC512B6246F4007636EC /* SettingHeaderView.swift */,
+				2B18BC552B624AC4007636EC /* SettingFooterView.swift */,
+				2B18BC452B613169007636EC /* Cell */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2B18BC452B613169007636EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC462B613179007636EC /* SettingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2B18BC482B613278007636EC /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC492B61328F007636EC /* ChattingViewController.swift */,
+				2B18BC4B2B6132C6007636EC /* ChattingView.swift */,
+				2B18BC4D2B6132CC007636EC /* ChattingViewModel.swift */,
+				2B18BC572B625F3A007636EC /* Cell */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		2B18BC572B625F3A007636EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */,
+				2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */,
+				2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2B18BC602B638BEC007636EC /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				2B18BC5E2B634AEC007636EC /* KFModifier.swift */,
+			);
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 		2B41091C2B4ABD82006149BE /* Initial */ = {
@@ -268,12 +348,12 @@
 			path = EmailLogin;
 			sourceTree = "<group>";
 		};
-		2B41093E2B4FB66C006149BE /* CustomErrorType */ = {
+		2B41093E2B4FB66C006149BE /* Error */ = {
 			isa = PBXGroup;
 			children = (
 				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
 			);
-			path = CustomErrorType;
+			path = Error;
 			sourceTree = "<group>";
 		};
 		2B41093F2B4FB774006149BE /* Model */ = {
@@ -381,6 +461,7 @@
 		2BAF68D62B45904000584B13 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5E7C02B46C9F80012A83F /* Key */,
 				2BAF68D92B45907D00584B13 /* Data */,
 				2BAF68D82B45907300584B13 /* Domain */,
 				2BAF68DA2B45908600584B13 /* Utility */,
@@ -410,8 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				2BE5E7E42B47EFD00012A83F /* Network */,
-				2BE5E7C02B46C9F80012A83F /* Key */,
-				2BE5E7D82B4715290012A83F /* Manager */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -475,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				2BAF68FB2B46867900584B13 /* BaseCollectionViewCell.swift */,
+				2B18BC532B624847007636EC /* BaseCollectionReusableView.swift */,
 				2BAF68F92B46866500584B13 /* BaseTableViewCell.swift */,
 				2BAF68F32B4685C300584B13 /* BaseView.swift */,
 				2BAF68F52B4685D800584B13 /* BaseViewController.swift */,
@@ -529,6 +609,7 @@
 		2BE5E7D82B4715290012A83F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
 				2BE5E7D62B4715240012A83F /* KeychainManager.swift */,
 				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
 				2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */,
@@ -539,10 +620,11 @@
 		2BE5E7E42B47EFD00012A83F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
+				2BE5E7D82B4715290012A83F /* Manager */,
 				2B4109402B4FB835006149BE /* Router */,
 				2B41093F2B4FB774006149BE /* Model */,
-				2B41093E2B4FB66C006149BE /* CustomErrorType */,
+				2B41093E2B4FB66C006149BE /* Error */,
+				2B18BC602B638BEC007636EC /* Modifier */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -666,11 +748,15 @@
 				2BE5E7D02B46E1340012A83F /* KakaoLoginManager.swift in Sources */,
 				2B9D89F72B5A959F00642F85 /* twoButtonModalViewController.swift in Sources */,
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
+				2B18BC522B6246F4007636EC /* SettingHeaderView.swift in Sources */,
 				2B9B6D8B2B53C88400CC021E /* CTextButton.swift in Sources */,
 				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
+				2B18BC422B612813007636EC /* SettingView.swift in Sources */,
 				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
 				2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */,
 				2B41097D2B527F69006149BE /* ReusableViewProtocol+.swift in Sources */,
+				2B18BC562B624AC4007636EC /* SettingFooterView.swift in Sources */,
+				2B18BC592B625F56007636EC /* ChattingTableViewCell.swift in Sources */,
 				2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */,
 				2B4109792B527EDF006149BE /* HomeSectionTableViewCell.swift in Sources */,
 				2BE5E7F82B4961870012A83F /* SignUpViewController.swift in Sources */,
@@ -681,6 +767,7 @@
 				2BAF68FA2B46866500584B13 /* BaseTableViewCell.swift in Sources */,
 				2B4109332B4EB2A8006149BE /* AddViewController.swift in Sources */,
 				2B41093D2B4FB12C006149BE /* EmailLoginViewModel.swift in Sources */,
+				2B18BC472B613179007636EC /* SettingCollectionViewCell.swift in Sources */,
 				2BAF68FC2B46867900584B13 /* BaseCollectionViewCell.swift in Sources */,
 				2BE5E7AA2B4698A20012A83F /* OnboardingViewModel.swift in Sources */,
 				2BE5E7EA2B47F98B0012A83F /* Constants.swift in Sources */,
@@ -691,12 +778,17 @@
 				2BE5E8002B4968900012A83F /* XmarkButton.swift in Sources */,
 				2B18BC342B60A296007636EC /* ChannelAddViewModel.swift in Sources */,
 				2B4109742B5277F1006149BE /* HomeViewModel.swift in Sources */,
+				2B18BC4C2B6132C6007636EC /* ChattingView.swift in Sources */,
+				2B18BC442B612818007636EC /* SettingViewModel.swift in Sources */,
 				2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
+				2B18BC542B624847007636EC /* BaseCollectionReusableView.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
+				2B18BC402B61280B007636EC /* SettingViewController.swift in Sources */,
 				2B9B6D7B2B52D70A00CC021E /* HomePlusTableViewCell.swift in Sources */,
 				2B9D89E82B57CD2600642F85 /* SideMenuViewModel.swift in Sources */,
+				2B18BC5F2B634AEC007636EC /* KFModifier.swift in Sources */,
 				2B41097B2B527F01006149BE /* HomeChannelTableViewCell.swift in Sources */,
 				2B41093B2B4FAE64006149BE /* EmailLoginView.swift in Sources */,
 				2B4109242B4AC4D1006149BE /* SignUpViewModel.swift in Sources */,
@@ -704,9 +796,12 @@
 				2BAF68F82B46865500584B13 /* BaseViewModel.swift in Sources */,
 				2B9B6D872B53C41E00CC021E /* SideMenuViewController.swift in Sources */,
 				2BAF68F62B4685D800584B13 /* BaseViewController.swift in Sources */,
+				2B18BC4E2B6132CC007636EC /* ChattingViewModel.swift in Sources */,
 				2B4109722B5277E8006149BE /* HomeView.swift in Sources */,
 				2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */,
 				2B4109442B4FEA82006149BE /* AddView.swift in Sources */,
+				2B18BC5D2B629A46007636EC /* MessageImageCollectionViewCell.swift in Sources */,
+				2B18BC5B2B6299C7007636EC /* ChattingImageCollectionViewCell.swift in Sources */,
 				2B4109482B4FF552006149BE /* CSymbolButton.swift in Sources */,
 				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
 				2BE5E7E82B47F0060012A83F /* APIRouter.swift in Sources */,
@@ -725,6 +820,7 @@
 				2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */,
 				2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */,
 				2BE5E7FA2B4961BB0012A83F /* SignUpView.swift in Sources */,
+				2B18BC4A2B61328F007636EC /* ChattingViewController.swift in Sources */,
 				2B18BC2F2B60A272007636EC /* ChannelAddViewController.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
 				2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */,

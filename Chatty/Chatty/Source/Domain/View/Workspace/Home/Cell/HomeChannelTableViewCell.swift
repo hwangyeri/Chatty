@@ -46,7 +46,7 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-1)
             make.leading.equalTo(imgView.snp.trailing).offset(16)
         }
         

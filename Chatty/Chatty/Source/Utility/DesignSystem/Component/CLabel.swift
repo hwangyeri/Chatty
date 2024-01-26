@@ -28,7 +28,11 @@ final class CLabel: UILabel {
         let lineHeight: CGFloat
         
         switch font {
-        case .caption, .body, .bodyBold:
+        case .caption2:
+            lineHeight = 1.37
+        case .caption:
+            lineHeight = 1.26
+        case .body, .bodyBold:
             lineHeight = 1.16
         case .title2:
             lineHeight = 1.2
