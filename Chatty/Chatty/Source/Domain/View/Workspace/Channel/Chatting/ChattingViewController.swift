@@ -11,6 +11,10 @@ import RxCocoa
 
 final class ChattingViewController: BaseViewController {
     
+    var workspaceID: Int?
+    
+    var channelName: String?
+    
     private let mainView = ChattingView()
     
     private let viewModel = ChattingViewModel()
@@ -24,6 +28,8 @@ final class ChattingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.workspaceID = workspaceID
+        viewModel.channelName = channelName
         bind()
     }
     
@@ -58,6 +64,8 @@ final class ChattingViewController: BaseViewController {
         output.listButtonTap
             .drive(with: self) { owner, _ in
                 let vc = SettingViewController()
+                vc.workspaceID = owner.viewModel.workspaceID
+                vc.channelName = owner.viewModel.channelName
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .fullScreen
                 owner.present(vc, animated: true)

@@ -71,10 +71,14 @@ final class HomeViewController: BaseViewController {
                 return
             }
             
-            mainView.wsImageView.kf.setImage(
-                with: URL(string: APIKey.baseURL + "/v1" + workspaceData.thumbnail),
-                options: [.requestModifier(KFModifier.shared.modifier)]
-            )
+            mainView.wsImageView.setImageKF(withURL: workspaceData.thumbnail) { result in
+                switch result {
+                case .success(_):
+                    print("🩵 이미지 로드 성공")
+                case .failure(let error):
+                    print("💛 이미지 로드 실패: \(error)")
+                }
+            }
             
             mainView.wsNameButton.setTitle(workspaceData.name, for: .normal)
         } else {

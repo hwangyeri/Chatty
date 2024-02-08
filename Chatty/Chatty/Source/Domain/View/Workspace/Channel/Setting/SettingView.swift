@@ -37,10 +37,10 @@ final class SettingView: BaseView {
     func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width / 6
-        let spacing: CGFloat = 5
+        let spacing: CGFloat = 6
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing * 3, right: spacing)
-        layout.itemSize = CGSize(width: width, height: width + 20)
+        layout.itemSize = CGSize(width: width, height: width + 30)
         return layout
     }
     

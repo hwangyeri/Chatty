@@ -8,8 +8,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class SettingViewController: BaseViewController {
+    
+    var workspaceID: Int?
+    
+    var channelName: String?
     
     private var isMemberHidden = false
     
@@ -26,6 +31,9 @@ final class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.workspaceID = workspaceID
+        viewModel.channelName = channelName
+        viewModel.fetchChannelMember()
         bind()
     }
     
@@ -51,6 +59,15 @@ final class SettingViewController: BaseViewController {
         output.backButtonTap
             .drive(with: self) { owner, _ in
                 owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        // 네트워크 통신 완료 트리거
+        output.isCompletedFetch
+            .subscribe(with: self) { owner, isValid in
+                if isValid {
+                    owner.mainView.collectionView.reloadData()
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -86,12 +103,29 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         if section == 0 && isMemberHidden {
             return 0
         } else {
-            return 100
+            return viewModel.membersData?.count ?? 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCollectionViewCell.identifier, for: indexPath) as? SettingCollectionViewCell else { return UICollectionViewCell() }
+        let data = viewModel.membersData?[indexPath.item]
+        
+        if data?.profileImage != nil, let profileImage = data?.profileImage {
+            cell.imgView.setImageKF(withURL: profileImage) { result in
+                switch result {
+                case .success(_):
+                    print("🩵 이미지 로드 성공")
+                case .failure(let error):
+                    print("💛 이미지 로드 실패: \(error)")
+                }
+            }
+        } else {
+            let noPhotoImages: [UIImage] = [.noPhotoA, .noPhotoB, .noPhotoC]
+            cell.imgView.image = noPhotoImages.randomElement()
+        }
+        
+        cell.nameLabel.text = data?.nickname
         
         return cell
     }

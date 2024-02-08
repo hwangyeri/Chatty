@@ -21,6 +21,8 @@ final class ChannelSearchViewModel: BaseViewModel {
     
     var myChannelsID: [Int]?
     
+    var selectedChannelName: String?
+    
     struct Input {
         let xButton: ControlEvent<Void>
         let itemSelected: ControlEvent<IndexPath> // TableView didSelectRowAt
@@ -47,6 +49,10 @@ final class ChannelSearchViewModel: BaseViewModel {
         
         input.itemSelected
             .subscribe(with: self) { owner, indexPath in
+                // 선택한 채널 이름 저장
+                owner.selectedChannelName = owner.allChannelsData?[indexPath.row].name
+                
+                // 선택한 채널 ID 저장
                 owner.selectedChannelID = owner.allChannelsData?[indexPath.row].channelID
                 print("✅ indexPath, selectedChannelID: \(indexPath), \(owner.selectedChannelID)")
                 
