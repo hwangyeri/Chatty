@@ -11,6 +11,10 @@ import RxCocoa
 
 final class ChattingViewModel: BaseViewModel {
     
+    var workspaceID: Int?
+    
+    var channelName: String?
+    
     struct Input {
         let backButton: ControlEvent<Void>
         let listButton: ControlEvent<Void>
