@@ -33,12 +33,13 @@ final class SettingCollectionViewCell: BaseCollectionViewCell {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().inset(12)
+            make.size.equalTo(44)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(imgView.snp.bottom).offset(4)
-            make.horizontalEdges.equalToSuperview().inset(8)
-            make.bottom.equalToSuperview().inset(8)
+            make.horizontalEdges.equalToSuperview().inset(4)
+            make.bottom.equalToSuperview().inset(4)
         }
     }
     
