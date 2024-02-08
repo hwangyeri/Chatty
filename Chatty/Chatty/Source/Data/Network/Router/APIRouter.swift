@@ -11,32 +11,30 @@ import Alamofire
 enum APIRouter: URLRequestConvertible {
     
     // AUTH
-    case authRefresh // 토큰 갱신
+    case authRefresh // 토큰 갱신 - 미구현
     
     // USER
-    case usersJoin(model: JoinInput) // 회원가입 - 구현
-    case usersValidationEmail(email: String) // 이메일 중복 확인 - 구현
-    case usersLogin(model: LoginInput) // 로그인(v2) - 구현
-    case usersLoginKakao(model: KakaoLoginInput) // 카카오 로그인 - 구현
-    case usersLoginApple // 애플 로그인
-    case usersLogout // 로그아웃
-    case usersDeviceToken // FCM device Token 저장
-    case usersMy // 내 프로필 정보 조회 - 구현
+    case usersJoin(model: JoinInput) // 회원가입
+    case usersValidationEmail(email: String) // 이메일 중복 확인
+    case usersLogin(model: LoginInput) // 로그인(v2)
+    case usersLoginKakao(model: KakaoLoginInput) // 카카오 로그인
+    case usersMy // 내 프로필 정보 조회
     
-    // WORK SPACE - 구현
+    // WORK SPACE
     case workspaceCreate(model: WorkspaceCreateInput) // 워크스페이스 생성
     case workspaceRead // 내가 속한 워크스페이스 조회
     case oneWorkspaceRead(id: Int) // 내가 속한 워크스페이스 한 개 조회
     case workspaceDelete(id: Int) // 워크스페이스 삭제 - 미구현
     
-    // CHANNEL - 구현
+    // CHANNEL
     case channelCreate(id: Int, model: ChannelInput) // 채널 생성
     case channelsRead(id: Int) // 모든 채널 조회
     case channelsMyRead(id: Int) // 내가 속한 모든 채널 조회
     case channelsNameRead(id: Int, name: String) // 특정 채널 조회
     case channelsUnreadsChatCount(id: Int, name: String) // 읽지 않은 채널 채팅 개수
+    case channelsMembers(id: Int, name: String) // 채널 멤버 조회
     
-    // DMS - 구현
+    // DMS
     case dmsRead(id: Int) // DM 방 조회
     case dmsUnreadsChatCount(id: Int, roomID: Int) // 읽지 않은 DM 채팅 개수
     
@@ -61,12 +59,6 @@ enum APIRouter: URLRequestConvertible {
             return "/v2/users/login"
         case .usersLoginKakao:
             return "/v1/users/login/kakao"
-        case .usersLoginApple:
-            return "/v1/users/login/apple"
-        case .usersLogout:
-            return "/v1/users/logout"
-        case .usersDeviceToken:
-            return "/v1/users/deviceToken"
         case .usersMy:
             return "/v1/users/my"
             
@@ -89,6 +81,8 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces/\(id)/channels/\(name)"
         case .channelsUnreadsChatCount(id: let id, name: let name):
             return "/v1/workspaces/\(id)/channels/\(name)/unreads"
+        case .channelsMembers(let id, let name):
+            return "/v1/workspaces/\(id)/channels/\(name)/members"
         
         // DMS
         case .dmsRead(let id):
@@ -108,9 +102,6 @@ enum APIRouter: URLRequestConvertible {
         case .usersValidationEmail: return .post
         case .usersLogin: return .post
         case .usersLoginKakao: return .post
-        case .usersLoginApple: return .post
-        case .usersLogout: return .get
-        case .usersDeviceToken: return .post
         case .usersMy: return .get
         
         // WORK SPACE
@@ -120,7 +111,8 @@ enum APIRouter: URLRequestConvertible {
             
         // CHANNEL
         case .channelCreate: return .post
-        case .channelsRead, .channelsMyRead, .channelsNameRead, .channelsUnreadsChatCount: return .get
+        case .channelsRead, .channelsMyRead, .channelsNameRead: return .get
+        case .channelsUnreadsChatCount, .channelsMembers: return .get
         
         // DMS
         case .dmsRead, .dmsUnreadsChatCount: return .get
@@ -147,33 +139,15 @@ enum APIRouter: URLRequestConvertible {
         // USER
         case .usersJoin, .usersValidationEmail, .usersLoginKakao, .usersLogin:
             return defaultHeader
-        case .usersLoginApple:
-            return defaultHeader
-        case .usersLogout:
-            return defaultHeader
-        case .usersDeviceToken:
-            return defaultHeader
-        case .usersMy:
-            return tokenHeader
-            
-        // WORK SPACE
-        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead, .workspaceDelete:
-            return tokenHeader
-            
-        // CHANNEL
-        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount, .channelCreate, .channelsNameRead:
-            return tokenHeader
-            
-        // DMS
-        case .dmsRead, .dmsUnreadsChatCount:
+        
+        default:
             return tokenHeader
         }
     }
     
     private var parameters: Parameters? {
         switch self {
-        case .authRefresh:
-            return nil
+        // USER
         case .usersJoin(let model):
             return [
                 "email": model.email,
@@ -195,30 +169,15 @@ enum APIRouter: URLRequestConvertible {
                 "oauthToken": model.oauthToken,
                 "deviceToken": model.deviceToken,
             ]
-        case .usersLoginApple:
-            return nil
-        case .usersLogout:
-            return nil
-        case .usersDeviceToken:
-            return nil
-        case .usersMy:
-            return nil
-            
-        // WORK SPACE
-        case .workspaceCreate, .workspaceRead, .oneWorkspaceRead, .workspaceDelete:
-            return nil
             
         // CHANNEL
-        case .channelsRead, .channelsMyRead, .channelsUnreadsChatCount, .channelsNameRead:
-            return nil
         case .channelCreate(_, let model):
             return [
                 "name": model.name,
                 "description": model.description ?? ""
             ]
             
-        // DMS
-        case .dmsRead, .dmsUnreadsChatCount:
+        default:
             return nil
         }
     }
