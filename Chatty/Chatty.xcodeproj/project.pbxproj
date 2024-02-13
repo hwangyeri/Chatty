@@ -51,6 +51,7 @@
 		2B41097B2B527F01006149BE /* HomeChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41097A2B527F01006149BE /* HomeChannelTableViewCell.swift */; };
 		2B41097D2B527F69006149BE /* ReusableViewProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */; };
 		2B5A65822B751C7F006CE559 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A65812B751C7F006CE559 /* Image+.swift */; };
+		2B5A65892B752D93006CE559 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A65882B752D93006CE559 /* APIKey.swift */; };
 		2B9B6D742B52A60000CC021E /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D732B52A60000CC021E /* SwitchViewController.swift */; };
 		2B9B6D792B52D5DD00CC021E /* HomeDMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */; };
 		2B9B6D7B2B52D70A00CC021E /* HomePlusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D7A2B52D70A00CC021E /* HomePlusTableViewCell.swift */; };
@@ -88,7 +89,6 @@
 		2BE5E7B12B469FF70012A83F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7B02B469FF70012A83F /* AuthViewModel.swift */; };
 		2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7B22B46A25F0012A83F /* CImageButton.swift */; };
 		2BE5E7BF2B46C9220012A83F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2BE5E7BE2B46C9220012A83F /* .gitignore */; };
-		2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE5E7C12B46CA170012A83F /* APIKey.swift */; };
 		2BE5E7CA2B46D32B0012A83F /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7C92B46D32B0012A83F /* KakaoSDKAuth */; };
 		2BE5E7CC2B46D32B0012A83F /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7CB2B46D32B0012A83F /* KakaoSDKCommon */; };
 		2BE5E7CE2B46D32B0012A83F /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7CD2B46D32B0012A83F /* KakaoSDKUser */; };
@@ -153,6 +153,8 @@
 		2B41097A2B527F01006149BE /* HomeChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChannelTableViewCell.swift; sourceTree = "<group>"; };
 		2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableViewProtocol+.swift"; sourceTree = "<group>"; };
 		2B5A65812B751C7F006CE559 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		2B5A65882B752D93006CE559 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		2B5A658A2B752F4E006CE559 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2B9B6D732B52A60000CC021E /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDMTableViewCell.swift; sourceTree = "<group>"; };
 		2B9B6D7A2B52D70A00CC021E /* HomePlusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,8 +187,6 @@
 		2BE5E7B02B469FF70012A83F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		2BE5E7B22B46A25F0012A83F /* CImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CImageButton.swift; sourceTree = "<group>"; };
 		2BE5E7BE2B46C9220012A83F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		2BE5E7C12B46CA170012A83F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		2BE5E7C42B46CDB60012A83F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginManager.swift; sourceTree = "<group>"; };
 		2BE5E7D12B4707590012A83F /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		2BE5E7D62B4715240012A83F /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -382,6 +382,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		2B5A65872B752D89006CE559 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				2B5A65882B752D93006CE559 /* APIKey.swift */,
+				2B5A658A2B752F4E006CE559 /* Config.xcconfig */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
 		2B9B6D752B52A60800CC021E /* SwitchRootVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,7 +469,7 @@
 		2BAF68D62B45904000584B13 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7C02B46C9F80012A83F /* Key */,
+				2B5A65872B752D89006CE559 /* Key */,
 				2BAF68D92B45907D00584B13 /* Data */,
 				2BAF68D82B45907300584B13 /* Domain */,
 				2BAF68DA2B45908600584B13 /* Utility */,
@@ -596,15 +605,6 @@
 				2BE5E7B02B469FF70012A83F /* AuthViewModel.swift */,
 			);
 			path = Auth;
-			sourceTree = "<group>";
-		};
-		2BE5E7C02B46C9F80012A83F /* Key */ = {
-			isa = PBXGroup;
-			children = (
-				2BE5E7C12B46CA170012A83F /* APIKey.swift */,
-				2BE5E7C42B46CDB60012A83F /* Config.xcconfig */,
-			);
-			path = Key;
 			sourceTree = "<group>";
 		};
 		2BE5E7D82B4715290012A83F /* Manager */ = {
@@ -750,7 +750,6 @@
 				2BAF68F22B45B5A800584B13 /* CLabel.swift in Sources */,
 				2B18BC522B6246F4007636EC /* SettingHeaderView.swift in Sources */,
 				2B9B6D8B2B53C88400CC021E /* CTextButton.swift in Sources */,
-				2BE5E7C22B46CA170012A83F /* APIKey.swift in Sources */,
 				2B18BC422B612813007636EC /* SettingView.swift in Sources */,
 				2BAF68F02B45B57C00584B13 /* Font+.swift in Sources */,
 				2BE5E7E62B47EFF70012A83F /* NetworkManager.swift in Sources */,
@@ -829,6 +828,7 @@
 				2BAF69012B4689B900584B13 /* CButton.swift in Sources */,
 				2B18BC392B60E365007636EC /* ChannelSearchViewController.swift in Sources */,
 				2B18BC322B60A28C007636EC /* ChannelAddView.swift in Sources */,
+				2B5A65892B752D93006CE559 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,7 +837,6 @@
 /* Begin XCBuildConfiguration section */
 		2BAF68D02B458E4600584B13 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BE5E7C42B46CDB60012A83F /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -903,7 +902,6 @@
 		};
 		2BAF68D12B458E4600584B13 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BE5E7C42B46CDB60012A83F /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -962,7 +960,6 @@
 		};
 		2BAF68D32B458E4600584B13 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BE5E7C42B46CDB60012A83F /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -973,6 +970,8 @@
 				DEVELOPMENT_TEAM = 7T88N7TX7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chatty/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라에 접근하기 위해서 권한이 필요합니다. 허용하시겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진에 접근하기 위해서 권한이 필요합니다. 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -996,7 +995,6 @@
 		};
 		2BAF68D42B458E4600584B13 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BE5E7C42B46CDB60012A83F /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1007,6 +1005,8 @@
 				DEVELOPMENT_TEAM = 7T88N7TX7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chatty/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라에 접근하기 위해서 권한이 필요합니다. 허용하시겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진에 접근하기 위해서 권한이 필요합니다. 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
