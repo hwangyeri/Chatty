@@ -33,6 +33,8 @@ enum APIRouter: URLRequestConvertible {
     case channelsNameRead(id: Int, name: String) // 특정 채널 조회
     case channelsUnreadsChatCount(id: Int, name: String) // 읽지 않은 채널 채팅 개수
     case channelsMembers(id: Int, name: String) // 채널 멤버 조회
+    case channelsChatsRead(id: Int, name: String, cursor_date: String?) // 채널 채팅 조회
+    case channelsChatsCreate(id: Int, name: String, model: ChannelChatCreateInput) // 채널 채팅 생성
     
     // DMS
     case dmsRead(id: Int) // DM 방 조회
@@ -83,6 +85,8 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces/\(id)/channels/\(name)/unreads"
         case .channelsMembers(let id, let name):
             return "/v1/workspaces/\(id)/channels/\(name)/members"
+        case .channelsChatsRead(let id, let name, _), .channelsChatsCreate(let id, let name, _):
+            return "/v1/workspaces/\(id)/channels/\(name)/chats"
         
         // DMS
         case .dmsRead(let id):
@@ -110,9 +114,9 @@ enum APIRouter: URLRequestConvertible {
         case .workspaceDelete: return .delete
             
         // CHANNEL
-        case .channelCreate: return .post
+        case .channelCreate, .channelsChatsCreate: return .post
         case .channelsRead, .channelsMyRead, .channelsNameRead: return .get
-        case .channelsUnreadsChatCount, .channelsMembers: return .get
+        case .channelsUnreadsChatCount, .channelsMembers, .channelsChatsRead: return .get
         
         // DMS
         case .dmsRead, .dmsUnreadsChatCount: return .get
@@ -176,6 +180,10 @@ enum APIRouter: URLRequestConvertible {
                 "name": model.name,
                 "description": model.description ?? ""
             ]
+        case .channelsChatsRead(_, _, let cursor?):
+            return [
+                "cursor_date": cursor
+            ]
             
         default:
             return nil
@@ -190,7 +198,7 @@ enum APIRouter: URLRequestConvertible {
         request.headers = header
         
         switch self {
-        case .workspaceCreate:
+        case .workspaceCreate, .channelsChatsRead, .channelsChatsCreate:
             return try URLEncoding.default.encode(request, with: parameters)
         default:
             if let parameters = parameters {
@@ -212,8 +220,6 @@ extension APIRouter {
     // Multipart : Alamofire에서 제공해주는 기능으로 이미지를 data로 전환해서 전송하는 방식
     
     var multipart: MultipartFormData {
-        //let multipartFormData = MultipartFormData()
-        
         switch self {
         case .workspaceCreate(let model):
             let params: [String: Any] = [
@@ -221,14 +227,19 @@ extension APIRouter {
                 "description": model.description ?? "description error",
                 "image": model.image
             ]
-            
-            return makeMultipartFormData(params: params, with: "workspace")
+            return makeMultipartFormData(params: params)
+        case .channelsChatsCreate(_, _, let model):
+            let params: [String: Any] = [
+                "content": model.content,
+                "files": model.files ?? []
+            ]
+            return makeMultipartFormData(params: params)
         default:
             return MultipartFormData()
         }
     }
     
-    func makeMultipartFormData(params: [String: Any], with imageFileName: String) -> MultipartFormData {
+    func makeMultipartFormData(params: [String: Any]) -> MultipartFormData {
         let multipart = MultipartFormData()
         
         switch self {
@@ -236,12 +247,21 @@ extension APIRouter {
             let name = model.name.data(using: .utf8) ?? Data()
             let description = model.description?.data(using: .utf8) ?? Data()
             let image = model.image
-            
             multipart.append(name, withName: "name")
             multipart.append(description, withName: "description")
             multipart.append(image, withName: "image", fileName: "image.jpeg", mimeType: "image/jpeg")
             // withName: key 값, fileName: 서버에 업로드할 파일 이름, mimeType: 파일 형식
-            
+            return multipart
+        case .channelsChatsCreate(_, _, let model):
+            let content = model.content.data(using: .utf8) ?? Data()
+            if let files = model.files {
+                for (index, file) in files.enumerated() {
+                    let fileName = "chatty_channel_chat_file_\(index).jpeg"
+                    let fileData = file.data(using: .utf8) ?? Data()
+                    multipart.append(fileData, withName: "files", fileName: fileName, mimeType: "image/jpeg")
+                }
+            }
+            multipart.append(content, withName: "content")
             return multipart
         default:
             return MultipartFormData()

@@ -30,6 +30,7 @@ final class ChattingViewController: BaseViewController {
 
         viewModel.workspaceID = workspaceID
         viewModel.channelName = channelName
+        viewModel.fetchChannelsChats()
         bind()
     }
     
@@ -71,6 +72,29 @@ final class ChattingViewController: BaseViewController {
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        // 채널 채팅 조회 API 완료
+        output.isCompletedFetch
+            .subscribe(with: self) { owner, isValid in
+                if isValid {
+                    owner.mainView.tableView.reloadData()
+                } else {
+                    owner.showOkAlert(title: "Error", message: "에러가 발생했어요. 😥\n다시 시도해 주세요.")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // 채널 채팅 생성 API 완료
+        output.isCreatedChat
+            .subscribe(with: self) { owner, isValid in
+                owner.mainView.messageTextView.text = nil
+                if isValid {
+                    owner.viewModel.fetchChannelsChats()
+                } else {
+                    owner.showOkAlert(title: "Error", message: "에러가 발생했어요. 😥\n다시 시도해 주세요.")
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 }
@@ -78,13 +102,17 @@ final class ChattingViewController: BaseViewController {
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.channelChatData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.identifier, for: indexPath) as? ChattingTableViewCell else { return UITableViewCell() }
+        let data = viewModel.channelChatData?[indexPath.row]
         
         cell.selectionStyle = .none
+        cell.messageLabel.text = data?.content
+        cell.nameLabel.text = data?.user.nickname
+        cell.dateLabel.text = Date.DTFormatter(data?.createdAt ?? "")
         
         return cell
     }

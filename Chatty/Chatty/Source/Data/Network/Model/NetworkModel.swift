@@ -196,4 +196,24 @@ struct ChannelNameRead: Decodable {
     }
 }
 
+// 채널 채팅 조회
+typealias ChannlChatOutput = [ChannlChat]
 
+struct ChannlChat: Decodable {
+    let channelID, chatID: Int
+    let channelName, content, createdAt: String
+    let files: [String]?
+    let user: User
+    
+    enum CodingKeys: String, CodingKey {
+        case channelID = "channel_id"
+        case chatID = "chat_id"
+        case channelName, content, createdAt, files, user
+    }
+}
+
+// 채널 채팅 생성
+struct ChannelChatCreateInput: Codable {
+    let content: String
+    let files: [String]?
+}
