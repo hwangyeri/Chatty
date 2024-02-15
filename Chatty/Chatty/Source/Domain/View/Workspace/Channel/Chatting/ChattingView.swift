@@ -128,7 +128,7 @@ final class ChattingView: BaseView {
             make.top.equalTo(messageTextView.snp.bottom).offset(6)
             make.horizontalEdges.equalTo(messageTextView)
             make.bottom.equalTo(plusImageButton)
-            make.height.equalTo(50)
+            make.height.equalTo(0) // 50 // 텍스트 먼저 구현
         }
         
         sendImageButton.snp.makeConstraints { make in
