@@ -9,6 +9,8 @@ import UIKit
 import IQKeyboardManagerSwift
 import KakaoSDKCommon
 import KakaoSDKAuth
+import FirebaseCore
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +28,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Kakao SDK 초기화
         KakaoSDK.initSDK(appKey: kakaoAppKey as! String)
+        
+        FirebaseApp.configure()
+        
+        // 푸시 알림 권한 설정, FCM 등록
+        UNUserNotificationCenter.current().delegate = self
+        
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound, .providesAppNotificationSettings]
+        
+        // 알림 허용 확인
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { didAllow, error in
+            print("✅ Notification Authorization : \(didAllow)")
+        }
+        
+        // 메세지 대리자 설정
+        Messaging.messaging().delegate = self
+        
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -55,3 +74,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
 }
 
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let token = fcmToken {
+            print("Firebase registration token: \(token)")
+            
+            let dataDict: [String: String] = ["token": token]
+            NotificationCenter.default.post(
+                name: Notification.Name("FCMToken"),
+                object: nil,
+                userInfo: dataDict
+            )
+        } else {
+            print("Firebase registration token is nil.")
+        }
+    }
+    
+}

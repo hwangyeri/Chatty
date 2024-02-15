@@ -81,6 +81,11 @@
 		2BAF68FE2B4686E900584B13 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68FD2B4686E900584B13 /* OnboardingView.swift */; };
 		2BAF69012B4689B900584B13 /* CButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF69002B4689B900584B13 /* CButton.swift */; };
 		2BE535C62B7E23A2006B1C48 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535C52B7E23A2006B1C48 /* Date+.swift */; };
+		2BE535C92B7E5E19006B1C48 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535C82B7E5E19006B1C48 /* FirebaseAnalytics */; };
+		2BE535CB2B7E5E19006B1C48 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535CA2B7E5E19006B1C48 /* FirebaseAnalyticsSwift */; };
+		2BE535CD2B7E5E19006B1C48 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535CC2B7E5E19006B1C48 /* FirebaseCrashlytics */; };
+		2BE535CF2B7E5E19006B1C48 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535CE2B7E5E19006B1C48 /* FirebaseMessaging */; };
+		2BE535D32B7E63E0006B1C48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BE535D22B7E63E0006B1C48 /* GoogleService-Info.plist */; };
 		2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A32B46986E0012A83F /* RxCocoa */; };
 		2BE5E7A62B46986E0012A83F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A52B46986E0012A83F /* RxRelay */; };
 		2BE5E7A82B46986E0012A83F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A72B46986E0012A83F /* RxSwift */; };
@@ -183,6 +188,7 @@
 		2BAF68FD2B4686E900584B13 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2BAF69002B4689B900584B13 /* CButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CButton.swift; sourceTree = "<group>"; };
 		2BE535C52B7E23A2006B1C48 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		2BE535D22B7E63E0006B1C48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BE5E7A92B4698A20012A83F /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		2BE5E7AB2B469BBD0012A83F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		2BE5E7AE2B469FED0012A83F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -209,16 +215,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BE535CF2B7E5E19006B1C48 /* FirebaseMessaging in Frameworks */,
 				2B9D89E42B554B2800642F85 /* Kingfisher in Frameworks */,
 				2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */,
 				2BE5E7CC2B46D32B0012A83F /* KakaoSDKCommon in Frameworks */,
 				2BAF68EB2B45B53900584B13 /* SnapKit in Frameworks */,
+				2BE535CB2B7E5E19006B1C48 /* FirebaseAnalyticsSwift in Frameworks */,
+				2BE535C92B7E5E19006B1C48 /* FirebaseAnalytics in Frameworks */,
 				2BE5E7A82B46986E0012A83F /* RxSwift in Frameworks */,
 				2BE5E7CE2B46D32B0012A83F /* KakaoSDKUser in Frameworks */,
 				2B4109292B4D39EA006149BE /* IQKeyboardManagerSwift in Frameworks */,
 				2BE5E7A62B46986E0012A83F /* RxRelay in Frameworks */,
 				2BAF68EE2B45B54300584B13 /* Then in Frameworks */,
 				2BE5E7CA2B46D32B0012A83F /* KakaoSDKAuth in Frameworks */,
+				2BE535CD2B7E5E19006B1C48 /* FirebaseCrashlytics in Frameworks */,
 				2BE5E7D52B4715140012A83F /* SwiftKeychainWrapper in Frameworks */,
 				2B9B6D7E2B53B4DD00CC021E /* SideMenu in Frameworks */,
 			);
@@ -451,6 +461,7 @@
 			children = (
 				2B41092A2B4E6542006149BE /* Chatty.entitlements */,
 				2BAF68CF2B458E4600584B13 /* Info.plist */,
+				2BE535D22B7E63E0006B1C48 /* GoogleService-Info.plist */,
 				2BE5E7BE2B46C9220012A83F /* .gitignore */,
 				2BAF68D52B45901A00584B13 /* Application */,
 				2BAF68D62B45904000584B13 /* Source */,
@@ -682,6 +693,10 @@
 				2B4109282B4D39EA006149BE /* IQKeyboardManagerSwift */,
 				2B9B6D7D2B53B4DD00CC021E /* SideMenu */,
 				2B9D89E32B554B2800642F85 /* Kingfisher */,
+				2BE535C82B7E5E19006B1C48 /* FirebaseAnalytics */,
+				2BE535CA2B7E5E19006B1C48 /* FirebaseAnalyticsSwift */,
+				2BE535CC2B7E5E19006B1C48 /* FirebaseCrashlytics */,
+				2BE535CE2B7E5E19006B1C48 /* FirebaseMessaging */,
 			);
 			productName = Chatty;
 			productReference = 2BAF68BE2B458E4500584B13 /* Chatty.app */;
@@ -720,6 +735,7 @@
 				2B4109272B4D39EA006149BE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				2B9B6D7C2B53B4DD00CC021E /* XCRemoteSwiftPackageReference "SideMenu" */,
 				2B9D89E22B554B2800642F85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 2BAF68BF2B458E4500584B13 /* Products */;
 			projectDirPath = "";
@@ -736,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4109222B4ABE93006149BE /* LaunchScreen.storyboard in Resources */,
+				2BE535D32B7E63E0006B1C48 /* GoogleService-Info.plist in Resources */,
 				2BE5E7BF2B46C9220012A83F /* .gitignore in Resources */,
 				2BAF68CB2B458E4600584B13 /* Assets.xcassets in Resources */,
 			);
@@ -1096,6 +1113,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
 		2BE5E7A22B46986E0012A83F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -1147,6 +1172,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BAF68EC2B45B54300584B13 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		2BE535C82B7E5E19006B1C48 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2BE535CA2B7E5E19006B1C48 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		2BE535CC2B7E5E19006B1C48 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		2BE535CE2B7E5E19006B1C48 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		2BE5E7A32B46986E0012A83F /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
