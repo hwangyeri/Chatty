@@ -62,6 +62,7 @@ final class ChannelSearchViewModel: BaseViewModel {
                 } else {
                     // 내가 속하지 않은 채널인 경우
                     isMyChannelValid.accept(false)
+                    owner.fetchChannelsChats()
                 }
             }
             .disposed(by: disposeBag)
@@ -74,8 +75,8 @@ final class ChannelSearchViewModel: BaseViewModel {
         )
     }
     
+    // 모든 채널 조회 API
     func fetchAllChannels() {
-        // 모든 채널 조회 API
         NetworkManager.shared.request(
             type: ChannelsOutput.self,
             router: .channelsRead(id: workspaceID ?? 0)) { [weak self] result in
@@ -92,8 +93,8 @@ final class ChannelSearchViewModel: BaseViewModel {
             }
     }
     
+    // 내가 속한 채널 조회 API
     func fetchMyChannels() {
-        // 내가 속한 채널 조회 API
         NetworkManager.shared.request(
             type: ChannelsOutput.self,
             router: .channelsMyRead(id: workspaceID ?? 0)) { [weak self] result in
@@ -115,6 +116,21 @@ final class ChannelSearchViewModel: BaseViewModel {
                     print("💛 내가 속한 채널 조회 API 실패: \(error.errorDescription)")
                 }
             }
+    }
+    
+    // 채널 채팅 조회 API
+    func fetchChannelsChats() {
+        NetworkManager.shared.request(
+            type: ChannlChatOutput.self,
+            router: .channelsChatsRead(id: workspaceID ?? 0, name: selectedChannelName ?? "", cursor_date: "")) { result in
+                switch result {
+                case .success(let data):
+                    print("🩵 채널 채팅 조회 API 성공")
+                    dump(data)
+                case .failure(let error):
+                    print("💛 채널 채팅 조회 API 실패: \(error.errorDescription)")
+                }
+        }
     }
     
 }
