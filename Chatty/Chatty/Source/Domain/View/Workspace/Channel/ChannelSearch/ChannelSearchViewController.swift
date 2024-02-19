@@ -67,6 +67,7 @@ final class ChannelSearchViewController: BaseViewController {
                     print("✅ 내가 속한 채널입니다.")
                     let vc = ChattingViewController()
                     vc.workspaceID = owner.viewModel.workspaceID
+                    vc.channelID = owner.viewModel.selectedChannelID
                     vc.channelName = owner.viewModel.selectedChannelName
                     vc.modalTransitionStyle = .crossDissolve
                     vc.modalPresentationStyle = .fullScreen
