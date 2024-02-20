@@ -21,6 +21,8 @@ final class twoButtonModalViewController: BaseViewController {
     
     var channelName: String?
     
+    var channelID: Int?
+    
     private let mainView = twoButtonModalView()
     
     private let viewModel = twoButtonModalViewModel()
@@ -35,6 +37,8 @@ final class twoButtonModalViewController: BaseViewController {
         super.viewDidLoad()
 
         viewModel.workspaceID = workspaceID
+        viewModel.channelID = channelID
+        viewModel.channelName = channelName
         setLabelText()
         bind()
     }
@@ -47,12 +51,12 @@ final class twoButtonModalViewController: BaseViewController {
         switch modalAction {
         case .channelJoin:
             mainView.mainLabel.text = "채널 참여"
-            mainView.subLabel.text = "[\(channelName)] 채널에 참여하시겠습니까?"
-            mainView.deleteButton.setTitle("확인", for: .normal)
+            mainView.subLabel.text = "[\(channelName ?? "")] 채널에 참여하시겠습니까?"
+            mainView.rightButton.setTitle("확인", for: .normal)
         default:
             mainView.mainLabel.text = "워크스페이스 삭제"
             mainView.subLabel.text = "정말 이 워크스페이스를 삭제하시겠습니까? 삭제 시 채널/멤버/채팅 등 워크스페이스 내의 모든 정보가 삭제되며 복구할 수 없습니다."
-            mainView.deleteButton.setTitle("취소", for: .normal)
+            mainView.rightButton.setTitle("취소", for: .normal)
         }
     }
     
@@ -60,7 +64,7 @@ final class twoButtonModalViewController: BaseViewController {
         
         let input = twoButtonModalViewModel.Input(
             cancelButton: mainView.cancelButton.rx.tap,
-            deleteButton: mainView.deleteButton.rx.tap
+            rightButton: mainView.rightButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -73,10 +77,20 @@ final class twoButtonModalViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        // 삭제 버튼 탭
-        output.deleteButtonTap
-            .drive(with: self) { owner, _ in
-                print("삭제 버튼 클릭")
+        // 채널 채팅 조회 API 완료
+        output.isCompleted
+            .subscribe(with: self) { owner, isValid in
+                if isValid {
+                    let vc = ChattingViewController()
+                    vc.workspaceID = owner.viewModel.workspaceID
+                    vc.channelID = owner.viewModel.channelID
+                    vc.channelName = owner.viewModel.channelName
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    owner.present(vc, animated: true)
+                } else {
+                    owner.showOkAlert(title: "Error", message: "에러가 발생했어요. 😥\n다시 시도해 주세요.")
+                }
             }
             .disposed(by: disposeBag)
     }
