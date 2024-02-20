@@ -13,6 +13,8 @@ final class ChattingViewController: BaseViewController {
     
     var workspaceID: Int?
     
+    var channelID: Int?
+    
     var channelName: String?
     
     private let mainView = ChattingView()
@@ -29,9 +31,11 @@ final class ChattingViewController: BaseViewController {
         super.viewDidLoad()
 
         viewModel.workspaceID = workspaceID
+        viewModel.channelID = channelID
         viewModel.channelName = channelName
-        viewModel.fetchChannelsChats()
+        viewModel.fetchChannelChatData()
         bind()
+        setTitle()
     }
     
     override func configureLayout() {
@@ -40,6 +44,10 @@ final class ChattingViewController: BaseViewController {
         mainView.messageTextView.delegate = self
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
+    }
+    
+    private func setTitle() {
+        mainView.titleLabel.text = "#" + (channelName ?? "")
     }
     
     private func bind() {
@@ -89,7 +97,11 @@ final class ChattingViewController: BaseViewController {
             .subscribe(with: self) { owner, isValid in
                 owner.mainView.messageTextView.text = nil
                 if isValid {
-                    owner.viewModel.fetchChannelsChats()
+                    owner.mainView.tableView.reloadData()
+                    
+                    // 스크롤 기능
+                    let indexPath = IndexPath(row: owner.viewModel.channelChatData.count - 1, section: 0)
+                    owner.mainView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 } else {
                     owner.showOkAlert(title: "Error", message: "에러가 발생했어요. 😥\n다시 시도해 주세요.")
                 }
@@ -102,17 +114,19 @@ final class ChattingViewController: BaseViewController {
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.channelChatData?.count ?? 0
+        return viewModel.channelChatData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.identifier, for: indexPath) as? ChattingTableViewCell else { return UITableViewCell() }
-        let data = viewModel.channelChatData?[indexPath.row]
+        let data = viewModel.channelChatData[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.messageLabel.text = data?.content
-        cell.nameLabel.text = data?.user.nickname
-        cell.dateLabel.text = Date.DTFormatter(data?.createdAt ?? "")
+        cell.messageLabel.text = data.content
+        cell.nameLabel.text = data.user.nickname
+        
+        let date = data.createdAt.toDate()
+        cell.dateLabel.text = date?.formattedTime()
         
         return cell
     }
