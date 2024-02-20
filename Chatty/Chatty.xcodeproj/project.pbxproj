@@ -92,6 +92,7 @@
 		2BE535DD2B7F50AC006B1C48 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535DC2B7F50AC006B1C48 /* RealmSwift */; };
 		2BE535DF2B7F5A68006B1C48 /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535DE2B7F5A68006B1C48 /* UserTable.swift */; };
 		2BE535E22B7F5B96006B1C48 /* ChannelChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535E12B7F5B96006B1C48 /* ChannelChatRepository.swift */; };
+		2BE535E82B836021006B1C48 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535E72B836021006B1C48 /* String+.swift */; };
 		2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A32B46986E0012A83F /* RxCocoa */; };
 		2BE5E7A62B46986E0012A83F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A52B46986E0012A83F /* RxRelay */; };
 		2BE5E7A82B46986E0012A83F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A72B46986E0012A83F /* RxSwift */; };
@@ -199,6 +200,7 @@
 		2BE535D72B7F4F8A006B1C48 /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
 		2BE535DE2B7F5A68006B1C48 /* UserTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
 		2BE535E12B7F5B96006B1C48 /* ChannelChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatRepository.swift; sourceTree = "<group>"; };
+		2BE535E72B836021006B1C48 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2BE5E7A92B4698A20012A83F /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		2BE5E7AB2B469BBD0012A83F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		2BE5E7AE2B469FED0012A83F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				2B18BC352B60D914007636EC /* Notification+.swift */,
 				2B5A65812B751C7F006CE559 /* Image+.swift */,
 				2BE535C52B7E23A2006B1C48 /* Date+.swift */,
+				2BE535E72B836021006B1C48 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				2B18BC4A2B61328F007636EC /* ChattingViewController.swift in Sources */,
 				2B18BC2F2B60A272007636EC /* ChannelAddViewController.swift in Sources */,
 				2BE5E7F12B4812DD0012A83F /* NetworkError.swift in Sources */,
+				2BE535E82B836021006B1C48 /* String+.swift in Sources */,
 				2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */,
 				2BE5E7EF2B480EEA0012A83F /* NetworkModel.swift in Sources */,
 				2B9B6D8D2B53F88A00CC021E /* SideMenuTableViewCell.swift in Sources */,
