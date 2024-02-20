@@ -9,12 +9,20 @@ import Foundation
 
 extension Date {
     
-    static func DTFormatter(_ date: Date) -> String? {
-        let myDateFormatter = DateFormatter()
-        myDateFormatter.dateFormat = "h:mm a"
-        myDateFormatter.timeZone = TimeZone(identifier: "UTC")
+    func formattedTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         
-        return myDateFormatter.string(from: date)
+        return dateFormatter.string(from: self)
+    }
+    
+    func toStringMy() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        
+        return dateFormatter.string(from: self)
     }
     
 }
