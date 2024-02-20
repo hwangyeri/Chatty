@@ -13,9 +13,13 @@ final class ChattingViewModel: BaseViewModel {
     
     var workspaceID: Int?
     
+    var channelID: Int?
+    
     var channelName: String?
     
-    var channelChatData: ChannlChatOutput?
+    var channelChatData = [ChannlChat]()
+    
+    var lastChatDate: Date?
     
     struct Input {
         let backButton: ControlEvent<Void>
@@ -33,6 +37,8 @@ final class ChattingViewModel: BaseViewModel {
     }
     
     private let disposeBag = DisposeBag()
+    
+    private let channelChatRepository = ChannelChatRepository()
     
     let isCompletedFetch = PublishRelay<Bool>()
     
@@ -66,6 +72,13 @@ final class ChattingViewModel: BaseViewModel {
                 case .success(let data):
                     print("🩵 채널 채팅 생성 API 성공")
                     dump(data)
+                    
+                    // 화면에 보여줄 리스트에 저장
+                    owner.channelChatData.append(data)
+                    
+                    // Realm에 새로운 채팅 데이터 저장
+                    owner.channelChatRepository.createChatData(channlChat: data, workspaceID: owner.workspaceID ?? 0)
+                    
                     isCreatedChat.accept(true)
                 case .failure(let error):
                     print("💛 채널 채팅 생성 API 실패: \(error.errorDescription)")
@@ -82,24 +95,67 @@ final class ChattingViewModel: BaseViewModel {
         )
     }
     
-    func fetchChannelsChats() {
-        print(#function, "☑️ ChattingViewModel")
+    func fetchChannelChatData() {
+        // 마지막 채팅 날짜 저장
+        lastChatDate = channelChatRepository.getLastChatDate(channelID: channelID ?? 0)
+        print("✅ 마지막 채팅 날짜: ", lastChatDate)
+        print("✅ 마지막 채팅 날짜 toStringMy: ", lastChatDate?.toStringMy())
         
-        // 채널 채팅 조회 API
-        NetworkManager.shared.request(
-            type: ChannlChatOutput.self,
-            router: .channelsChatsRead(id: workspaceID ?? 0, name: channelName ?? "", cursor_date: "")) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    print("🩵 채널 채팅 조회 API 성공")
-                    dump(data)
-                    self?.channelChatData = data
-                    self?.isCompletedFetch.accept(true)
-                case .failure(let error):
-                    print("💛 채널 채팅 조회 API 실패: \(error.errorDescription)")
-                    self?.isCompletedFetch.accept(false)
-                }
+        // Realm DB에서 저장된 채팅 데이터 불러오기
+        let existingChatData = channelChatRepository.fetchChatData(channelID: channelID ?? 0)
+        
+        // 화면에 보여줄 리스트에 저장
+        existingChatData.forEach { chatData in
+            self.channelChatData.append(chatData)
+            print("✅ DB에서 불러온 채팅 데이터 - 리스트에 저장 : ", chatData)
+        }
+        
+        print("✅ existingChatData.isEmpty 여부: ", existingChatData.isEmpty)
+        
+        // DB에 저장된 채팅 데이터 여부에 따라서
+        if existingChatData.isEmpty {
+            // Realm에 새로운 채팅 데이터 저장
+            channelsChatsRead(cursor: "")
+        } else {
+            // 마지막 날짜를 기준으로 새로운 채팅 데이터 업데이트
+            channelsChatsRead(cursor: lastChatDate?.toStringMy() ?? "")
         }
     }
+    
+    // 채널 채팅 조회 API
+    func channelsChatsRead(cursor: String) {
+        NetworkManager.shared.request(
+            type: [ChannlChat].self,
+            router: .channelsChatsRead(
+                id: workspaceID ?? 0,
+                name: channelName ?? "",
+                cursor_date: cursor
+            )
+        ) { [weak self] result in
+            switch result {
+            case .success(let data):
+                print("🩵 채널 채팅 조회 API 성공")
+                dump(data)
+                
+                data.forEach { channlChat in
+                    // 새로운 채팅 데이터 리스트에 추가
+                    self?.channelChatData.append(channlChat)
+                    print("✅ 리스트에 추가하는 새로운 채팅 데이터: ", channlChat)
+                    
+                    // Realm DB에 저장
+                    self?.channelChatRepository.createChatData(
+                        channlChat: channlChat,
+                        workspaceID: self?.workspaceID ?? 0
+                    )
+                }
+                
+                self?.isCompletedFetch.accept(true)
+            case .failure(let error):
+                print("💛 채널 채팅 조회 API 실패: \(error.errorDescription)")
+                self?.isCompletedFetch.accept(false)
+            }
+        }
+    }
+   
     
 }

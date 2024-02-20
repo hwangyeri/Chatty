@@ -10,8 +10,11 @@ import RxSwift
 import RxCocoa
 import SideMenu
 import Kingfisher
+import RealmSwift
 
 final class HomeViewController: BaseViewController {
+    
+    let realm = try! Realm()
     
     var workspaceID: Int?
     
@@ -29,6 +32,8 @@ final class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("✅", realm.configuration.fileURL)
 
         viewModel.workspaceID = workspaceID
         fetchHomeEmptyUI()

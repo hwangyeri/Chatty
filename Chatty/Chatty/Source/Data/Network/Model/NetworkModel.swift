@@ -201,7 +201,8 @@ typealias ChannlChatOutput = [ChannlChat]
 
 struct ChannlChat: Decodable {
     let channelID, chatID: Int
-    let channelName, content, createdAt: String
+    let channelName, content: String
+    let createdAt: String
     let files: [String]?
     let user: User
     
