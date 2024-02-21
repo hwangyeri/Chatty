@@ -134,7 +134,9 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.selectionStyle = .none
         cell.titleLabel.text = data?[indexPath.row].name
-        cell.dateLabel.text = data?[indexPath.row].createdAt
+        
+        let formattedDate = data?[indexPath.row].createdAt.toDate()?.formattedSideDate()
+        cell.dateLabel.text = formattedDate
         
         if workspaceID == data?[indexPath.row].workspaceID {
             cell.menuImageButton.isHidden = false
