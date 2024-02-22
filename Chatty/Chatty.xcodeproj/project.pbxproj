@@ -50,7 +50,7 @@
 		2B4109792B527EDF006149BE /* HomeSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4109782B527EDF006149BE /* HomeSectionTableViewCell.swift */; };
 		2B41097B2B527F01006149BE /* HomeChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41097A2B527F01006149BE /* HomeChannelTableViewCell.swift */; };
 		2B41097D2B527F69006149BE /* ReusableViewProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */; };
-		2B5A65822B751C7F006CE559 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A65812B751C7F006CE559 /* Image+.swift */; };
+		2B5A65822B751C7F006CE559 /* Kingfisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A65812B751C7F006CE559 /* Kingfisher+.swift */; };
 		2B5A65892B752D93006CE559 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A65882B752D93006CE559 /* APIKey.swift */; };
 		2B9B6D742B52A60000CC021E /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D732B52A60000CC021E /* SwitchViewController.swift */; };
 		2B9B6D792B52D5DD00CC021E /* HomeDMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B6D782B52D5DD00CC021E /* HomeDMTableViewCell.swift */; };
@@ -93,6 +93,8 @@
 		2BE535DF2B7F5A68006B1C48 /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535DE2B7F5A68006B1C48 /* UserTable.swift */; };
 		2BE535E22B7F5B96006B1C48 /* ChannelChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535E12B7F5B96006B1C48 /* ChannelChatRepository.swift */; };
 		2BE535E82B836021006B1C48 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535E72B836021006B1C48 /* String+.swift */; };
+		2BE535EB2B84B8E4006B1C48 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE535EA2B84B8E4006B1C48 /* SocketIO */; };
+		2BE535F02B84B953006B1C48 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE535EF2B84B953006B1C48 /* SocketIOManager.swift */; };
 		2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A32B46986E0012A83F /* RxCocoa */; };
 		2BE5E7A62B46986E0012A83F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A52B46986E0012A83F /* RxRelay */; };
 		2BE5E7A82B46986E0012A83F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5E7A72B46986E0012A83F /* RxSwift */; };
@@ -165,7 +167,7 @@
 		2B4109782B527EDF006149BE /* HomeSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionTableViewCell.swift; sourceTree = "<group>"; };
 		2B41097A2B527F01006149BE /* HomeChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChannelTableViewCell.swift; sourceTree = "<group>"; };
 		2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableViewProtocol+.swift"; sourceTree = "<group>"; };
-		2B5A65812B751C7F006CE559 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		2B5A65812B751C7F006CE559 /* Kingfisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+.swift"; sourceTree = "<group>"; };
 		2B5A65882B752D93006CE559 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		2B5A658A2B752F4E006CE559 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2B9B6D732B52A60000CC021E /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		2BE535DE2B7F5A68006B1C48 /* UserTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
 		2BE535E12B7F5B96006B1C48 /* ChannelChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatRepository.swift; sourceTree = "<group>"; };
 		2BE535E72B836021006B1C48 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		2BE535EF2B84B953006B1C48 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		2BE5E7A92B4698A20012A83F /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		2BE5E7AB2B469BBD0012A83F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		2BE5E7AE2B469FED0012A83F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE535CF2B7E5E19006B1C48 /* FirebaseMessaging in Frameworks */,
+				2BE535EB2B84B8E4006B1C48 /* SocketIO in Frameworks */,
 				2B9D89E42B554B2800642F85 /* Kingfisher in Frameworks */,
 				2BE5E7A42B46986E0012A83F /* RxCocoa in Frameworks */,
 				2BE5E7CC2B46D32B0012A83F /* KakaoSDKCommon in Frameworks */,
@@ -373,30 +377,6 @@
 			path = EmailLogin;
 			sourceTree = "<group>";
 		};
-		2B41093E2B4FB66C006149BE /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
-			);
-			path = Error;
-			sourceTree = "<group>";
-		};
-		2B41093F2B4FB774006149BE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2B4109402B4FB835006149BE /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
 		2B4109772B527EA4006149BE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +505,10 @@
 		2BAF68D92B45907D00584B13 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2BE5E7D82B4715290012A83F /* Manager */,
+				2BE535EE2B84B933006B1C48 /* Socket */,
+				2BE535ED2B84B91F006B1C48 /* Kakao */,
+				2BE535EC2B84B912006B1C48 /* Keychain */,
 				2BE535E02B7F5B64006B1C48 /* Repository */,
 				2BE535D42B7F4A09006B1C48 /* Realm */,
 				2BE5E7E42B47EFD00012A83F /* Network */,
@@ -583,7 +567,7 @@
 				2B41092B2B4E81F2006149BE /* UserDefaults+.swift */,
 				2B41097C2B527F69006149BE /* ReusableViewProtocol+.swift */,
 				2B18BC352B60D914007636EC /* Notification+.swift */,
-				2B5A65812B751C7F006CE559 /* Image+.swift */,
+				2B5A65812B751C7F006CE559 /* Kingfisher+.swift */,
 				2BE535C52B7E23A2006B1C48 /* Date+.swift */,
 				2BE535E72B836021006B1C48 /* String+.swift */,
 			);
@@ -646,6 +630,30 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		2BE535EC2B84B912006B1C48 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7D62B4715240012A83F /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		2BE535ED2B84B91F006B1C48 /* Kakao */ = {
+			isa = PBXGroup;
+			children = (
+				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
+			);
+			path = Kakao;
+			sourceTree = "<group>";
+		};
+		2BE535EE2B84B933006B1C48 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				2BE535EF2B84B953006B1C48 /* SocketIOManager.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		2BE5E7AD2B469FBD0012A83F /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,9 +667,6 @@
 		2BE5E7D82B4715290012A83F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
-				2BE5E7D62B4715240012A83F /* KeychainManager.swift */,
-				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
 				2B41092F2B4EB164006149BE /* ChangeRootVCManager.swift */,
 			);
 			path = Manager;
@@ -670,10 +675,10 @@
 		2BE5E7E42B47EFD00012A83F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2BE5E7D82B4715290012A83F /* Manager */,
-				2B4109402B4FB835006149BE /* Router */,
-				2B41093F2B4FB774006149BE /* Model */,
-				2B41093E2B4FB66C006149BE /* Error */,
+				2BE5E7E52B47EFF70012A83F /* NetworkManager.swift */,
+				2BE5E7E72B47F0060012A83F /* APIRouter.swift */,
+				2BE5E7EE2B480EEA0012A83F /* NetworkModel.swift */,
+				2BE5E7F02B4812DD0012A83F /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -734,6 +739,7 @@
 				2BE535CE2B7E5E19006B1C48 /* FirebaseMessaging */,
 				2BE535DA2B7F50AC006B1C48 /* Realm */,
 				2BE535DC2B7F50AC006B1C48 /* RealmSwift */,
+				2BE535EA2B84B8E4006B1C48 /* SocketIO */,
 			);
 			productName = Chatty;
 			productReference = 2BAF68BE2B458E4500584B13 /* Chatty.app */;
@@ -774,6 +780,7 @@
 				2B9D89E22B554B2800642F85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				2BE535C72B7E5E19006B1C48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2BE535D92B7F50AC006B1C48 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				2BE535E92B84B8E4006B1C48 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 2BAF68BF2B458E4500584B13 /* Products */;
 			projectDirPath = "";
@@ -843,7 +850,7 @@
 				2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */,
 				2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */,
 				2BE535D82B7F4F8A006B1C48 /* ChattingTable.swift in Sources */,
-				2B5A65822B751C7F006CE559 /* Image+.swift in Sources */,
+				2B5A65822B751C7F006CE559 /* Kingfisher+.swift in Sources */,
 				2B4109302B4EB164006149BE /* ChangeRootVCManager.swift in Sources */,
 				2B18BC542B624847007636EC /* BaseCollectionReusableView.swift in Sources */,
 				2BE5E7B32B46A25F0012A83F /* CImageButton.swift in Sources */,
@@ -861,6 +868,7 @@
 				2B4109722B5277E8006149BE /* HomeView.swift in Sources */,
 				2B4109392B4FAE59006149BE /* EmailLoginViewController.swift in Sources */,
 				2B4109442B4FEA82006149BE /* AddView.swift in Sources */,
+				2BE535F02B84B953006B1C48 /* SocketIOManager.swift in Sources */,
 				2B18BC5D2B629A46007636EC /* MessageImageCollectionViewCell.swift in Sources */,
 				2B18BC5B2B6299C7007636EC /* ChattingImageCollectionViewCell.swift in Sources */,
 				2B4109482B4FF552006149BE /* CSymbolButton.swift in Sources */,
@@ -1172,6 +1180,14 @@
 				kind = branch;
 			};
 		};
+		2BE535E92B84B8E4006B1C48 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2BE5E7A22B46986E0012A83F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -1253,6 +1269,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BE535D92B7F50AC006B1C48 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		2BE535EA2B84B8E4006B1C48 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE535E92B84B8E4006B1C48 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		2BE5E7A32B46986E0012A83F /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
