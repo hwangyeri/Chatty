@@ -13,7 +13,7 @@ final class SideMenuTableViewCell: BaseTableViewCell {
 
     let wsImageView = UIImageView().then {
         $0.image = .dummy
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
     }
