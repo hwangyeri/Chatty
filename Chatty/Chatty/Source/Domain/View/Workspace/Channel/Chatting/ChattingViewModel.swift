@@ -11,6 +11,10 @@ import RxCocoa
 
 final class ChattingViewModel: BaseViewModel {
     
+    private let channelChatRepository = ChannelChatRepository()
+    
+    private let socketIOManager = SocketIOManager.shared
+    
     var workspaceID: Int?
     
     var channelID: Int?
@@ -32,15 +36,16 @@ final class ChattingViewModel: BaseViewModel {
     struct Output {
         let backButtonTap: Driver<Void>
         let listButtonTap: Driver<Void>
+        let plusImageButtonTap: Driver<Void>
         let isCompletedFetch: PublishRelay<Bool> // 채널 채팅 조회 API 완료 트리거
         let isCreatedChat: PublishRelay<Bool> // 채널 채팅 생성 API 완료 트리거
     }
     
     private let disposeBag = DisposeBag()
     
-    private let channelChatRepository = ChannelChatRepository()
-    
     let isCompletedFetch = PublishRelay<Bool>()
+    
+    let isCreatedChat = PublishRelay<Bool>()
     
     func transform(input: Input) -> Output {
         
@@ -54,7 +59,10 @@ final class ChattingViewModel: BaseViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: ())
         
-        let isCreatedChat = PublishRelay<Bool>()
+        // 이미지 추가하기 버튼 탭
+        let plusImageButtonTap = input.plusImageButton
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: ())
         
         // 보내기 버튼 탭
         input.sendImageButton
@@ -79,18 +87,19 @@ final class ChattingViewModel: BaseViewModel {
                     // Realm에 새로운 채팅 데이터 저장
                     owner.channelChatRepository.createChatData(channlChat: data, workspaceID: owner.workspaceID ?? 0)
                     
-                    isCreatedChat.accept(true)
+                    owner.isCreatedChat.accept(true)
                 case .failure(let error):
                     print("💛 채널 채팅 생성 API 실패: \(error.errorDescription)")
-                    isCreatedChat.accept(false)
+                    owner.isCreatedChat.accept(false)
                 }
             }
             .disposed(by: disposeBag)
         
         return Output(
-            backButtonTap: backButtonTap, 
+            backButtonTap: backButtonTap,
             listButtonTap: listButtonTap, 
-            isCompletedFetch: isCompletedFetch, 
+            plusImageButtonTap: plusImageButtonTap,
+            isCompletedFetch: isCompletedFetch,
             isCreatedChat: isCreatedChat
         )
     }
@@ -120,6 +129,10 @@ final class ChattingViewModel: BaseViewModel {
             // 마지막 날짜를 기준으로 새로운 채팅 데이터 업데이트
             channelsChatsRead(cursor: lastChatDate?.toStringMy() ?? "")
         }
+        
+        // 소켓 열기
+        openSocket()
+        receiveChat()
     }
     
     // 채널 채팅 조회 API
@@ -157,5 +170,33 @@ final class ChattingViewModel: BaseViewModel {
         }
     }
    
+    
+}
+
+// MARK: Socket
+extension ChattingViewModel {
+    
+    // 소켓 연결
+    private func openSocket() {
+        print(#function)
+        socketIOManager.establishConnection(channelID ?? 0)
+    }
+    
+    // 소켓 연결 해제
+    func closeSocket() {
+        print(#function)
+        socketIOManager.closeConnection()
+    }
+    
+    // 채팅 수신
+    private func receiveChat() {
+        print(#function)
+        socketIOManager.receiveChat(type: ChannlChat.self) { [weak self] data in
+            dump(data)
+            self?.channelChatData.append(data)
+            self?.isCreatedChat.accept(true)
+            print("✅ 소켓 응답 - 채팅 수신")
+        }
+    }
     
 }
