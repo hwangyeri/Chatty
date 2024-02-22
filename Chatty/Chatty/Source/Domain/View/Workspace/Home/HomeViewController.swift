@@ -93,11 +93,16 @@ final class HomeViewController: BaseViewController {
         }
         
         if let profileImage = viewModel.myProfile?.profileImage, !profileImage.isEmpty {
-            let url = URL(string: profileImage)
-            mainView.myProfileButton.kf.setImage(with: url, for: .normal)
+            mainView.myProfileButton.setImageKF(withURL: profileImage) { result in
+                switch result {
+                case .success(_):
+                    print("🩵 이미지 로드 성공")
+                case .failure(let error):
+                    print("💛 이미지 로드 실패: \(error)")
+                }
+            }
         } else {
-            //FIXME: 내 프로필 이미지 없을 때, 디폴트 이미지 변경하기
-            mainView.myProfileButton.setImage(UIImage(systemName: "star"), for: .normal)
+            mainView.myProfileButton.setImage(UIImage(named: "Dummy"), for: .normal)
         }
     }
     
@@ -253,8 +258,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             
             // 유저 프로필 없을 때, 예외 처리
             if let profileImage = data.0 {
-                let url = URL(string: profileImage)
-                cell.imgView.kf.setImage(with: url)
+                cell.imgView.setImageKF(withURL: profileImage) { result in
+                    switch result {
+                    case .success(_):
+                        print("🩵 이미지 로드 성공")
+                    case .failure(let error):
+                        print("💛 이미지 로드 실패: \(error)")
+                    }
+                }
             } else {
                 cell.imgView.image = .dummy
             }
@@ -294,6 +305,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.reloadSections([indexPath.section], with: .none)
         case .channelRowCell:
             print("Channel Row Cell Clicked")
+            // 채널 선택
+            let vc = ChattingViewController()
+            vc.workspaceID = viewModel.workspaceID
+            vc.channelID = viewModel.channelRowCellData(indexPath).2
+            vc.channelName = viewModel.channelRowCellData(indexPath).0
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         case .dmRowCell:
             print("DM Row Cell Clicked")
         case .plusCell:
