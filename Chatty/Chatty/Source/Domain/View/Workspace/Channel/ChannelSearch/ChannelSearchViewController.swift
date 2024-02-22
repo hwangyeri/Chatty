@@ -75,6 +75,9 @@ final class ChannelSearchViewController: BaseViewController {
                 } else {
                     let vc = twoButtonModalViewController()
                     vc.modalAction = .channelJoin
+                    vc.workspaceID = owner.viewModel.workspaceID
+                    vc.channelID = owner.viewModel.selectedChannelID
+                    vc.channelName = owner.viewModel.selectedChannelName
                     owner.present(vc, animated: true)
                 }
             }

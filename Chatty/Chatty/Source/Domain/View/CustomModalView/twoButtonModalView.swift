@@ -28,7 +28,7 @@ final class twoButtonModalView: BaseView {
         $0.isEnabled = true
     }
     
-    let deleteButton = CButton(text: "삭제", font: .title2).then {
+    let rightButton = CButton(text: "삭제", font: .title2).then {
         $0.backgroundColor = .point
         $0.isEnabled = true
     }
@@ -36,7 +36,7 @@ final class twoButtonModalView: BaseView {
     override func configureHierarchy() {
         addSubview(backView)
         
-        [mainLabel, subLabel, cancelButton, deleteButton].forEach {
+        [mainLabel, subLabel, cancelButton, rightButton].forEach {
             backView.addSubview($0)
         }
     }
@@ -61,11 +61,11 @@ final class twoButtonModalView: BaseView {
             make.top.equalTo(subLabel.snp.bottom).offset(16)
             make.leading.equalTo(mainLabel)
             make.height.equalTo(44)
-            make.width.equalTo(deleteButton).multipliedBy(1)
+            make.width.equalTo(rightButton).multipliedBy(1)
             make.bottom.equalToSuperview().inset(16)
         }
         
-        deleteButton.snp.makeConstraints { make in
+        rightButton.snp.makeConstraints { make in
             make.top.bottom.size.equalTo(cancelButton)
             make.leading.equalTo(cancelButton.snp.trailing).offset(8)
             make.trailing.equalTo(mainLabel)

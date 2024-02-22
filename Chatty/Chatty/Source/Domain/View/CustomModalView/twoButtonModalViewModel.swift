@@ -13,17 +13,23 @@ final class twoButtonModalViewModel: BaseViewModel {
     
     var workspaceID: Int?
     
+    var channelID: Int?
+    
+    var channelName: String?
+    
     struct Input {
         let cancelButton: ControlEvent<Void> // 취소 버튼
-        let deleteButton: ControlEvent<Void> // 삭제 버튼
+        let rightButton: ControlEvent<Void> // 오른쪽 버튼
     }
     
     struct Output {
         let cancelButtonTap: Driver<Void>
-        let deleteButtonTap: Driver<Void>
+        let isCompleted: PublishRelay<Bool>
     }
     
     private let disposeBag = DisposeBag()
+    
+    let isCompleted = PublishRelay<Bool>()
     
     func transform(input: Input) -> Output {
         
@@ -32,15 +38,38 @@ final class twoButtonModalViewModel: BaseViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: ())
         
-        // 삭제 버튼 탭
-        let deleteButtonTap = input.deleteButton
+        
+        // 오른쪽 버튼 탭
+        input.rightButton
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: ())
+            .flatMapLatest { [weak self] _ in
+                // 채널 채팅 조회 API
+                NetworkManager.shared.requestSingle(
+                    type: ChannlChatOutput.self,
+                    router: .channelsChatsRead(
+                        id: self?.workspaceID ?? 0,
+                        name: self?.channelName ?? "",
+                        cursor_date: ""
+                    )
+                )
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let data):
+                    print("🩵 채널 채팅 조회 API 성공")
+                    dump(data)
+                    owner.isCompleted.accept(true)
+                case .failure(let error):
+                    print("💛 채널 채팅 조회 API 실패: \(error.errorDescription)")
+                    owner.isCompleted.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
         
         
         return Output(
             cancelButtonTap: cancelButtonTap,
-            deleteButtonTap: deleteButtonTap
+            isCompleted: isCompleted
         )
     }
         

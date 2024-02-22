@@ -12,7 +12,7 @@ extension Date {
     func formattedTime() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.locale = Locale(identifier: "ko-KR")
         
         return dateFormatter.string(from: self)
     }
@@ -22,6 +22,14 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         
+        return dateFormatter.string(from: self)
+    }
+    
+    func formattedSideDate() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy. MM. dd"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+       
         return dateFormatter.string(from: self)
     }
     

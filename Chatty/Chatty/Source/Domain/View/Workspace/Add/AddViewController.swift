@@ -49,10 +49,15 @@ final class AddViewController: BaseViewController {
             mainView.explainTextField.text = workspaceData?.description ?? "워크스페이스를 설명하세요 (옵션)"
             
             if let thumbnail = workspaceData?.thumbnail {
-                let url = URL(string: APIKey.baseURL + "/v1" + thumbnail)
-                mainView.workspaceImageButton.kf.setImage(with: url, for: .normal)
+                mainView.workspaceImageButton.setImageKF(withURL: thumbnail) { result in
+                    switch result {
+                    case .success(_):
+                        print("🩵 이미지 로드 성공")
+                    case .failure(let error):
+                        print("💛 이미지 로드 실패: \(error)")
+                    }
+                }
             } else {
-                //FIXME: dummy Image
                 mainView.workspaceImageButton.setImage(.dummy, for: .normal)
             }
             

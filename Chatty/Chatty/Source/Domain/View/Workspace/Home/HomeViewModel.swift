@@ -328,10 +328,10 @@ final class HomeViewModel: BaseViewModel {
         }
     }
     
-    func channelRowCellData(_ indexPath: IndexPath) -> (String, Int) {
+    func channelRowCellData(_ indexPath: IndexPath) -> (String, Int, Int) {
         guard let channelsData = channelsData else {
             print("channelsData Error")
-            return ("", 0)
+            return ("", 0, 0)
         }
         
         // createdAt 오래된 순으로 재정렬
@@ -339,7 +339,8 @@ final class HomeViewModel: BaseViewModel {
         
         return (
             reversedChannelsData[indexPath.row - 1].channelData.name,
-            reversedChannelsData[indexPath.row - 1].messageCount
+            reversedChannelsData[indexPath.row - 1].messageCount,
+            reversedChannelsData[indexPath.row - 1].channelData.channelID
         )
     }
     
