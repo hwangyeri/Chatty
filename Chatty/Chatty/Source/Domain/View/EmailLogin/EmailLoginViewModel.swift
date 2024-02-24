@@ -73,6 +73,9 @@ final class EmailLoginViewModel: BaseViewModel {
         // 로그인 유효성 검증
         let isLoginValid = PublishRelay<Bool>()
         
+        // 디바이스 토큰
+        let deviceToken = KeychainManager.shared.deviceToken ?? ""
+        
         // 로그인 버튼 탭
         input.loginButton
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
@@ -92,7 +95,15 @@ final class EmailLoginViewModel: BaseViewModel {
             ))
             .flatMapLatest { email, password in
                 // 로그인 API
-                NetworkManager.shared.requestSingle(type: AuthOutput.self, router: .usersLogin(model: LoginInput(email: email, password: password, deviceToken: "temp")))
+                NetworkManager.shared.requestSingle(
+                    type: AuthOutput.self,
+                    router: .usersLogin(
+                        model: LoginInput(
+                            email: email,
+                            password: password, deviceToken: deviceToken
+                        )
+                    )
+                )
             }
             .filter { result in
                 switch result {
