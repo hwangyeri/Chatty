@@ -70,6 +70,29 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         print("✅ Device Token: \(tokenString)")
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    // foreground 상태일 때 Push 받으면 alert 띄워주기 위한 메서드
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        //guard let userInfo = notification.request.content.userInfo as? [String: Any] else { return }
+        
+        // FIXME: 현재 접속한 채팅방 푸시 알림 - 예외처리
+        // 푸시 알람 디코딩 필요
+        
+        completionHandler([.list, .badge, .sound, .banner])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(#function, "✅ 푸시 알람 클릭!")
+        
+        guard let userInfo = response.notification.request.content.userInfo as? [String: Any] else { return }
+        
+        // FIXME: 푸시 받은 채팅 화면으로 이동시켜주기
+        // 푸시 알람 디코딩 필요
+        
+        completionHandler()
     }
     
 }
@@ -78,16 +101,10 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
-            print("Firebase registration token: \(token)")
-            
-            let dataDict: [String: String] = ["token": token]
-            NotificationCenter.default.post(
-                name: Notification.Name("FCMToken"),
-                object: nil,
-                userInfo: dataDict
-            )
+            print("🩵 Firebase registration token: \(token)")
+            KeychainManager.shared.deviceToken = token
         } else {
-            print("Firebase registration token is nil.")
+            print("💛 Firebase registration token is nil.")
         }
     }
     
