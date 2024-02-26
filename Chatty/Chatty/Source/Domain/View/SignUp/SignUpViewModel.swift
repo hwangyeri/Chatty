@@ -122,6 +122,9 @@ final class SignUpViewModel: BaseViewModel {
         // 이메일, 닉네임, 전화번호, 비밀번호, 비밀번호 확인 - 각 유효성 검증 결과를 담은 배열
         let isValidArray = PublishRelay<[Bool]>()
         
+        // 디바이스 토큰
+        let deviceToken = KeychainManager.shared.deviceToken ?? ""
+        
         // 가입하기 유효성 검증
         input.signUpButton
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
@@ -149,11 +152,16 @@ final class SignUpViewModel: BaseViewModel {
                 // 회원가입 API
                 NetworkManager.shared.requestSingle(
                     type: AuthOutput.self,
-                    router: .usersJoin(model: JoinInput(
-                        email: email, password: password, 
-                        nickname: nickname, phone: contact,
-                        deviceToken: "temp"
-                    )))
+                    router: .usersJoin(
+                        model: JoinInput(
+                            email: email,
+                            password: password,
+                            nickname: nickname,
+                            phone: contact,
+                            deviceToken: deviceToken
+                        )
+                    )
+                )
             }
             .subscribe(with: self) { owner, result in
                 switch result {
