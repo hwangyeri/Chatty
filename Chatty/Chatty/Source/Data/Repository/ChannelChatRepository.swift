@@ -79,7 +79,7 @@ class ChannelChatRepository: ChannelChatRepositoryType {
                     chat_id: channlChat.chatID,
                     channel: realm.object(ofType: ChannelTable.self, forPrimaryKey: channelID),
                     user: realm.object(ofType: UserTable.self, forPrimaryKey: userID),
-                    content: channlChat.content,
+                    content: channlChat.content ?? "",
                     createdAt: channlChat.createdAt.toDate() ?? Date(),
                     files: fileList
                 )
@@ -103,13 +103,15 @@ class ChannelChatRepository: ChannelChatRepositoryType {
         
         // ChattingTable -> ChannlChat으로 변환
         let convertedData = chatData.map { chatTable in
+            let files = Array(chatTable.files)
+            
             return ChannlChat(
                 channelID: chatTable.channel?.channel_id ?? 0,
                 chatID: chatTable.chat_id,
                 channelName: chatTable.channel?.channel_name ?? "",
-                content: chatTable.content,
+                content: chatTable.content ?? "",
                 createdAt: chatTable.createdAt.toStringMy(),
-                files: [],
+                files: files,
                 user: User(
                     userID: chatTable.user?.user_id ?? 0,
                     email: chatTable.user?.user_email ?? "",

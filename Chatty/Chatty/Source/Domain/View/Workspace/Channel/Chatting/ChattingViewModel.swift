@@ -25,6 +25,8 @@ final class ChattingViewModel: BaseViewModel {
     
     var lastChatDate: Date?
     
+    var imageList = [Data]()
+    
     struct Input {
         let backButton: ControlEvent<Void>
         let listButton: ControlEvent<Void>
@@ -73,16 +75,18 @@ final class ChattingViewModel: BaseViewModel {
                 // 채널 채팅 생성 API
                 NetworkManager.shared.requestMultipart(
                     type: ChannlChat.self,
-                    router: .channelsChatsCreate(id: self?.workspaceID ?? 0, name: self?.channelName ?? "", model: ChannelChatCreateInput(content: text, files: [])))
+                    router: .channelsChatsCreate(
+                        id: self?.workspaceID ?? 0,
+                        name: self?.channelName ?? "",
+                        model: ChannelChatCreateInput(content: text, files: self?.imageList)
+                    )
+                )
             }
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let data):
                     print("🩵 채널 채팅 생성 API 성공")
                     dump(data)
-                    
-                    // 화면에 보여줄 리스트에 저장
-                    owner.channelChatData.append(data)
                     
                     // Realm에 새로운 채팅 데이터 저장
                     owner.channelChatRepository.createChatData(channlChat: data, workspaceID: owner.workspaceID ?? 0)

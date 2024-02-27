@@ -215,6 +215,6 @@ struct ChannlChat: Decodable {
 
 // 채널 채팅 생성
 struct ChannelChatCreateInput: Codable {
-    let content: String
-    let files: [String]?
+    let content: String?
+    let files: [Data]?
 }

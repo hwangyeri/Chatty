@@ -25,7 +25,6 @@
 		2B18BC542B624847007636EC /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC532B624847007636EC /* BaseCollectionReusableView.swift */; };
 		2B18BC562B624AC4007636EC /* SettingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC552B624AC4007636EC /* SettingFooterView.swift */; };
 		2B18BC592B625F56007636EC /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */; };
-		2B18BC5B2B6299C7007636EC /* ChattingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */; };
 		2B18BC5D2B629A46007636EC /* MessageImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */; };
 		2B41091E2B4ABD90006149BE /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091D2B4ABD90006149BE /* InitialView.swift */; };
 		2B4109202B4ABDA3006149BE /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B41091F2B4ABDA3006149BE /* InitialViewController.swift */; };
@@ -66,6 +65,7 @@
 		2B9D89F72B5A959F00642F85 /* twoButtonModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89F62B5A959F00642F85 /* twoButtonModalViewController.swift */; };
 		2B9D89F92B5A95B000642F85 /* twoButtonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89F82B5A95B000642F85 /* twoButtonModalView.swift */; };
 		2B9D89FB2B5AA69800642F85 /* twoButtonModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D89FA2B5AA69800642F85 /* twoButtonModalViewModel.swift */; };
+		2BA63BE72B8C7C1100D4EC47 /* CImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA63BE62B8C7C1100D4EC47 /* CImageView.swift */; };
 		2BAF68C22B458E4500584B13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C12B458E4500584B13 /* AppDelegate.swift */; };
 		2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C32B458E4500584B13 /* SceneDelegate.swift */; };
 		2BAF68C62B458E4500584B13 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF68C52B458E4500584B13 /* OnboardingViewController.swift */; };
@@ -142,7 +142,6 @@
 		2B18BC532B624847007636EC /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
 		2B18BC552B624AC4007636EC /* SettingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooterView.swift; sourceTree = "<group>"; };
 		2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
-		2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B41091D2B4ABD90006149BE /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		2B41091F2B4ABDA3006149BE /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +181,7 @@
 		2B9D89F62B5A959F00642F85 /* twoButtonModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalViewController.swift; sourceTree = "<group>"; };
 		2B9D89F82B5A95B000642F85 /* twoButtonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalView.swift; sourceTree = "<group>"; };
 		2B9D89FA2B5AA69800642F85 /* twoButtonModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twoButtonModalViewModel.swift; sourceTree = "<group>"; };
+		2BA63BE62B8C7C1100D4EC47 /* CImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CImageView.swift; sourceTree = "<group>"; };
 		2BAF68BE2B458E4500584B13 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BAF68C12B458E4500584B13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BAF68C32B458E4500584B13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -320,7 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				2B18BC582B625F56007636EC /* ChattingTableViewCell.swift */,
-				2B18BC5A2B6299C7007636EC /* ChattingImageCollectionViewCell.swift */,
 				2B18BC5C2B629A46007636EC /* MessageImageCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -547,6 +546,7 @@
 				2BE5E7FD2B4964520012A83F /* CTextField.swift */,
 				2B4109252B4D2AC6006149BE /* CSecureTextField.swift */,
 				2B4109752B527DB2006149BE /* CDivider.swift */,
+				2BA63BE62B8C7C1100D4EC47 /* CImageView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -870,7 +870,6 @@
 				2B4109442B4FEA82006149BE /* AddView.swift in Sources */,
 				2BE535F02B84B953006B1C48 /* SocketIOManager.swift in Sources */,
 				2B18BC5D2B629A46007636EC /* MessageImageCollectionViewCell.swift in Sources */,
-				2B18BC5B2B6299C7007636EC /* ChattingImageCollectionViewCell.swift in Sources */,
 				2B4109482B4FF552006149BE /* CSymbolButton.swift in Sources */,
 				2BE535E22B7F5B96006B1C48 /* ChannelChatRepository.swift in Sources */,
 				2BE5E7FC2B49637B0012A83F /* CBackView.swift in Sources */,
@@ -886,6 +885,7 @@
 				2B41092C2B4E81F2006149BE /* UserDefaults+.swift in Sources */,
 				2BAF68C42B458E4500584B13 /* SceneDelegate.swift in Sources */,
 				2B4109762B527DB2006149BE /* CDivider.swift in Sources */,
+				2BA63BE72B8C7C1100D4EC47 /* CImageView.swift in Sources */,
 				2BAF68FE2B4686E900584B13 /* OnboardingView.swift in Sources */,
 				2BE5E7FE2B4964520012A83F /* CTextField.swift in Sources */,
 				2B4109362B4EB2EC006149BE /* HomeViewController.swift in Sources */,

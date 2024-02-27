@@ -12,7 +12,7 @@ import Then
 final class MessageImageCollectionViewCell: BaseCollectionViewCell {
     
     let imgView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.image = .dummy
@@ -30,13 +30,13 @@ final class MessageImageCollectionViewCell: BaseCollectionViewCell {
         imgView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
-            make.size.equalTo(44)
+            make.size.equalToSuperview().multipliedBy(0.8)
         }
         
         xImageButton.snp.makeConstraints { make in
             make.top.equalTo(imgView).offset(-6)
             make.trailing.equalTo(imgView).offset(6)
-            make.size.equalTo(20)
+            make.size.equalToSuperview().multipliedBy(0.4)
         }
     }
     

@@ -76,15 +76,7 @@ final class HomeViewController: BaseViewController {
                 return
             }
             
-            mainView.wsImageView.setImageKF(withURL: workspaceData.thumbnail) { result in
-                switch result {
-                case .success(_):
-                    print("🩵 이미지 로드 성공")
-                case .failure(let error):
-                    print("💛 이미지 로드 실패: \(error)")
-                }
-            }
-            
+            mainView.wsImageView.setImageKF(withURL: workspaceData.thumbnail)
             mainView.wsNameButton.setTitle(workspaceData.name, for: .normal)
         } else {
             //워크스페이스 없는 경우
@@ -93,14 +85,7 @@ final class HomeViewController: BaseViewController {
         }
         
         if let profileImage = viewModel.myProfile?.profileImage, !profileImage.isEmpty {
-            mainView.myProfileButton.setImageKF(withURL: profileImage) { result in
-                switch result {
-                case .success(_):
-                    print("🩵 이미지 로드 성공")
-                case .failure(let error):
-                    print("💛 이미지 로드 실패: \(error)")
-                }
-            }
+            mainView.myProfileButton.setImageKF(withURL: profileImage)
         } else {
             mainView.myProfileButton.setImage(UIImage(named: "Dummy"), for: .normal)
         }
@@ -227,7 +212,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSectionTableViewCell.identifier, for: indexPath) as? HomeSectionTableViewCell else { return UITableViewCell() }
             let title = viewModel.sectionCellTitle(indexPath)
             
-            cell.selectionStyle = .none
             cell.titleLabel.text = title
             
             return cell
@@ -236,7 +220,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.identifier, for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
             let data = viewModel.channelRowCellData(indexPath)
             
-            cell.selectionStyle = .none
             cell.titleLabel.text = data.0
             
             // 안 읽은 메세지 없을 때, 예외 처리
@@ -258,19 +241,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             
             // 유저 프로필 없을 때, 예외 처리
             if let profileImage = data.0 {
-                cell.imgView.setImageKF(withURL: profileImage) { result in
-                    switch result {
-                    case .success(_):
-                        print("🩵 이미지 로드 성공")
-                    case .failure(let error):
-                        print("💛 이미지 로드 실패: \(error)")
-                    }
-                }
+                cell.imgView.setImageKF(withURL: profileImage)
             } else {
                 cell.imgView.image = .dummy
             }
             
-            cell.selectionStyle = .none
             cell.titleLabel.text = data.1
             
             // 안 읽은 메세지 없을 때, 예외 처리
@@ -289,7 +264,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomePlusTableViewCell.identifier, for: indexPath) as? HomePlusTableViewCell else { return UITableViewCell() }
             let title = viewModel.plusCellTitle(indexPath)
             
-            cell.selectionStyle = .none
             cell.titleLabel.text = title
             
             return cell

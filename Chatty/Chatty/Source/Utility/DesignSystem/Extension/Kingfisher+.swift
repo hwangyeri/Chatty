@@ -10,7 +10,7 @@ import Kingfisher
 
 extension UIImageView {
     
-    func setImageKF(withURL imageUrl: String, completionHandler: @escaping ((Result<RetrieveImageResult, KingfisherError>) -> Void)) {
+    func setImageKF(withURL imageUrl: String) {
         
         // Header
         let modifier = AnyModifier { request in
@@ -22,7 +22,8 @@ extension UIImageView {
         
         // Cache
         var options: KingfisherOptionsInfo = [
-            .cacheOriginalImage
+            .cacheOriginalImage,
+            .transition(.fade(1.2)) // 애니메이션
         ]
         
         options.append(.requestModifier(modifier))
@@ -32,13 +33,16 @@ extension UIImageView {
         
         options.append(.scaleFactor(UIScreen.main.scale))
         
+        // 이미지 로드 실패하면 재시도
+        let retryStrategy = DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(3))
+        options.append(.retryStrategy(retryStrategy))
+        
+        self.kf.indicatorType = .activity
+        
         self.kf.setImage(
             with: URL(string: APIKey.baseURL + "/v1" + imageUrl),
             placeholder: UIImage(named: "Dummy"),
-            options: options,
-            completionHandler: { result in
-                completionHandler(result)
-            }
+            options: options
         )
     }
     
@@ -46,7 +50,7 @@ extension UIImageView {
 
 extension UIButton {
     
-    func setImageKF(withURL imageUrl: String, completionHandler: @escaping ((Result<RetrieveImageResult, KingfisherError>) -> Void)) {
+    func setImageKF(withURL imageUrl: String) {
         
         // Header
         let modifier = AnyModifier { request in
@@ -58,7 +62,8 @@ extension UIButton {
         
         // Cache
         var options: KingfisherOptionsInfo = [
-            .cacheOriginalImage
+            .cacheOriginalImage,
+            .transition(.fade(1.2)) // 애니메이션
         ]
         
         options.append(.requestModifier(modifier))
@@ -68,14 +73,15 @@ extension UIButton {
         
         options.append(.scaleFactor(UIScreen.main.scale))
         
+        // 이미지 로드 실패하면 재시도
+        let retryStrategy = DelayRetryStrategy(maxRetryCount: 2, retryInterval: .seconds(3))
+        options.append(.retryStrategy(retryStrategy))
+        
         self.kf.setImage(
             with: URL(string: APIKey.baseURL + "/v1" + imageUrl),
             for: .normal,
             placeholder: UIImage(named: "Dummy"),
-            options: options,
-            completionHandler: { result in
-                completionHandler(result)
-            }
+            options: options
         )
     }
     

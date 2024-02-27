@@ -26,6 +26,7 @@ final class ChattingView: BaseView {
         $0.separatorStyle = .none
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100
+        $0.isScrollEnabled = false
     }
     
     let messageBackView = CBackView().then {
@@ -33,6 +34,12 @@ final class ChattingView: BaseView {
     }
     
     let plusImageButton = CImageButton(imageName: "plus")
+    
+    let stackView = UIStackView().then {
+        $0.distribution = .fill
+        $0.spacing = 6
+        $0.axis = .vertical
+    }
    
     let messageTextView = UITextView().then {
         $0.text = "메세지를 입력하세요"
@@ -48,6 +55,8 @@ final class ChattingView: BaseView {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
         $0.register(MessageImageCollectionViewCell.self, forCellWithReuseIdentifier: MessageImageCollectionViewCell.identifier)
         $0.backgroundColor = .backgroundPrimary
+        $0.isScrollEnabled = false
+        $0.isHidden = true
     }
     
     func collectionViewLayout() -> UICollectionViewFlowLayout {
@@ -67,8 +76,12 @@ final class ChattingView: BaseView {
             self.addSubview($0)
         }
         
-        [plusImageButton, messageTextView, collectionView, sendImageButton].forEach {
+        [plusImageButton, stackView, sendImageButton].forEach {
             messageBackView.addSubview($0)
+        }
+        
+        [messageTextView, collectionView].forEach {
+            stackView.addArrangedSubview($0)
         }
     }
     
@@ -100,13 +113,14 @@ final class ChattingView: BaseView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(divider.snp.bottom).offset(16)
             make.horizontalEdges.equalToSuperview().inset(16)
+            make.height.greaterThanOrEqualTo(10)
         }
         
         messageBackView.snp.makeConstraints { make in
             make.top.equalTo(tableView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview().inset(16)
             make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-10)
-            make.height.lessThanOrEqualTo(126)
+            make.height.greaterThanOrEqualTo(38)
         }
         
         plusImageButton.snp.makeConstraints { make in
@@ -115,26 +129,26 @@ final class ChattingView: BaseView {
             make.bottom.equalToSuperview().inset(8)
         }
         
-        messageTextView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(8)
-            make.leading.equalTo(plusImageButton.snp.trailing).offset(8)
-            make.trailing.equalTo(sendImageButton.snp.leading).offset(-8)
-            make.height.greaterThanOrEqualTo(22)
-            make.height.lessThanOrEqualTo(54)
-            make.height.equalTo(messageTextView.contentSize.height).priority(999)
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(messageTextView.snp.bottom).offset(6)
-            make.horizontalEdges.equalTo(messageTextView)
-            make.bottom.equalTo(plusImageButton)
-            make.height.equalTo(0) // 50 // 텍스트 먼저 구현
-        }
-        
         sendImageButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(12)
             make.size.equalTo(24)
             make.bottom.equalTo(plusImageButton)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(10)
+            make.leading.equalTo(plusImageButton.snp.trailing).offset(8)
+            make.trailing.equalTo(sendImageButton.snp.leading).offset(-8)
+            make.height.greaterThanOrEqualTo(18)
+        }
+        
+        messageTextView.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(18)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(50)
         }
     }
     
