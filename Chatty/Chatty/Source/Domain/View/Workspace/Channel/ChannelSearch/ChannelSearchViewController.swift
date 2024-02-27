@@ -98,7 +98,6 @@ extension ChannelSearchViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.backView.isHidden = true
         cell.countLabel.isHidden = true
-        cell.selectionStyle = .none
         
         cell.titleLabel.textColor = .textPrimary
         cell.titleLabel.font = .customFont(.bodyBold)

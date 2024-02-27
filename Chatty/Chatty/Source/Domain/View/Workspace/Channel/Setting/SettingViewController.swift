@@ -112,14 +112,7 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         let data = viewModel.membersData?[indexPath.item]
         
         if data?.profileImage != nil, let profileImage = data?.profileImage {
-            cell.imgView.setImageKF(withURL: profileImage) { result in
-                switch result {
-                case .success(_):
-                    print("🩵 이미지 로드 성공")
-                case .failure(let error):
-                    print("💛 이미지 로드 실패: \(error)")
-                }
-            }
+            cell.imgView.setImageKF(withURL: profileImage)
         } else {
             let noPhotoImages: [UIImage] = [.noPhotoA, .noPhotoB, .noPhotoC]
             cell.imgView.image = noPhotoImages.randomElement()

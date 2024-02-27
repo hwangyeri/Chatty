@@ -132,7 +132,6 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuTableViewCell.identifier, for: indexPath) as? SideMenuTableViewCell else { return UITableViewCell() }
         let data = viewModel.workspaceData?[indexPath.row]
         
-        cell.selectionStyle = .none
         cell.titleLabel.text = data?.name
         
         let formattedDate = data?.createdAt.toDate()?.formattedSideDate()
@@ -149,14 +148,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         cell.menuImageButton.addTarget(self, action: #selector(menuImageButtonTap), for: .touchUpInside)
         
         if let thumbnail = data?.thumbnail {
-            cell.wsImageView.setImageKF(withURL: thumbnail) { result in
-                switch result {
-                case .success(_):
-                    print("🩵 이미지 로드 성공")
-                case .failure(let error):
-                    print("💛 이미지 로드 실패: \(error)")
-                }
-            }
+            cell.wsImageView.setImageKF(withURL: thumbnail)
         }
         
         return cell
