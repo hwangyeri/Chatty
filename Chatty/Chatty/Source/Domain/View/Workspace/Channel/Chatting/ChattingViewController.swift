@@ -24,6 +24,8 @@ final class ChattingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var images = [UIImage]()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -139,7 +141,10 @@ final class ChattingViewController: BaseViewController {
             .subscribe(with: self) { owner, isValid in
                 if isValid {
                     owner.mainView.tableView.reloadData()
-                    owner.scrollToBottom()
+                    
+                    if !owner.viewModel.channelChatData.isEmpty {
+                        owner.scrollToBottom()
+                    }
                 } else {
                     owner.showOkAlert(title: "Error", message: "에러가 발생했어요. 😥\n다시 시도해 주세요.")
                 }
@@ -174,7 +179,6 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.identifier, for: indexPath) as? ChattingTableViewCell else { return UITableViewCell() }
         let data = viewModel.channelChatData[indexPath.row]
         
-        cell.selectionStyle = .none
         cell.messageLabel.text = data.content
         cell.nameLabel.text = data.user.nickname
         
@@ -182,16 +186,18 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dateLabel.text = date?.formattedTime()
         
         if data.user.profileImage != nil, let profileImage = data.user.profileImage {
-            cell.imgView.setImageKF(withURL: profileImage) { result in
-                switch result {
-                case .success(_):
-                    print("🩵 유저 프로필 이미지 로드 성공")
-                case .failure(let error):
-                    print("💛 유저 프로필 이미지 로드 실패: \(error)") // dpdp420@naver.com
-                }
-            }
+            cell.profileImageView.setImageKF(withURL: profileImage) 
         } else {
-            cell.imgView.image = .noPhotoA
+            cell.profileImageView.image = .noPhotoA
+        }
+        
+        let files = data.files ?? []
+        cell.imageLayout(files)
+        
+        if data.content.isEmpty {
+            cell.messageBackView.isHidden = true
+        } else {
+            cell.messageBackView.isHidden = false
         }
         
         return cell
@@ -203,13 +209,28 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChattingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageImageCollectionViewCell.identifier, for: indexPath) as? MessageImageCollectionViewCell else { return UICollectionViewCell() }
+        let data = images[indexPath.row]
+        
+        if images.count > 0 {
+            mainView.collectionView.isHidden = false
+            cell.imgView.image = data
+        } else {
+            mainView.collectionView.isHidden = true
+        }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (mainView.collectionView.frame.width) / 6
+        let height = width
+        
+        return CGSize(width: width, height: height)
     }
     
 }
@@ -231,6 +252,23 @@ extension ChattingViewController: UITextViewDelegate {
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        textView.constraints.forEach { constraint in
+            if estimatedSize.height >= 54 {
+                textView.isScrollEnabled = true
+                textView.snp.remakeConstraints { make in
+                    make.height.equalTo(54)
+                }
+            } else {
+                textView.isScrollEnabled = false
+                constraint.constant = estimatedSize.height
+            }
+        }
+    }
+    
 }
 
 // MARK: UIImagePicker 카메라
@@ -238,8 +276,12 @@ extension ChattingViewController: UIImagePickerControllerDelegate, UINavigationC
    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
+            // 이미지 배열에 추가
+            images.append(image)
+            mainView.collectionView.reloadData()
             if let imageToData = image.jpegData(compressionQuality: 0.001) {
-                // 이미지 배열에 추가하기
+                // 데이터 타입으로 변경
+                viewModel.imageList.append(imageToData)
             } else {
                 print("💛 Error converting image to data.")
             }
@@ -260,18 +302,24 @@ extension ChattingViewController: UIImagePickerControllerDelegate, UINavigationC
 extension ChattingViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
         for result in results {
-            
             let itemProvider = result.itemProvider
             
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                     DispatchQueue.main.async {
                         if let selectedImage = image as? UIImage {
+                            // 이미지 배열에 저장
+                            self?.images.append(selectedImage)
+                            self?.mainView.collectionView.reloadData()
                             if let imageToData = selectedImage.jpegData(compressionQuality: 0.001) {
-                                // 이미지 배열에 추가하기
+                                // 데이터 타입으로 변환
+                                self?.viewModel.imageList.append(imageToData)
                             } else {
-                                print("💛 Error converting image to data.")
+                                print("💛 Error converting image to String type.")
                             }
                         } else {
                             print("💛 Error loading image.")
@@ -280,8 +328,6 @@ extension ChattingViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
-        
-        picker.dismiss(animated: true, completion: nil)
     }
     
 }
