@@ -230,8 +230,8 @@ extension APIRouter {
             return makeMultipartFormData(params: params)
         case .channelsChatsCreate(_, _, let model):
             let params: [String: Any] = [
-                "content": model.content,
-                "files": model.files ?? []
+                "content": model.content ?? "",
+                "files": model.files ?? Data()
             ]
             return makeMultipartFormData(params: params)
         default:
@@ -253,12 +253,11 @@ extension APIRouter {
             // withName: key 값, fileName: 서버에 업로드할 파일 이름, mimeType: 파일 형식
             return multipart
         case .channelsChatsCreate(_, _, let model):
-            let content = model.content.data(using: .utf8) ?? Data()
+            let content = model.content?.data(using: .utf8) ?? Data()
             if let files = model.files {
                 for (index, file) in files.enumerated() {
                     let fileName = "chatty_channel_chat_file_\(index).jpeg"
-                    let fileData = file.data(using: .utf8) ?? Data()
-                    multipart.append(fileData, withName: "files", fileName: fileName, mimeType: "image/jpeg")
+                    multipart.append(file, withName: "files", fileName: fileName, mimeType: "image/jpeg")
                 }
             }
             multipart.append(content, withName: "content")
