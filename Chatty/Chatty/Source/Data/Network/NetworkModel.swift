@@ -218,3 +218,11 @@ struct ChannelChatCreateInput: Codable {
     let content: String?
     let files: [Data]?
 }
+
+// 새싹 코인 스토어 아이템 리스트
+typealias CoinItemList = [CoinItem]
+
+struct CoinItem: Codable {
+    let item, amount: String
+}
+
