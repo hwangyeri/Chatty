@@ -36,6 +36,7 @@ final class CoinShopTableViewCell: BaseTableViewCell {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .point
         $0.layer.cornerRadius = 8
+        $0.isUserInteractionEnabled = false
     }
     
     override func configureHierarchy() {
