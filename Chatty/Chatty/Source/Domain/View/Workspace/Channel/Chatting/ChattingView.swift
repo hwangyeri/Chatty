@@ -15,7 +15,7 @@ final class ChattingView: BaseView {
         $0.textAlignment = .center
     }
     
-    let backButton = CImageButton(imageName: "chevron.left")
+    let backButton = CImageButton(imageName: Constants.chevronLeft)
     
     let listButton = CImageButton(imageName: "list")
     

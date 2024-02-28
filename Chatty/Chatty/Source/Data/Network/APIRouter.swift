@@ -40,6 +40,10 @@ enum APIRouter: URLRequestConvertible {
     case dmsRead(id: Int) // DM 방 조회
     case dmsUnreadsChatCount(id: Int, roomID: Int) // 읽지 않은 DM 채팅 개수
     
+    // SESAC_STORE
+    case storePayValid(model: PGValidInput) // 새싹 코인 결제 검증
+    case storeItemList // 새싹 코인 스토어 아이템 리스트
+    
     
     private var baseURL: URL {
         guard let url = URL(string: APIKey.baseURL) else { fatalError() }
@@ -93,6 +97,12 @@ enum APIRouter: URLRequestConvertible {
             return "/v1/workspaces/\(id)/dms"
         case .dmsUnreadsChatCount(let id, let roomID):
             return "/v1/workspaces/\(id)/dms/\(roomID)/unreads"
+            
+        // SESAC_STORE
+        case .storePayValid:
+            return "/v1/store/pay/validation"
+        case .storeItemList:
+            return "/v1/store/item/list"
         }
     }
     
@@ -120,6 +130,10 @@ enum APIRouter: URLRequestConvertible {
         
         // DMS
         case .dmsRead, .dmsUnreadsChatCount: return .get
+            
+        // SESAC_STORE
+        case .storePayValid: return .post
+        case .storeItemList: return .get
         }
     }
     
@@ -183,6 +197,13 @@ enum APIRouter: URLRequestConvertible {
         case .channelsChatsRead(_, _, let cursor?):
             return [
                 "cursor_date": cursor
+            ]
+            
+        // SESAC_STORE
+        case .storePayValid(let model):
+            return [
+                "imp_uid": model.impUid,
+                "merchant_uid": model.merchantUid
             ]
             
         default:

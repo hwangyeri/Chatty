@@ -102,6 +102,17 @@ final class HomeViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 프로필 버튼 탭
+        output.myProfileButtonTap
+            .drive(with: self) { owner, _ in
+                print("프로필 버튼 탭")
+                let vc = ProfileViewController()
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .fullScreen
+                owner.present(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         // 워크스페이스 생성하기 버튼 탭
         output.createButtonTap
             .drive(with: self) { owner, _ in
