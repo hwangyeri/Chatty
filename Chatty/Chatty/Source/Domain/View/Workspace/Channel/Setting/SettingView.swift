@@ -15,7 +15,7 @@ final class SettingView: BaseView {
         $0.textAlignment = .center
     }
     
-    let backButton = CImageButton(imageName: "chevron.left")
+    let backButton = CImageButton(imageName: Constants.chevronLeft)
     
     let divider = CDivider()
     

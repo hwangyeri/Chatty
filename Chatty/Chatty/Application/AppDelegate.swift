@@ -11,24 +11,33 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import FirebaseCore
 import FirebaseMessaging
+import iamport_ios
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        Iamport.shared.receivedURL(url)
+        
+        return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         Thread.sleep(forTimeInterval: 1.0)
         
+        // IQKeyboardManager
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
         
         // 메인 번들에 있는 카카오 앱 키 불러오기
         let kakaoAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
         
-        // Kakao SDK 초기화
+        // KakaoSDK 초기화
         KakaoSDK.initSDK(appKey: kakaoAppKey as! String)
         
+        // Firebase 초기화
         FirebaseApp.configure()
         
         // 푸시 알림 권한 설정, FCM 등록
@@ -87,7 +96,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print(#function, "✅ 푸시 알람 클릭!")
         
-        guard let userInfo = response.notification.request.content.userInfo as? [String: Any] else { return }
+        //guard let userInfo = response.notification.request.content.userInfo as? [String: Any] else { return }
         
         // FIXME: 푸시 받은 채팅 화면으로 이동시켜주기
         // 푸시 알람 디코딩 필요
