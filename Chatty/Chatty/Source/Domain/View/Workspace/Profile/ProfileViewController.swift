@@ -25,8 +25,13 @@ final class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.fetchMyProfile()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchMyProfile()
     }
     
     override func configureLayout() {
@@ -87,7 +92,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         guard let secondSectionCell = tableView.dequeueReusableCell(withIdentifier: Profile02TableViewCell.identifier, for: indexPath) as? Profile02TableViewCell else { return UITableViewCell() }
         
         let data = viewModel.myProfileData
-        let profileCellType = viewModel.profileCellType(indexPath: indexPath)
+        let profileCellType = viewModel.profileCellType(indexPath)
         
         switch profileCellType {
         case .coinRowCell:
@@ -122,7 +127,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellType = viewModel.profileCellType(indexPath: indexPath)
+        let cellType = viewModel.profileCellType(indexPath)
         
         switch cellType {
         case .coinRowCell:

@@ -66,7 +66,7 @@ final class ProfileViewModel: BaseViewModel {
         case logoutRowCell
     }
     
-    func profileCellType(indexPath: IndexPath) -> ProfileTableViewCellType {
+    func profileCellType(_ indexPath: IndexPath) -> ProfileTableViewCellType {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             return .coinRowCell
