@@ -18,6 +18,7 @@ enum Constants {
     // systemName
     static let chevronDown = "chevron.down"
     static let chevronRight = "chevron.right"
+    static let chevronLeft = "chevron.left"
     static let number = "number"
     static let plus = "plus"
     
