@@ -13,7 +13,7 @@ final class CImageButton: UIButton {
         super.init(frame: .zero)
         
         self.setImage(UIImage(named: imageName), for: .normal)
-        self.contentMode = .scaleAspectFit
+        self.contentMode = .scaleAspectFill
     }
     
     required init?(coder aDecoder: NSCoder) {
