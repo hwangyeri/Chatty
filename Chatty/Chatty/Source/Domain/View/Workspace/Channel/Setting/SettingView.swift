@@ -23,9 +23,9 @@ final class SettingView: BaseView {
         $0.backgroundColor = .backgroundPrimary
     }
     
-    let mainLabel = CLabel(text: "#그냥 떠들고 싶을 때", custFont: .title2)
+    let mainLabel = CLabel(text: "#참깨길 123번", custFont: .title2)
     
-    let subLabel = CLabel(text: "안녕하세요 새싹 여러분? 심심하셨죠? 이 채널은 나머지 모든 것을 위한 채널이에요. 팀원들이 농담하거나 순간적인 아이디어를 공유하는 곳이죠! 마음껏 즐기세요!", custFont: .body)
+    let subLabel = CLabel(text: "Sunny Day Sweepin' the clouds away On my way to where the air is sweet Can you tell me how to get, How to get to Sesame Street Come and play Everything's A-OK Friendly neighbors there That's where we meet Can you tell me how to get How to get to Sesame Street", custFont: .body)
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
         $0.register(SettingCollectionViewCell.self, forCellWithReuseIdentifier: SettingCollectionViewCell.identifier)

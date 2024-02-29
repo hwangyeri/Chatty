@@ -10,11 +10,11 @@ import RxSwift
 import RxCocoa
 import SideMenu
 import Kingfisher
-import RealmSwift
+//import RealmSwift
 
 final class HomeViewController: BaseViewController {
     
-    let realm = try! Realm()
+//    let realm = try! Realm()
     
     var workspaceID: Int?
     
@@ -33,7 +33,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("✅", realm.configuration.fileURL)
+//        print("✅", realm.configuration.fileURL)
 
         viewModel.workspaceID = workspaceID
         fetchHomeEmptyUI()
@@ -248,7 +248,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             // 다이렉트 메세지 Row
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDMTableViewCell.identifier, for: indexPath) as? HomeDMTableViewCell else { return UITableViewCell() }
             let data = viewModel.dmRowCellData(indexPath)
-            
             
             // 유저 프로필 없을 때, 예외 처리
             if let profileImage = data.0 {

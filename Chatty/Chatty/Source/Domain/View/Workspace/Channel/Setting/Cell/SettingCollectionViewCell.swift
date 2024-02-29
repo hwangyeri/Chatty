@@ -12,7 +12,7 @@ import Then
 final class SettingCollectionViewCell: BaseCollectionViewCell {
     
     let imgView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.image = .dummy

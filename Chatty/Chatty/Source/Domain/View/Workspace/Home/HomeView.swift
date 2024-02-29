@@ -26,7 +26,7 @@ final class HomeView: BaseView {
         $0.layer.cornerRadius = 16
         $0.clipsToBounds = true
         $0.layer.borderWidth = 2
-        $0.layer.borderColor = UIColor.viewSelected.cgColor
+        $0.layer.borderColor = UIColor.point.cgColor
     }
     
     let divider1 = CDivider()

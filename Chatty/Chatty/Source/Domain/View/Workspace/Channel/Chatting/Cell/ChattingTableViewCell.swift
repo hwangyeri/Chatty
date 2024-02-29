@@ -131,57 +131,13 @@ final class ChattingTableViewCell: BaseTableViewCell {
         firstSectionStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.width.equalTo(contentView.snp.width).multipliedBy(0.7)
-            make.height.greaterThanOrEqualTo(80)
+            make.height.equalTo(80)
         }
         
         secondSectionStackView.snp.makeConstraints { make in
             make.horizontalEdges.width.equalTo(firstSectionStackView)
             make.height.equalTo(80)
         }
-    }
-    
-    func imageLayout(_ files: [String]) {
-        print(#function, "✅ files: \(files)")
-        
-        let imgCount = files.count
-        
-        if imgCount == 0 {
-            imageStackView.isHidden = true
-        } else if imgCount == 1 {
-            secondSectionStackView.isHidden = true
-            img02.isHidden = true
-            img03.isHidden = true
-            img01.setImageKF(withURL: files[0])
-            
-            firstSectionStackView.snp.remakeConstraints { make in
-                make.horizontalEdges.equalToSuperview()
-                make.width.equalTo(contentView.snp.width).multipliedBy(0.7)
-                make.height.equalTo(160)
-            }
-        } else if imgCount == 2 {
-            secondSectionStackView.isHidden = true
-            img03.isHidden = true
-            img01.setImageKF(withURL: files[0])
-            img02.setImageKF(withURL: files[1])
-        } else if imgCount == 3 {
-            secondSectionStackView.isHidden = true
-            img01.setImageKF(withURL: files[0])
-            img02.setImageKF(withURL: files[1])
-            img03.setImageKF(withURL: files[2])
-        } else if imgCount == 4 {
-            img03.isHidden = true
-            img01.setImageKF(withURL: files[0])
-            img02.setImageKF(withURL: files[1])
-            img04.setImageKF(withURL: files[2])
-            img05.setImageKF(withURL: files[3])
-        } else if imgCount == 5 {
-            img01.setImageKF(withURL: files[0])
-            img02.setImageKF(withURL: files[1])
-            img03.setImageKF(withURL: files[2])
-            img04.setImageKF(withURL: files[3])
-            img05.setImageKF(withURL: files[4])
-        }
-        
     }
     
     override func prepareForReuse() {
@@ -196,6 +152,65 @@ final class ChattingTableViewCell: BaseTableViewCell {
         img03.isHidden = false
         img04.isHidden = false
         img05.isHidden = false
+    }
+    
+    func imageLayout(_ files: [String]) {
+        print(#function, "✅ files: \(files)")
+        
+        let imgCount = files.count
+        
+        if imgCount == 0 {
+            imageStackView.isHidden = true
+        } else if imgCount == 1 {
+            secondSectionStackView.isHidden = true
+            img02.isHidden = true
+            img03.isHidden = true
+            img01.setImageKF(withURL: files[0])
+            oneImageLayout()
+        } else if imgCount == 2 {
+            secondSectionStackView.isHidden = true
+            img03.isHidden = true
+            img01.setImageKF(withURL: files[0])
+            img02.setImageKF(withURL: files[1])
+            updateImageLayout()
+        } else if imgCount == 3 {
+            secondSectionStackView.isHidden = true
+            img01.setImageKF(withURL: files[0])
+            img02.setImageKF(withURL: files[1])
+            img03.setImageKF(withURL: files[2])
+            updateImageLayout()
+        } else if imgCount == 4 {
+            img03.isHidden = true
+            img01.setImageKF(withURL: files[0])
+            img02.setImageKF(withURL: files[1])
+            img04.setImageKF(withURL: files[2])
+            img05.setImageKF(withURL: files[3])
+            updateImageLayout()
+        } else if imgCount == 5 {
+            img01.setImageKF(withURL: files[0])
+            img02.setImageKF(withURL: files[1])
+            img03.setImageKF(withURL: files[2])
+            img04.setImageKF(withURL: files[3])
+            img05.setImageKF(withURL: files[4])
+            updateImageLayout()
+        }
+        
+    }
+    
+    private func oneImageLayout() {
+        firstSectionStackView.snp.updateConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.7)
+            make.height.equalTo(160)
+        }
+    }
+    
+    private func updateImageLayout() {
+        firstSectionStackView.snp.updateConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.7)
+            make.height.equalTo(80)
+        }
     }
     
 }

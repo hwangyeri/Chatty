@@ -26,7 +26,6 @@ final class ChattingView: BaseView {
         $0.separatorStyle = .none
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100
-        $0.isScrollEnabled = false
     }
     
     let messageBackView = CBackView().then {
@@ -37,7 +36,7 @@ final class ChattingView: BaseView {
     
     let stackView = UIStackView().then {
         $0.distribution = .fill
-        $0.spacing = 6
+        $0.spacing = 4
         $0.axis = .vertical
     }
    
@@ -111,7 +110,7 @@ final class ChattingView: BaseView {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(divider.snp.bottom).offset(16)
+            make.top.equalTo(divider.snp.bottom)
             make.horizontalEdges.equalToSuperview().inset(16)
             make.height.greaterThanOrEqualTo(10)
         }

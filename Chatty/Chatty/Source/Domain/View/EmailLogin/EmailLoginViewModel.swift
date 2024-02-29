@@ -130,7 +130,7 @@ final class EmailLoginViewModel: BaseViewModel {
                 case .success(let data):
                     print("🩵 워크스페이스 조회 API 성공: \(data)")
                     // 워크스페이스 정보 저장
-                    owner.workspaceID = data[0].workspaceID
+                    owner.workspaceID = data[0].workspaceID // 339
                     print("✅ workspaceID: \(owner.workspaceID)")
                     isLoginValid.accept(true)
                 case .failure(let error):

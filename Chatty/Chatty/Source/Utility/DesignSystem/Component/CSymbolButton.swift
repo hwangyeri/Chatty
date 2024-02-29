@@ -17,7 +17,7 @@ final class CSymbolButton: UIButton {
         
         self.setImage(image, for: .normal)
         self.tintColor = .white
-        self.contentMode = .scaleAspectFit
+        self.contentMode = .scaleAspectFill
         self.backgroundColor = .point
         self.layer.cornerRadius = 8
         self.clipsToBounds = true
