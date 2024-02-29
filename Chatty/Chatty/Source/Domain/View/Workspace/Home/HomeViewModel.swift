@@ -244,8 +244,8 @@ final class HomeViewModel: BaseViewModel {
         }
         
         for (index, value) in dmData.sectionData.enumerated() {
-            var workspaceID = value.dmData.workspaceID
-            var roomID = value.dmData.roomID
+            let workspaceID = value.dmData.workspaceID
+            let roomID = value.dmData.roomID
             
             group.enter()
             // 읽지 않은 DM 채팅 개수 API
@@ -264,6 +264,8 @@ final class HomeViewModel: BaseViewModel {
                     group.leave()
                 }
         }
+        
+        print("✅ DM Data 디엠 데이터: \(self.dmData)")
         
         group.notify(queue: .main) { [weak self] in
             self?.isCompletedHomeData.accept(true)
