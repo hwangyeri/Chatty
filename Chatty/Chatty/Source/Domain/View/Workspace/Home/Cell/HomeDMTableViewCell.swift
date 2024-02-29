@@ -13,7 +13,7 @@ final class HomeDMTableViewCell: BaseTableViewCell {
     
     let imgView = UIImageView().then {
         $0.image = UIImage(named: "Dummy")
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 6
         $0.clipsToBounds = true
     }
@@ -29,6 +29,7 @@ final class HomeDMTableViewCell: BaseTableViewCell {
     
     let countLabel = CLabel(text: "99", custFont: .caption).then {
         $0.textColor = .white
+        $0.textAlignment = .center
     }
     
     override func configureHierarchy() {
@@ -58,7 +59,7 @@ final class HomeDMTableViewCell: BaseTableViewCell {
         }
         
         countLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(4)
             make.verticalEdges.equalToSuperview().inset(2)
         }
