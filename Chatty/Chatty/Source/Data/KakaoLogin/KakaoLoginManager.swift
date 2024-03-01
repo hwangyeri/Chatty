@@ -16,7 +16,6 @@ final class KakaoLoginManager {
     
     private init() { }
     
-    // MARK: Kakao Login
     func loginWithKakaoTalk(completion: @escaping (AuthOutput) -> Void) {
         
         // 카카오톡 설치 여부 확인
