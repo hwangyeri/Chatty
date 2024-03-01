@@ -12,7 +12,7 @@ import Then
 final class OnboardingView: BaseView {
     
     let titleLabel = CLabel(
-        text: "새싹톡을 사용하면 어디서나\n팀을 모을 수 있습니다",
+        text: "Chatty와 함께라면\n어디서나 팀을 모을 수 있어요",
         custFont: .title1
     ).then {
         $0.textAlignment = .center

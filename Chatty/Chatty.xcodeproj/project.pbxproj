@@ -562,7 +562,7 @@
 			children = (
 				2BE5E7D82B4715290012A83F /* Manager */,
 				2BE535EE2B84B933006B1C48 /* Socket */,
-				2BE535ED2B84B91F006B1C48 /* Kakao */,
+				2BE535ED2B84B91F006B1C48 /* KakaoLogin */,
 				2BE535EC2B84B912006B1C48 /* Keychain */,
 				2BE535E02B7F5B64006B1C48 /* Repository */,
 				2BE535D42B7F4A09006B1C48 /* Realm */,
@@ -694,12 +694,12 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
-		2BE535ED2B84B91F006B1C48 /* Kakao */ = {
+		2BE535ED2B84B91F006B1C48 /* KakaoLogin */ = {
 			isa = PBXGroup;
 			children = (
 				2BE5E7CF2B46E1340012A83F /* KakaoLoginManager.swift */,
 			);
-			path = Kakao;
+			path = KakaoLogin;
 			sourceTree = "<group>";
 		};
 		2BE535EE2B84B933006B1C48 /* Socket */ = {
