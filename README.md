@@ -1,4 +1,6 @@
 # Chatty
+<img width="70" alt="스크린샷 2024-03-07 오전 12 24 37" src="https://github.com/hwangyeri/Chatty/assets/114602459/85850016-5ee0-463a-95ef-477476e484e8">
+
 ### 어디서든 팀을 모을 수 있는 메신저 앱입니다.
 
 ![chatty_mockup](https://github.com/hwangyeri/Chatty/assets/114602459/9c531a85-0886-4529-95d0-64a84ec5d4b0)
@@ -52,9 +54,88 @@
 <br/>
 
 ## 문제 해결
-### 1. 순서가 보장되지 않는 비동기 네트워크 동시 호출로 인한 데이터 누락
+### 1. 섹션별 다양한 Cell Type 및 터치 이벤트 처리의 복잡성 해소
+- **문제 상황** : Expandable TableViewCell을 구현하는 과정에서 각 섹션마다 다양한 Cell을 구성하고, 터치 이벤트를 처리 하기 위한 메서드에서 복잡한 연산과 if문이 증가하는 문제가 발생함.
+- **해결 방법** : ViewModel에서 Enum을 활용하여 각 셀의 타입을 명시적으로 정의하는 계층적인 데이터 구조를 도입함. 이를 통해 데이터 처리를 단순화하고, 셀을 구분해 필요한 데이터를 미리 가공하여 셀에 전달함으로써 중복 코드를 최소화하고 코드의 가독성을 향상시킴.
+
+
+```swift
+
+// HomeViewModel
+
+  // == TableView numberOfRowsInSection 
+  func fetchNumberOfRowsInSection(section: Int) -> Int {
+      guard let channelsData = channelsData, let dmData = dmData else {
+          print("NumberOfRowsInSection channelsData Error: \(channelsData)")
+          print("NumberOfRowsInSection dmData Error: \(dmData)")
+          return 0
+      }
+      
+      switch section {
+      // 섹션이 열린 경우 => 데이터 개수 + 제목 셀 하나 추가해서 보여주기
+      // 섹션이 닫힌 경우 => 제목 셀 하나 보여주기
+      case 0:
+          // 채널
+          return channelsData.isOpened ? channelsData.sectionData.count + 2 : 1 // 플러스 셀 때문에 + 2
+      case 1:
+          // 다이렉트 메세지
+          return dmData.isOpened ? dmData.sectionData.count + 2 : 1
+      default:
+          // 팀원 추가
+          return 1
+      }
+  }
+
+  enum HomeTableViewCellType {
+        case sectionCell
+        case channelRowCell
+        case dmRowCell
+        case plusCell
+    }
+      
+  func cellType(indexPath: IndexPath) -> HomeTableViewCellType {
+      guard let channelsData = channelsData, let dmData = dmData else {
+          return .sectionCell
+      }
+      
+      switch (indexPath.section, indexPath.row) {
+      case (0, 0), (1, 0): 
+          return .sectionCell
+      case (0, channelsData.sectionData.count + 1), (1, dmData.sectionData.count + 1), (2, 0):
+          return .plusCell
+      case (0, _): 
+          return .channelRowCell
+      case (1, _):
+          return .dmRowCell
+      default:
+          return .sectionCell
+          
+      }
+  }
+
+  func channelRowCellData(_ indexPath: IndexPath) -> (String, Int, Int) {
+      guard let channelsData = channelsData else {
+          print("channelsData Error")
+          return ("", 0, 0)
+      }
+      
+      // createdAt 오래된 순으로 재정렬
+      let reversedChannelsData = Array(channelsData.sectionData.reversed())
+      
+      return (
+          reversedChannelsData[indexPath.row - 1].channelData.name,
+          reversedChannelsData[indexPath.row - 1].messageCount,
+          reversedChannelsData[indexPath.row - 1].channelData.channelID
+      )
+  }
+
+```
+<br/>
+  
+### 2. 순서가 보장되지 않는 비동기 네트워크 동시 호출로 인한 데이터 누락
 - **문제 상황** : 여러 네트워크 호출이 동시에 이뤄졌는데 원하는 순서로 보장되지 않아, 모든 비동기 작업이 완료되기 전에 뷰가 나타나서 데이터 누락 문제 발생함.
 - **해결 방법** : DispatchGroup을 활용하여 여러 비동기 작업을 그룹화하고, 각 작업이 완료될 때마다 특정 트리거(PublishRelay)를 활용하여 작업 완료 시점을 체크함. 이를 통해 원하는 순서로 작업이 수행되도록 조절하고, DispatchGroup의 notify 클로저 내에서 다음 작업을 실행함으로써 비동기 작업의 순서를 보장하고 데이터 누락 문제를 방지함.
+
 
 ```swift
   // Top UI 데이터 조회
