@@ -45,13 +45,13 @@
 ## 구현 기능
 ### 1. Realm, HTTP, Socket을 조합해서 실시간 채팅 기능 구현
 #### 1-1. 채팅 화면 진입 시 초기 데이터 로딩 로직
-<img width="792" alt="스크린샷 2024-03-06 오후 4 12 42" src="https://github.com/hwangyeri/Chatty/assets/114602459/8174905a-cdf8-41a0-a937-70d3abdc34a4">
+<img width="700" alt="스크린샷 2024-03-06 오후 4 12 42" src="https://github.com/hwangyeri/Chatty/assets/114602459/8174905a-cdf8-41a0-a937-70d3abdc34a4">
 
 
 #### 1-2. 실시간 채팅 응답/전송 로직 
-<img width="792" alt="스크린샷 2024-03-06 오후 4 12 15" src="https://github.com/hwangyeri/Chatty/assets/114602459/065b051a-90de-426b-8b49-b3907db8cd86">
+<img width="700" alt="스크린샷 2024-03-06 오후 4 12 15" src="https://github.com/hwangyeri/Chatty/assets/114602459/065b051a-90de-426b-8b49-b3907db8cd86">
 
-<br/>
+<br/><br/>
 
 ## 문제 해결
 ### 1. 섹션별 다양한 Cell Type 및 터치 이벤트 처리의 복잡성 해소
@@ -63,7 +63,6 @@
 
 // HomeViewModel
 
-  // == TableView numberOfRowsInSection 
   func fetchNumberOfRowsInSection(section: Int) -> Int {
       guard let channelsData = channelsData, let dmData = dmData else {
           print("NumberOfRowsInSection channelsData Error: \(channelsData)")
@@ -111,22 +110,6 @@
           return .sectionCell
           
       }
-  }
-
-  func channelRowCellData(_ indexPath: IndexPath) -> (String, Int, Int) {
-      guard let channelsData = channelsData else {
-          print("channelsData Error")
-          return ("", 0, 0)
-      }
-      
-      // createdAt 오래된 순으로 재정렬
-      let reversedChannelsData = Array(channelsData.sectionData.reversed())
-      
-      return (
-          reversedChannelsData[indexPath.row - 1].channelData.name,
-          reversedChannelsData[indexPath.row - 1].messageCount,
-          reversedChannelsData[indexPath.row - 1].channelData.channelID
-      )
   }
 
 ```
@@ -187,6 +170,23 @@
         }
     }
 ```
+<br/>
+
+## 고민한 점
+#### 1. MVVM 아키텍처 도입으로 TableView 복잡성 해결
+- ViewController에서 처리해야 하는 작업이 증가함에 따라 TableView 작업의 복잡성이 높아져, MVVM 아키텍처를 도입하여 이를 해결했습니다.
+
+#### 2. 네임스페이스 및 Enum 활용으로 코드 가독성 향상
+- 객체명이나 반복되는 텍스트를 하드코딩 대신 네임스페이스를 설정하고, enum을 활용하여 명명된 상수로 정의하여 코드 가독성을 향상시켰습니다.
+
+#### 3. Result Type 도입으로 네트워크 요청 처리 간결화
+- 네트워크 요청 시 발생할 수 있는 다양한 처리를 간결한 형태로 다루기 위해 Result Type을 도입하여 코드의 가독성을 높였습니다.
+
+#### 4. Lazy 변수를 활용한 메모리 효율 개선
+- 필수적이지 않은 UI는 lazy 변수로 선언하여 메모리 효율을 높였습니다.
+
+#### 5. 강제 언래핑 대신 nil 처리를 통한 앱 안정성 강화
+- 강제 언래핑을 사용하는 대신, 모든 변수에 nil coalescing 또는 if/guard let 바인딩을 통해 앱 크러시를 방지하였습니다.
 <br/>
 
 ## UI
